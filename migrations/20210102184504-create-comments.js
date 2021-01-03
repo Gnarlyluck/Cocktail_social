@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       drinkPostId : {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull:false,
         field: 'drink_id',
         refrences: {
@@ -21,7 +21,7 @@ module.exports = {
         }
       },
       userId: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull:false,
         field: 'user_id',
         references: {

@@ -13,7 +13,7 @@ module.exports = {
         allowNull: false
       },
       drinkPostId: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         field: 'drink_posts_id',
         allowNull: false,
         references: {
@@ -22,7 +22,7 @@ module.exports = {
         }
       },
       categoriesId: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull:false,
         field: 'categories_id',
         references: {
