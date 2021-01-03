@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       })
       drink_posts.belongsToMany(models.categories, {
         through: models.cat_tag,
-        foreignKey: 'post_id',
+        foreignKey: 'drink_post_id',
         onUpdate: 'cascade',
         onDelete: 'cascade'
       })

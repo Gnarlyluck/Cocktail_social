@@ -3,7 +3,7 @@ A lovely place to post new  and fun cocktail recipes
 # Cocktail Social
 ### Created by: |Schuyler Luckey| [Github](https://github.com/Gnarlyluck)| [LinkedIn](https://www.linkedin.com/in/schuyler-luckey/) | 
 ***
-### This app is dedicated to sharing your favorite cocktails or sharing your new experiments and getting feedback. Here you can find out what your friends and peers are cooking up behind the bar.  
+### This app is dedicated to sharing your favorite cocktails or sharing your new experiments and getting feedback. Here you can find out what your friends and peers are mixing up behind the bar.  
 
 # To get started here simply:
 * Provide your email adress 
@@ -23,4 +23,8 @@ A lovely place to post new  and fun cocktail recipes
 - Node.js: used throughout the project as the code for it.
 # ERD
 
-![ERD of Pluck Pluck Choose](./ReadmeImages/cocktail_p4_ERD_draft_4.png "ERD of Pluck Pluck Choose")
+![ERD of cocktail social](./ReadmeImages/cocktail_p4_ERD_draft_4.png "ERD of cocktail social")
+
+# Data flow chart
+
+![flow chart of cocktail social](./ReadmeImages/component_hierarchy_cocktail_social_draft_2.png 'flow chart of cocktail social')
