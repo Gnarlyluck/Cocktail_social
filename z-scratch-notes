@@ -3,10 +3,25 @@ CREATE POST
 {
 	"user_id": 2,
 	"title":"la última palabra",
-	"description":"The classic Last word cocktail with Mezcal replacing the gin",
+	"description":"This classic cocktail cteated at Seattles Zig Zag cafe by Murray Stenson. this Last word cocktail is made with Mezcal as opposed to gin",
 	"recipe":"3/4oz marachino liquer, 3/4oz lime juice, 3/4oz green chartreuse, 3/4oz Mezcal"
 	
 			}
+{
+	"user_id": 2,
+	"title":"vaquero picante",
+	"description":"This is a simple margarita with a healthy kick from our mezcal infused with jalapenos",
+	"recipe":" 2oz jala infused mezcal, .5oz agave nectar, .75oz lime juice."
+	
+			}
+{
+	"user_id": 2,
+	"title":"ol fashioned",
+	"description":"It's a classic what ore neeeds to be said about it",
+	"recipe":"2 oz knob creek bourbon, .5oz rich simple, 4 dashes angostura bitters, orange twist"
+			}
+
+
 
 CREATE User
 
@@ -15,4 +30,11 @@ CREATE User
 	"email":"cat@shoe.com",
 	"userName":"Booty",
 	"password":"1"
+			}
+
+create comment
+{
+	"content":"This drink is fucking deliscous!! thank you!",
+	"drink_id":4,
+	"userId": 2
 			}

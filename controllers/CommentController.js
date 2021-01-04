@@ -1,8 +1,8 @@
-const { comments, User } = require('../models')
+const { Comments, User } = require('../models')
 
 const CreateComment = async (req, res) => {
     try{
-        const comment = await comments.create({
+        const comment = await Comments.create({
             ...req.body,
             userId: req.params.user_id,//these references may wrong...
             drinkPostId: req.params.drink_id

@@ -4,9 +4,9 @@ const { categories } = require('../models')
 const CreateCategory = async (req, res) => {
     try{
         let categoryDetails = {
-            ...request.body
+            ...req.body
         }
-        let newCategory = await categories.create(categoryDetails)
+        let newCategory = await Categories.create(categoryDetails)
         res.send(newCategory)
     }catch(error){
         console.log('CreateCategory ERROR!!!')

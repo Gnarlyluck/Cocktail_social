@@ -16,7 +16,7 @@ module.exports = {
         allowNull:false,
         field: 'drink_id',
         refrences: {
-          model: 'drink_posts',
+          model: 'Drink_posts',
           key: 'id'
         }
       },

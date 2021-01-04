@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false,
       field: 'drink_id',
       refrences: {
-        model: 'drink_posts',
+        model: 'Drink_posts',
         key: 'id'
       }
     },
@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false,
       field: 'user_id',
       references: {
-        model: 'users',
+        model: 'User',
         key: 'id'
       }
     }
