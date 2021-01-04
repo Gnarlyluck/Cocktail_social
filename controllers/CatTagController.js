@@ -31,7 +31,7 @@ const RemoveTagFromPost = async (req, res) => {
                 id:tagId
             }
         })
-        res.send({message: `deleted that tag for you${tagId}`})
+        res.send({message: `deleted that tag for you ${tagId}`})
     }catch(error){
         console.log('TagPostToCategory ERROR!!!')
         throw error
@@ -53,9 +53,9 @@ const GetAllPostsByCategory = async (req, res) => {
 
 const GetAllCategoriesOnPost = async (req, res) => {
     try{
-        let postId = parseInt(req.params.drink_posts_id)
+        let drinkPostId = parseInt(req.params.drink_posts_id)
         const allTagsOnPost = await Cat_tag.findAll({
-            where: {drink_posts_id: postId}
+            where: {drink_posts_id: drinkPostId}
         })
         res.send(allTagsOnPost)
     }catch(error){
@@ -66,12 +66,12 @@ const GetAllCategoriesOnPost = async (req, res) => {
 
 const GetTag = async (req, res) => {
     try{
-        let postId = parseInt(req.params.drink_posts_id)
-        let categoriesId = parseInt(request.params.categories_id)
-        let tagId = await Cat_tag.findone({
+        let drinkPostsId = parseInt(req.params.drink_posts_id)
+        let categoriesId = parseInt(req.params.categories_id)
+        const tagId = await Cat_tag.findOne({
             attributes: ['id'],
             where: {
-                drink_posts_id: postId,
+                drink_posts_id: drinkPostsId,
                 categories_id: categoriesId
             }
         })
