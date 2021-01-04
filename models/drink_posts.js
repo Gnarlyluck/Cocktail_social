@@ -11,13 +11,13 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: 'cascade'
       })
       drink_posts.hasMany(models.Comments, {
-        foreignKey: 'drink_post_id',
+        foreignKey: 'drink_posts_id',
         onDelete: 'cascade',
         onUpdate: 'cascade'
       })
       drink_posts.belongsToMany(models.Categories, {
-        through: models.cat_tag,
-        foreignKey: 'drink_post_id',
+        through: models.Cat_tag,
+        foreignKey: 'drink_posts_id',
         onUpdate: 'cascade',
         onDelete: 'cascade'
       })

@@ -9,11 +9,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   cat_tag.init({
-    name: 
-    {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     drinkPostId: {
       type: DataTypes.INTEGER,
       field: 'drink_posts_id',
@@ -34,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 }, {
     sequelize,
-    modelName: 'cat_tag',
+    modelName: 'Cat_tag',
     tableName: 'cat_tags'
   });
   return cat_tag;

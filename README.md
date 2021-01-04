@@ -14,6 +14,11 @@ A lovely place to post new  and fun cocktail recipes
 ### You can begin exploring what we have to offer. From new experimental cocktails to classic recipes. We are 100% user driven but also offer a full database of classic and modern classic recipes. 
 ### You can comment on other users posts and let them know how great (or not so great) their cocktails are.
 ### You can search by posts, by cocktail name, or by spirit. 
+### Search our third party databse for any cocktail you can think of
+***
+# Post MVP Ideas:
+* upvotes and downvotes on both posts and comments
+* look up bars close to you that can offer you a specific cocktail(mapbox)
 ***
 # Technologies used
 ![Technologies Used Cocktail Social](./ReadmeImages/PERNimage.png "Technologies Used in Cocktail Social")
@@ -27,4 +32,4 @@ A lovely place to post new  and fun cocktail recipes
 
 # Data flow chart
 
-![flow chart of cocktail social](./ReadmeImages/component_hierarchy_cocktail_social_draft_2.png 'flow chart of cocktail social')
+![flow chart of cocktail social](./ReadmeImages/component_hierarchy_cocktail_social_draft_3.png 'flow chart of cocktail social')

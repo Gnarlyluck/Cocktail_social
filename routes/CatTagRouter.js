@@ -1,5 +1,4 @@
 const Router = require('express').Router()
-// const { Router } = require('express').Router()
 const controller = require('../controllers/CatTagController')
 
 Router.post('/tagIt', controller.TagPostToCategory)

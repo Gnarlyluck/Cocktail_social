@@ -25,6 +25,16 @@ const GetOnePost = async (req, res) => {
     }
 }
 
+const GetAllPosts = async (req, res) => {
+    try {
+        const allPosts = await Drink_posts.findAll()
+        res.send(allPosts)
+    } catch(error) {
+        console.log('GetAllPosts error!!!!!')
+        throw error
+    }
+}
+
 const  EditPost = async (req, res) => {
     try{
         let drinkPostId = parseInt(req.params.post_id)//this could be an issue
@@ -73,5 +83,6 @@ module.exports = {
     GetOnePost,
     EditPost,
     GetPostByUser,
-    DeletePost
+    DeletePost,
+    GetAllPosts
 }

@@ -8,10 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
       drinkPostId: {
         type: Sequelize.INTEGER,
         field: 'drink_posts_id',

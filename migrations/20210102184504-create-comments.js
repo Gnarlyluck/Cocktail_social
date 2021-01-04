@@ -14,9 +14,9 @@ module.exports = {
       drinkPostId : {
         type: Sequelize.INTEGER,
         allowNull:false,
-        field: 'drink_id',
+        field: 'drink_posts_id',
         refrences: {
-          model: 'Drink_posts',
+          model: 'drink_posts',
           key: 'id'
         }
       },

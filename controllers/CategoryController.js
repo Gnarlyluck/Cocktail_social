@@ -1,5 +1,4 @@
-const { request } = require('express')
-const { categories } = require('../models')
+const { Categories } = require('../models')
 
 const CreateCategory = async (req, res) => {
     try{
@@ -15,7 +14,7 @@ const CreateCategory = async (req, res) => {
 
 const GetCategory = async (req, res) => {
     try{
-        let oneCategory = await categories.findByPk(req.params.categoryId)//questionable
+        let oneCategory = await Categories.findByPk(req.params.categoryId)//questionable
         res.send(oneCategory) 
     }catch(error){
         console.log('GetCategory ERROR!!!')
@@ -24,7 +23,7 @@ const GetCategory = async (req, res) => {
 
 const GetAllCategories = async (req, res) => {
     try{
-        let allCats = await categories.findAll()
+        let allCats = await Categories.findAll()
         res.send(allCats)
     }catch(error){
         console.log('GetAllCategories ERROR!!!')
@@ -35,7 +34,7 @@ const EditCategory = async (req, res) => {
     try{
         let categoryId = parseInt(req.params.categoryId)
         let updatedDeets = req.body
-        let editedcat = await categories.update(updatedDeets, {
+        let editedcat = await Categories.update(updatedDeets, {
             where: {
                 id: categoryId
             }
@@ -49,7 +48,7 @@ const EditCategory = async (req, res) => {
 const DeleteCategory = async (req, res) => {
     try{
         let categoryId = parseInt(req.params.categoryId)
-        await categories.destroy({
+        await Categories.destroy({
             where: {
                 id: categoryId
             }

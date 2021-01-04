@@ -15,7 +15,7 @@ CREATE POST
 	
 			}
 {
-	"user_id": 2,
+	"user_id": 1,
 	"title":"ol fashioned",
 	"description":"It's a classic what ore neeeds to be said about it",
 	"recipe":"2 oz knob creek bourbon, .5oz rich simple, 4 dashes angostura bitters, orange twist"
@@ -38,3 +38,7 @@ create comment
 	"drink_id":4,
 	"userId": 2
 			}
+{
+	"drinkPostId":3,
+	"categoriesId":1
+}
