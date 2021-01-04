@@ -1,5 +1,5 @@
 const { response, request } = require('express')
-const { hashPassword, passwordValid, createToken } = require('../')
+const { hashPassword, passwordValid, createToken } = require('../middleware')
 const { User, drink_posts } = require('../models')
 
 const CreateUser = async (req, res) => {
@@ -28,13 +28,13 @@ const GetUser = async (req, res) => {
 const LoginUser = async (req, res) => {
     try{
         const user = await User.findOne({
-            where: { email: request.body.email },
+            where: { email: req.body.email },
             raw: true
         })
         if (user && (await passwordValid(req.body.password, user.password_digest))) {
             let payload = {
                 _id: user.id,
-                userName: user_name,//this may be an issue
+                userName: user.user_name,//this may be an issue
             }
             let token = createToken(payload)
             return res.send({user, token})
@@ -62,8 +62,8 @@ const SessionStatus = async (req, res) => {
 }
 
 module.exports = {
-    GetUser,
     CreateUser,
+    GetUser,
     LoginUser,
     SessionStatus,
 }

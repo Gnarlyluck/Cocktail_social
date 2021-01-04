@@ -1,0 +1,18 @@
+
+CREATE POST
+{
+	"user_id": 2,
+	"title":"la última palabra",
+	"description":"The classic Last word cocktail with Mezcal replacing the gin",
+	"recipe":"3/4oz marachino liquer, 3/4oz lime juice, 3/4oz green chartreuse, 3/4oz Mezcal"
+	
+			}
+
+CREATE User
+
+{
+	"name":"cat",
+	"email":"cat@shoe.com",
+	"userName":"Booty",
+	"password":"1"
+			}

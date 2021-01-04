@@ -12,3 +12,5 @@ Router.use('/post', DrinkPostRouter)
 Router.use('/comment', CommentRouter)
 Router.use('/category', CategoryRouter)
 Router.use('/tag', CatTagRouter)
+
+module.exports = Router

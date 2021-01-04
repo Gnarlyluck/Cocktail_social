@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class comments extends Model {
     static associate(models) {
-      comments.belongsTo(model.User, {
+      comments.belongsTo(models.User, {
         foreignKey: 'user_id',
         onDelete: 'cascade',
         onUpdate: 'cascade'

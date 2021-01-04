@@ -1,11 +1,11 @@
-const { response } = require('express')
-const { drink_posts, sequelize } = require('../models')
-const { use } = require('../routes/UserRouter')
+// const { response } = require('express')
+const { Drink_posts, sequelize } = require('../models')
+// const { use } = require('../routes/UserRouter')
 
 const CreatePost = async (req, res) => {
     try{
         const body = req.body
-        const post = await drink_posts.create(body)
+        const post = await Drink_posts.create(body)
         res.send(post)
     }catch(error){
         res.status(401).send({message: "That didn't seem to work"})
@@ -16,8 +16,9 @@ const CreatePost = async (req, res) => {
 
 const GetOnePost = async (req, res) => {
     try{
-        const unoPostoh = await drink_posts.findByPk(req.params.post_id)
+        const unoPostoh = await Drink_posts.findByPk(req.params.post_id)
         res.send(unoPostoh)
+        console.log(unoPostohz)
     }catch(error){
         console.log('GetOnePost ERROR!!!')
         throw error
@@ -26,9 +27,9 @@ const GetOnePost = async (req, res) => {
 
 const  EditPost = async (req, res) => {
     try{
-        let drinkPostId = parseInt(req.params.drink_post_id)//this could be an issue
+        let drinkPostId = parseInt(req.params.post_id)//this could be an issue
         let postDetails = req.body
-        let editedPost = await drink_posts.update(postDetails, {
+        let editedPost = await Drink_posts.update(postDetails, {
             where: {id: drinkPostId}
         })
         res.send(editedPost)
@@ -40,8 +41,8 @@ const  EditPost = async (req, res) => {
 
 const  DeletePost = async (req, res) => {
     try{
-        let postId = parseInt( req.params.drink_post_id)
-        await drink_posts.destroy({
+        let postId = parseInt( req.params.post_id)
+        await Drink_posts.destroy({
             where: {
                 id: postId
             }
@@ -57,8 +58,8 @@ const  DeletePost = async (req, res) => {
 const GetPostByUser  = async (req, res) => {
     try{
         const userId = req.params.user_id//maybe
-        const userPosts = await drink_posts.findAll({
-            where: {User_id: userId}
+        const userPosts = await Drink_posts.findAll({
+            where: {user_id: userId}
         })
         res.send(userPosts)
     }catch(error){
