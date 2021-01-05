@@ -1,4 +1,4 @@
-const { Comments, sequelize } = require('../models')
+const { Comments, User, sequelize } = require('../models')
 
 const CreateComment = async (req, res) => {
     try{
@@ -12,6 +12,19 @@ const CreateComment = async (req, res) => {
         console.log('CreateComment ERROR!!!')
     }
 } 
+
+// const GetComments = async(req, res) => {
+//     try{
+//         const comment = await Comments.findAll({
+//             where: {drinkPostId: req.params.drink_posts_id},
+//             // include: [{model: User, attributes: "user_name"}]
+//         })
+//         res.send(comment)
+//     }catch(error){
+//         console.log('GetComments ERROR!!!')
+//         throw error
+//     }
+// }
 
 const DeleteComment = async (req, res) => {
     try{
@@ -30,4 +43,5 @@ const DeleteComment = async (req, res) => {
 module.exports = {
     CreateComment,
     DeleteComment,
+    // GetComments
 }
