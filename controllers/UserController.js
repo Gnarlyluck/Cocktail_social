@@ -1,6 +1,6 @@
-const { response, request } = require('express')
+// const { response, request } = require('express')
 const { hashPassword, passwordValid, createToken } = require('../middleware')
-const { User, drink_posts } = require('../models')
+const { User } = require('../models')
 
 const CreateUser = async (req, res) => {
     try{

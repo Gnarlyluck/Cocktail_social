@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import TextField from '@material-ui/core/TextField'
-import { __LoginUser } from '../services/UserServices'
 
+import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+
+import { __LoginUser } from '../services/UserServices'
 
 const useStyles = makeStyles((theme) => ({
     margin: {
@@ -32,7 +33,8 @@ export default (props) => {
                 email: email,
                 password: password,
             })
-            props.toggleAuthenticated(true, res, () => (props.history.push('/profile')))
+            props.toggleAuthenticated(true, res, () => 
+            (props.history.push('/profile')))
         }catch(error){
             setFormError(true)
             throw error
@@ -50,7 +52,7 @@ export default (props) => {
                             label='Email'
                             type='email'
                             variant='outlined'
-                            onChange={(event) => setPassword(event.target.value)}
+                            onChange={(event) => setEmail(event.target.value)}
                         />
                     </div>
                     <div>

@@ -19,6 +19,7 @@ export default (props) => {
     const classes = useStyles()
     
     const [userName, setUsername] = useState('')
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [formError, setFormError] = useState(false)
@@ -28,9 +29,13 @@ export default (props) => {
         try{
             let userFormData = {
                 userName: userName,
+                name: name,
                 email: email,
-                password: password
+                password: password,
             }
+            console.log(userFormData)
+            await __CreateUser(userFormData)
+            props.history.push('/login')
         }catch(error){
             setFormError(true)
             throw error
@@ -55,7 +60,17 @@ export default (props) => {
                             onChange={(event) => setEmail(event.target.value)}
                         />
                     </div>
-                    <div>
+                    <div style={{margin: '10px'}}>
+                        <TextField 
+                            fullWidth='true'
+                            id='Name'
+                            label='Name'
+                            variant='outlined'
+                            type='text'
+                            onChange={(event) => setName(event.target.value)}
+                        /> 
+                    </div>
+                    <div style={{margin: '10px'}}>
                         <TextField 
                             fullWidth='true'
                             id='username'
@@ -66,7 +81,7 @@ export default (props) => {
                         /> 
                     </div>
                     <div style={{margin: '10px'}}>
-                    <TextField
+                        <TextField
                             fullwidth='true'
                             id="password"
                             label="Password"
@@ -75,14 +90,15 @@ export default (props) => {
                             onChange={(e) => setPassword(e.target.value)}
                         /> 
                     </div>
-                    <Button 
-                    type='submit' 
-                    variant="outlined" 
-                    size="medium" 
-                    color="primary" 
-                    className={classes.margin}>
-                        Sign Up
-                    </Button>
+                        <Button 
+                            type='submit' 
+                            variant="outlined" 
+                            size="medium" 
+                            color="primary" 
+                            className={classes.margin}
+                        >
+                         Sign Up
+                        </Button>
                     {formError ? <p>Error While Signing Up</p> : <p></p>}
                 </form>
             </div>
