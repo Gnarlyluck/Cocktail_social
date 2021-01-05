@@ -22,7 +22,8 @@ export const __GetPosts = async() => {
 
 export const __UpdatePost = async(post_id, formData) => {
     try{
-        const res = await ApiClient.put(`/post/edit/${post_id}`)
+        const res = await ApiClient.put(`/post/edit/${post_id}`, formData)
+        return res.data
     }catch(error){
         console.log('__UpdatePost ERROR!!!')
         throw error
@@ -30,7 +31,8 @@ export const __UpdatePost = async(post_id, formData) => {
 }
 export const __UploadPost = async(formData) => {
     try{
-
+        const res = await ApiClient.put(`/post/create`, formData)
+        return res.data
     }catch(error){
         console.log('__UploadPost ERROR!!!')
         throw error
@@ -38,7 +40,8 @@ export const __UploadPost = async(formData) => {
 }
 export const __DeletePost = async(postId) => {
     try{
-
+        const res = await ApiClient.delete(`post/delete/${postId}`)
+        return res.data
     }catch(error){
         console.log('__DeletePost ERROR!!!')
         throw error
@@ -47,7 +50,7 @@ export const __DeletePost = async(postId) => {
 
 export const __GetPostsByUser = async(userId) => {
     try{
-
+        const res = await ApiClient.get(`/post/delete/${userId}`)
     }catch(error){
         console.log('__GetPostsByUser ERROR!!!')
         throw error
