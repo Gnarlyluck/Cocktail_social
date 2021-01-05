@@ -51,6 +51,7 @@ export const __DeletePost = async(postId) => {
 export const __GetPostsByUser = async(userId) => {
     try{
         const res = await ApiClient.get(`/post/delete/${userId}`)
+        return res.data
     }catch(error){
         console.log('__GetPostsByUser ERROR!!!')
         throw error
