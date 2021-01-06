@@ -3,6 +3,7 @@ import{Switch, Route} from 'react-router-dom'
 
 import Layout from './Layout'
 
+import Profile from '../pages/Profile'
 import SignInPage from '../pages/SignInPage'
 import SignUpPage from '../pages/SignUpPage'
 import Homepage from '../pages/Homepage'
@@ -88,6 +89,20 @@ export default function Router(props) {
                         </Layout>
                         )}
                         />
+                    {/* <ProtectedRoute
+                        authenticated={authenticate}
+                        exact path = '/profile'
+                        component = {(props) => (
+                            <Layout currentUser={currentUser}
+                                    authenticate={authenticate}
+                            >
+                            <Profile
+                                currentUser = {currentUser}
+                                {...props}
+                            /> 
+                        </Layout>
+                        )}
+                        />     */}
                 </Switch>
     )
 }

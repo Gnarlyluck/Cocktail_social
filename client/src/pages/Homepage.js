@@ -14,24 +14,13 @@ const useStyles = makeStyles((theme) => ({
 export default () => {
     const classes = useStyles()
 
-    const [picUrl, setPicUrl] = useState('')
-    const [postId, setPostId] = useState('');
-    const [titleText, setTitle] = useState('');
-    const [descriptionText, setDescription] = useState('');
-    const [recipeText, setRecipe] = useState('');
-    
+    const [posts, setPosts] = useState([])
+   
     const getAllPosts = async () => {
         try{
-            const post = await __GetPosts()
-            console.log(post)
-            setPostId(post.id)
-            setPicUrl(post.picture)
-            setTitle(post.title)
-            setDescription(post.description)
-            setRecipe(post.recipe)
-            return post
+            const apiPosts = await __GetPosts()
+            setPosts(apiPosts)
         }catch(error){
-            // console.log('GetAllPosts ERROR!!!')
             throw error
         }
     }
@@ -45,17 +34,18 @@ export default () => {
 // and add a component
 // to the return statement of the map
 // INSIDE the html
-// {post.map((post, index) => {
+  console.log(posts)
         return (
-                <Card 
-                    // {...post}
-                    id={postId}
-                    url={picUrl}
-                    title={titleText}
-                    description={descriptionText}
-                    recipe={recipeText}
-                    />
+          <div>
+            {posts.map((post) => <Card
+                    key={post.id} 
+                    id={post.id}
+                    url={post.picture}
+                    title={post.title}
+                    description={post.description}
+                    recipe={post.recipe}
+                    />)}
+          </div>
+                
         )
-        // }
-    // )}
 }  

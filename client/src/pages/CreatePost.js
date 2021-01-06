@@ -3,9 +3,10 @@ import {__GetPostsByUser , __DeletePost, __UpdatePost, __UploadPost} from '../se
 import {__GetUser} from '../services/UserServices'
 import {__TagPostToCategory} from '../services/TagServices'
 import {__GetAllCategories, __FindCategoryByName} from '../services/CategoryServices'
+
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField'
+import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,8 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
   export default (props) => {
       const classes = useStyles()
-
-      
+    console.log(props.currentUser.id)
     const [picUrl, setPicUrl] = useState(null);
     const [userId, setUserId] = useState('');
     const [formError, setFormError] = useState(false)
@@ -41,7 +41,8 @@ const useStyles = makeStyles((theme) => ({
     
     const getUserId = async() => {
         try{
-            let res = await __GetUser({user_id: props.currentUser})
+            let res = await __GetUser({user_id: props.currentUser.id})
+            console.log(res.data.id)
             setUserId(res.data.id)
         }catch(error){
             console.log('getUserId ERROR!!!')
@@ -58,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
         event.preventDefault()
         try{
             let submittedData = {
-                user_id: userId,
+                user_id: props.currentUser.id,
                 pictue: picUrl,
                 title: titleText,
                 description: descriptionText,
@@ -94,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
                             onChange={(e) => setTitle(e.target.value)}
                         />
                     </div>
-                    <div style={{marginLeft: '710px'}}>
+                    <div style={{margin: '10px'}}>
                         <Autocomplete
                             id="combo-box"
                             options={categories}
