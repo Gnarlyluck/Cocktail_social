@@ -137,8 +137,9 @@ const useStyles = makeStyles((theme) => ({
                         <TextField
                             fullwidth='true'
                             id="url"
-                            label="Url of Picture"
+                            label="Url of Picture (250 max)"
                             type="url"
+                            maxLength={250}
                             variant="outlined"
                             onChange={(e) => setPicUrl(e.target.value)}
                         />

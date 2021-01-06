@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import PlaceHolder from '../assets/placeHolder.jpg'
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -47,7 +48,9 @@ export default function DrinkCard(details) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
+  // const pushToEdit = () => {
+  //     <Link/>
+  // }
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -57,9 +60,11 @@ export default function DrinkCard(details) {
           </Avatar>
         }
         action={
+          <Link to='/create'>
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
+          </Link>
         }
         title={details.title}
       />

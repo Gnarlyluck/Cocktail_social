@@ -24,7 +24,7 @@ export default ({authenticate, currentUser}) => {
             <NavLink to='/login'>
                 <h3>Sing In</h3>
             </NavLink>
-            <h1><a href='/'>Home</a></h1>
+            <h1><a href='/'>Welcome</a></h1>
         </nav>
     </header>
     )
