@@ -35,9 +35,10 @@ export const __CreateUser = async(userData) => {
     }
 }
 
-export const __GetUser = async(userData) => {
+export const __GetUser = async(id) => {
     try{
-
+        const res = ApiClient.get(`/user/${id}`)
+        return res
     }catch(error){
         console.log('__GetUser ERROR!!!')
         throw error

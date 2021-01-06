@@ -18,13 +18,13 @@ export default ({authenticate, currentUser}) => {
     ) : (
     <header>
         <nav>
-            <NavLink to='register'>
+            <NavLink to='/register'>
                 <h3>Sign Up</h3>
             </NavLink>
             <NavLink to='/login'>
                 <h3>Sing In</h3>
             </NavLink>
-            <hi><a href='/'>Home</a></hi>
+            <h1><a href='/'>Home</a></h1>
         </nav>
     </header>
     )

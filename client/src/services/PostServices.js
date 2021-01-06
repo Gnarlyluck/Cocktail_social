@@ -31,7 +31,7 @@ export const __UpdatePost = async(post_id, formData) => {
 }
 export const __UploadPost = async(formData) => {
     try{
-        const res = await ApiClient.put(`/post/create`, formData)
+        const res = await ApiClient.post(`/post/create`, formData)
         return res.data
     }catch(error){
         console.log('__UploadPost ERROR!!!')

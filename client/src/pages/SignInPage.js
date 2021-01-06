@@ -34,7 +34,7 @@ export default (props) => {
                 password: password,
             })
             props.toggleAuthenticated(true, res, () => 
-            (props.history.push('/profile')))
+            (props.history.push('/create')))
         }catch(error){
             setFormError(true)
             throw error

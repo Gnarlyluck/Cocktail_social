@@ -14,7 +14,7 @@ export default ({authenticate, currentUser, children, history}) => (
         height:'100%', 
         flexDirection: 'row', 
         flexGrow: '1', 
-        justifyContent: 'left'}}
+        justifyContent: 'center'}}
         >
             {children}
         </div>   
