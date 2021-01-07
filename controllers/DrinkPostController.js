@@ -1,6 +1,4 @@
-// const { response } = require('express')
-const { Drink_posts, sequelize } = require('../models')
-// const { use } = require('../routes/UserRouter')
+const { Drink_posts, Comments, sequelize } = require('../models')
 
 const CreatePost = async (req, res) => {
     try{
@@ -27,7 +25,9 @@ const GetOnePost = async (req, res) => {
 
 const GetAllPosts = async (req, res) => {
     try {
-        const allPosts = await Drink_posts.findAll()
+        const allPosts = await Drink_posts.findAll({
+        include: [{ model: Comments, attributes: ["content"] }]
+    })
         res.send(allPosts)
     } catch(error) {
         console.log('GetAllPosts error!!!!!')
@@ -37,7 +37,7 @@ const GetAllPosts = async (req, res) => {
 
 const  EditPost = async (req, res) => {
     try{
-        let drinkPostId = parseInt(req.params.post_id)//this could be an issue
+        let drinkPostId = parseInt(req.params.post_id)
         let postDetails = req.body
         let editedPost = await Drink_posts.update(postDetails, {
             where: {id: drinkPostId}
@@ -67,7 +67,7 @@ const  DeletePost = async (req, res) => {
 
 const GetPostByUser  = async (req, res) => {
     try{
-        const userId = req.params.user_id//maybe
+        const userId = req.params.user_id
         const userPosts = await Drink_posts.findAll({
             where: {user_id: userId}
         })

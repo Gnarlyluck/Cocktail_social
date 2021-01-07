@@ -2,7 +2,7 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 import '../styles/Nav.css'
 
-export default ({authenticate, currentUser}) => {
+const Nav = ({authenticate, currentUser}) => {
     return authenticate && currentUser ? (
         <header>
             <nav>
@@ -32,3 +32,5 @@ export default ({authenticate, currentUser}) => {
     </header>
     )
 }
+
+export default Nav

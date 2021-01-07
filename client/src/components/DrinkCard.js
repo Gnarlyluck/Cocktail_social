@@ -1,12 +1,13 @@
 
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
-import { __GetCommentsByPost } from '../services/CommentServices';
+// import { __GetCommentsByPost } from '../services/CommentServices';
 import { __DeletePost} from '../services/PostServices'
 import {__RemoveTagFromPost} from '../services/TagServices'
+
 import PlaceHolder from '../assets/placeHolder.jpg'
-import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -23,7 +24,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -51,21 +53,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DrinkCard(details) {
   const classes = useStyles();
-
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [expanded, setExpanded] = React.useState(false);
+console.log(details.comments)
+  // const [contentText, setContentText] = useState('')
+  // const [postId, setPostId] = useSate(null)
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
+  // const handleSubmit = async (event) =>{
+  //   event.preventDefault()
+  //   try{
+  //     let commentData= {
+  //       content: contentText,
+  //       userId: details.currentUser.id,
+  //       // postId: postId
 
-  const [expanded, setExpanded] = React.useState(false);
-  // const [comments, setComments ] = useState([])
-
-console.log(details.comments)
+  //     }
+  //   }catch(error){
+  //     throw error
+  //   }
+  // }
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -79,32 +91,13 @@ console.log(details.comments)
         throw error
     }
 }
-
-  // const getPostComments = async(postId) => {
-  //     try{
-  //       const getComments = await __GetCommentsByPost(postId)
-
-  //       setComments(getComments)
-  //     }catch(error){
-  //       throw error
-  //     }
-  //   }
-
-  //   useEffect(() => {
-  //     getPostComments()
-  // }, [])
-  
   return (
-    
     <Card className={classes.root}>
-      
       <CardHeader
         action={
           <div>
-
           <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
           <MoreVertIcon />
-          {/* </Button> */}
           </IconButton>
           <Menu
             id="simple-menu"
@@ -143,7 +136,6 @@ console.log(details.comments)
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon /> 
-          <AddCommentIcon />
         </IconButton>
         <IconButton
           className={clsx(classes.expand, {
@@ -161,11 +153,26 @@ console.log(details.comments)
         <CardContent>
           <Typography paragraph>Comments</Typography>
           <Typography paragraph>
-           {/* {details.comments} */}
-        {details.comments.map((comment)=> (
-          <p>
-           {comment.content}
-          </p>
+            <TextField
+              fullwidth='true'
+              id="comment"
+              label="Create Comment"
+              multiline
+              rows={2}
+              style={{width: 230}}
+              type="text"
+              maxLength={250}
+              variant="outlined"
+              // onChange={() => ()}
+              />
+          </Typography>
+          <Typography paragraph>
+        {details.comments.map((comment, index)=> (
+            <span key={index}>
+              <ul>
+                <li>{comment.content}</li>
+              </ul>
+            </span>
         ))}
           </Typography>
         </CardContent>
@@ -176,5 +183,3 @@ console.log(details.comments)
     </Card>
   );
 }
-      //get comments from database and
-      // comments should display get function operable

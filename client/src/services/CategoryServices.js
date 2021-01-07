@@ -2,7 +2,7 @@ import ApiClient from './ApiServices'
 
 export const __CreateCategory = async(formData) => { 
     try{
-        const res = await ApiClient.post('/category/creat', formData)
+        const res = await ApiClient.post('/category/create', formData)
         return res.data
     }catch(error){
         console.log('__CreateCategory ERROR!!!')
@@ -52,7 +52,8 @@ export const __DeleteCategories = async(categoryId) => {
 
 export const __FindCategoryByName = async(formData) => {
     try{
-        const res = await ApiClient.get(`category/findByName/${formData}`)
+        const res = await ApiClient.get(`/category/findByName/${formData}`)
+        console.log(res.data)
         return res.data
     }catch(error){
         console.log('__FindCategoryByName ERROR!!!')

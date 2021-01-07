@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {__GetPostsByUser,  __UpdatePost, __GetOnePost} from '../services/PostServices'
+import {  __UpdatePost, __GetOnePost} from '../services/PostServices'
 import {__TagPostToCategory, __GetAllCategoriesOnPost, __RemoveTagFromPost, __GetTag} from '../services/TagServices'
-import { __GetUser } from '../services/UserServices'
 import {__GetAllCategories, __FindCategoryByName, __GetCategory} from '../services/CategoryServices'
 
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -18,14 +17,13 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default (props) => {
+const EditPost = (props) => {
     const classes = useStyles();
 
     const [picUrl, setPicUrl] = useState(null);
     const [formError, setFormError] = useState(false)
     const [titleText, setTitle] = useState('')
     const [descriptionText, setDescription] = useState('')
-    const [userId, setUserId] = useState('');
     const [recipeText, setRecipeText] = useState('')
     const [categories, setCategories] = useState(null)
     const [categoryChosen, setCategoryChosen] = useState(null)
@@ -70,23 +68,14 @@ export default (props) => {
             throw error
         }
     }
-    
-    // const getUserId = async() => {
-    //     try {
-    //         let res = await __GetUser({user_id: props.currentUser.id})
-    //         setUserId(res.data.id)
-    //     } catch (error) {
-    //         throw error
-    //     }
-    // }
+  
     useEffect(() => {
-        // getUserId()
         getAllCategories()
         getPost()
-    }, [])
+    })
     
     const handleSubmit = async(event) => {
-        // event.preventDefault()
+        event.preventDefault()
         try{
             let updatedData = {
                 user_id: props.currentUser.id,
@@ -112,7 +101,6 @@ export default (props) => {
             throw error
         }
     }
-    // console.log(handleSubmit())
     const field = () => {
         if (categories) {
             return (<Autocomplete
@@ -211,3 +199,5 @@ export default (props) => {
         </div>
     )
 }
+
+export default EditPost

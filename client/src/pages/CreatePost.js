@@ -17,10 +17,10 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-  export default (props) => {
+const CreatePost = (props) => {
       const classes = useStyles()
     const [picUrl, setPicUrl] = useState(null);
-    const [userId, setUserId] = useState('');
+    // const [userId, setUserId] = useState('');
     const [formError, setFormError] = useState(false)
     const [titleText, setTitle] = useState('')
     const [descriptionText, setDescription] = useState('')
@@ -36,21 +36,8 @@ const useStyles = makeStyles((theme) => ({
             console.log('getAllCategories error')
         }
     }
-    
-    // const getUserId = async() => {
-    //     try{
-    //         let res = await __GetUser({user_id: props.currentUser.id})
-    //         console.log(res.data.id)
-    //         setUserId(res.data.id)
-    //     }catch(error){
-    //         console.log('getUserId ERROR!!!')
-    //         throw error
-    //     }
-    // }
-    
         useEffect(() => {
             getAllCategories()
-            // getUserId()
         }, [])
     
     const handleSubmit = async (event) => {
@@ -65,20 +52,19 @@ const useStyles = makeStyles((theme) => ({
             }
             let Upload = await __UploadPost(submittedData)
             if (categoryChosen){
-                let res = await __FindCategoryByName(categoryChosen)
+                let res = await __FindCategoryByName(categoryChosen)//issue here!
+                console.log(res)
                 let input = {
-                    categoryId: res.id,
-                    postId: Upload.id
+                    categoriesId: res.id,
+                    drinkPostId: Upload.id
                 }
                 await __TagPostToCategory(input)
-                // console.log('handlesubmit ERROR in create post', Upload)
             }
         }catch(error){
             setFormError(true)
             throw error
         }
     }
-
     return(
         <div style={{backgroundColor: 'white', padding: '50px', borderRadius:'20px', flexGrow: '1', textAlign: 'center'}} >
             <h1> Create Post </h1>
@@ -101,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
                             getOptionLabel={(option) => option.name}
                             style={{ width: 230}}
                             renderInput={(params) => <TextField id='test'{...params} label="Category" variant="outlined" />}
-                            onChange={(e) => setCategoryChosen(e.target.innerHTML)}
+                            onChange={(e) => setCategoryChosen(e.target.innerText)}
                         /> 
                     </div>
                     <div style={{margin: '10px'}}>
@@ -159,3 +145,4 @@ const useStyles = makeStyles((theme) => ({
     )
 }
 
+export default CreatePost

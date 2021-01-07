@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class categories extends Model {
     static associate(models) {
       categories.belongsToMany(models.Drink_posts, {
-        through: models.Cat_tag,
+        through: 'cat_tags',
         foreignKey: 'categories_id',
         onUpdate: 'cascade',
         onDelete: 'cascade'

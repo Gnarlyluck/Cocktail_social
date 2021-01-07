@@ -4,6 +4,7 @@ const controller = require('../controllers/CategoryController')
 Router.post('/create', controller.CreateCategory)
 Router.get('/:categoryId', controller.GetCategory)
 Router.get('/all/categories', controller.GetAllCategories)
+Router.get('/findByName/:category_name', controller.GetCategoryIdByName)
 Router.put('/edit/:categoryId', controller.EditCategory)
 Router.delete('/delete/:categoryId', controller.DeleteCategory)
 

@@ -44,14 +44,14 @@ create comment
 	"drink_id":4,
 	"userId": 2
 			}
-{
-	"drinkPostId":3,
-	"categoriesId":1
-}
 
 create tag
 
 {
+{
+	"drinkPostId":3,
+	"categoriesId":1
+}
 	"drinkPostId":16,
 	"categoriesId":1
 }

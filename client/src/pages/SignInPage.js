@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default (props) => {
+const SignInPage = (props) => {
     const classes = useStyles()
 
     const [email, setEmail] = useState('')
@@ -80,3 +80,5 @@ export default (props) => {
         </div>
     )
 }
+
+export default SignInPage

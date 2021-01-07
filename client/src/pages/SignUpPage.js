@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default (props) => {
+const SignUpPage = (props) => {
     const classes = useStyles()
     
     const [userName, setUsername] = useState('')
@@ -105,3 +105,4 @@ export default (props) => {
         </div>        
     )
 }
+export default SignUpPage

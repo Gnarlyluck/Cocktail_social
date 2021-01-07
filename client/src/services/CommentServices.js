@@ -20,7 +20,7 @@ export const __GetCommentsByPost = async(drinkPostId) => {
         throw error
     }
 }
-console.log(__GetCommentsByPost())
+// console.log(__GetCommentsByPost())
 
 export const __DeleteComment = async(commentId) => {
     try{

@@ -22,8 +22,8 @@ app.use(express.static(path.join(__dirname, 'client', 'build')))
 app.disable("X-Powered-By");
 
 
-app.get('/', (req, res) => res.send({ message: 'Server Running', status: 'OK' }))
 app.use('/api', AppRouter)
+app.get('/', (req, res) => res.send({ message: 'Server Running', status: 'OK' }))
 app.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
 )

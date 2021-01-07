@@ -2,7 +2,7 @@ import React from 'react'
 import Nav from './Nav'
 import '../styles/Layout.css'
 
-export default ({authenticate, currentUser, children, history}) => (
+ const Layout=({authenticate, currentUser, children, history}) => (
     <div className='layout'> 
         <Nav 
         authenticate={authenticate}
@@ -20,3 +20,4 @@ export default ({authenticate, currentUser, children, history}) => (
         </div>   
     </div>
 )
+export default Layout

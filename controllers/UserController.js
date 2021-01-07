@@ -4,7 +4,7 @@ const { User } = require('../models')
 const CreateUser = async (req, res) => {
     try{
         const { name, email, userName, password} = req.body
-        const user_name = userName//this may be a problem
+        const user_name = userName
         const password_digest = await hashPassword(password)
         const user = await User.create({ name, email, user_name, password_digest })
         res.send(user)
@@ -25,15 +25,17 @@ const GetUser = async (req, res) => {
 }
 
 const LoginUser = async (req, res) => {
+    console.log(req.body)
     try{
         const user = await User.findOne({
             where: { email: req.body.email },
             raw: true
         })
-        if (user && (await passwordValid(req.body.password, user.password_digest))) {
+        console.log(user)
+        if (user && passwordValid(req.body.password, user.password_digest)) {
             let payload = {
-                _id: user.id,
-                userName: user.user_name,//this may be an issue
+                id: user.id,
+                userName: user.user_name,
             }
             let token = createToken(payload)
             console.log('You logged in')

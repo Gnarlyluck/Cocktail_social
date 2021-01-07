@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '../components/card'
+import Card from '../components/DrinkCard'
 import {__GetPosts} from '../services/PostServices'
+import SpacingGrid from '../components/SpcaingGrid'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
  
-export default () => {
+const HomePage = () => {
     const classes = useStyles()
 
     const [posts, setPosts] = useState([])
@@ -20,6 +21,7 @@ export default () => {
         try{
             const apiPosts = await __GetPosts()
             setPosts(apiPosts)
+            console.log(apiPosts)
         }catch(error){
             throw error
         }
@@ -27,18 +29,22 @@ export default () => {
     useEffect(() => {
     getAllPosts()
 }, [])
-console.log(posts)
+
         return (
-          <div>
-            {posts.map((post) => <Card
-                    key={post.id} 
+          // <SpacingGrid>
+
+          <div >
+            {posts.map((post, index) => <Card
+                    key={index} 
                     id={post.id}
                     url={post.picture}
                     title={post.title}
                     description={post.description}
                     recipe={post.recipe}
+                    // </SpacingGrid>
                     comments={post.Comments}
                     />)}
           </div>
         )
 }  
+export default HomePage

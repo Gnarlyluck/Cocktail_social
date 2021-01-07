@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: 'cascade'
       })
       drink_posts.belongsToMany(models.Categories, {
-        through: models.Cat_tag,
+        through: 'cat_tags',
         foreignKey: 'drink_posts_id',
         onUpdate: 'cascade',
         onDelete: 'cascade'

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import { __EditPost, __DeletePost, __UpdatePost, __GetPosts } from '../services/PostServices'
+import { __GetPosts } from '../services/PostServices'
 import { __GetCommentsByPost } from '../services/CommentServices';
-import AuthCard from '../components/card'
+import DrinkCard from '../components/DrinkCard'
 
 import {makeStyles} from '@material-ui/core/styles'
 
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-  export default () => {
+const Profile = () => {
 
     const classes = useStyles()
 
@@ -38,16 +38,14 @@ const useStyles = makeStyles((theme) => ({
         throw error
       }
     }
-    // console.log(comments, "COMMENTS!!!")
-
     useEffect(() => {
         getAllPosts()
         getPostComments()
     }, [])
         return(
-            <div>
+            <div >
             {posts.map((post) => 
-            <AuthCard
+            <DrinkCard
                     key={post.id} 
                     id={post.id}
                     url={post.picture}
@@ -59,3 +57,4 @@ const useStyles = makeStyles((theme) => ({
           </div>
         )
   }
+  export default Profile
