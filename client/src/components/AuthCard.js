@@ -1,9 +1,5 @@
-
-import React, {useState, useEffect} from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom'
-import { __GetCommentsByPost } from '../services/CommentServices';
-import { __DeletePost} from '../services/PostServices'
-import {__RemoveTagFromPost} from '../services/TagServices'
 import PlaceHolder from '../assets/placeHolder.jpg'
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -21,10 +17,6 @@ import ShareIcon from '@material-ui/icons/Share';
 import AddCommentIcon from '@material-ui/icons/AddComment';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,79 +43,29 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DrinkCard(details) {
   const classes = useStyles();
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   const [expanded, setExpanded] = React.useState(false);
-  // const [comments, setComments ] = useState([])
 
-console.log(details.comments)
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
-  const deletePost = async (postId) => {
-    try{
-        let del =await __RemoveTagFromPost(postId)
-        let res = await __DeletePost(postId)
-        // props.history.push("/profile")
-    }catch(error){
-        throw error
-    }
-}
-
-  // const getPostComments = async(postId) => {
-  //     try{
-  //       const getComments = await __GetCommentsByPost(postId)
-
-  //       setComments(getComments)
-  //     }catch(error){
-  //       throw error
-  //     }
-  //   }
-
-  //   useEffect(() => {
-  //     getPostComments()
-  // }, [])
   
   return (
-    
     <Card className={classes.root}>
-      
       <CardHeader
+        // avatar={
+        //   <Avatar aria-label="recipe" className={classes.avatar}>
+        //     R
+        //   </Avatar>
+        // }
         action={
-          <div>
-
-          <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-          <MoreVertIcon />
-          {/* </Button> */}
-          </IconButton>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-            >
           <Link to={`/edit/${details.id}`}>
-            <MenuItem onClick={handleClose}>Edit</MenuItem>
-                    </Link>
-            <MenuItem onClick={() => {deletePost(details.id) }} >Delete</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
-          </Menu>
-              </div>
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+          </Link>
         }
         title={details.title}
       />
-     
       <CardMedia
         className={classes.media}
         image={details.url || PlaceHolder}
@@ -141,10 +83,10 @@ console.log(details.comments)
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon /> 
-          <AddCommentIcon />
-        </IconButton>
+        {/* <IconButton aria-label="share"> */}
+          {/* <ShareIcon /> */}
+          {/* <AddCommentIcon /> */}
+        {/* </IconButton> */}
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -161,20 +103,10 @@ console.log(details.comments)
         <CardContent>
           <Typography paragraph>Comments</Typography>
           <Typography paragraph>
-           {/* {details.comments} */}
-        {details.comments.map((comment)=> (
-          <p>
-           {comment.content}
-          </p>
-        ))}
+           {details.comments}
           </Typography>
-        </CardContent>
-        <CardContent>
-    
         </CardContent>
       </Collapse>
     </Card>
   );
 }
-      //get comments from database and
-      // comments should display get function operable

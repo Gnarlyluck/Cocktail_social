@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { __UploadPost} from '../services/PostServices'
-// import {__TagPostToCategory} from '../services/TagServices'
+import {__TagPostToCategory} from '../services/TagServices'
 import {__GetAllCategories, __FindCategoryByName} from '../services/CategoryServices'
 
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
                     categoryId: res.id,
                     postId: Upload.id
                 }
-                // await __TagPostToCategory(input)
+                await __TagPostToCategory(input)
                 // console.log('handlesubmit ERROR in create post', Upload)
             }
         }catch(error){

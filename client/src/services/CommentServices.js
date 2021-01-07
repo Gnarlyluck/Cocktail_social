@@ -14,6 +14,7 @@ export const __CreateComment = async(userId, drinkPostId, formData) => {
 export const __GetCommentsByPost = async(drinkPostId) => {
     try{
         const res = await ApiClient.get(`/view/${drinkPostId}`)
+        return res.data
     }catch(error){
         console.log('__GetComments ERROR!!!!')
         throw error

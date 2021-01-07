@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
                     title={post.title}
                     description={post.description}
                     recipe={post.recipe}
-                    // comments={post.comments}
+                    comments={post.Comments}
                     />)}
           </div>
         )

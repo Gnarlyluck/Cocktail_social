@@ -102,7 +102,7 @@ export default (props) => {
                     categoryId: res.id,
                     postId: postId
                 }
-                // await __TagPostToCategory(input)
+                await __TagPostToCategory(input)
             }
             props.history.push('/')
         }

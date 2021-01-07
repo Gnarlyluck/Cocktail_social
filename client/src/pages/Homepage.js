@@ -27,6 +27,7 @@ export default () => {
     useEffect(() => {
     getAllPosts()
 }, [])
+console.log(posts)
         return (
           <div>
             {posts.map((post) => <Card
@@ -36,6 +37,7 @@ export default () => {
                     title={post.title}
                     description={post.description}
                     recipe={post.recipe}
+                    comments={post.Comments}
                     />)}
           </div>
         )
