@@ -11,14 +11,14 @@ export const __CreateComment = async(userId, drinkPostId, formData) => {
     }
 }
 
-// export const __GetComments = async(drinkPostId) => {
-//     try{
-
-//     }catch(error){
-//         console.log('__GetComments ERROR!!!!')
-//         throw error
-//     }
-// }
+export const __GetComments = async(commentId) => {
+    try{
+        const res = await ApiClient.get(`/view/${drinkPostId}`)
+    }catch(error){
+        console.log('__GetComments ERROR!!!!')
+        throw error
+    }
+}
 
 export const __DeleteComment = async(commentId) => {
     try{

@@ -59,10 +59,25 @@ const DeleteCategory = async (req, res) => {
     }
 }
 
+const GetCategoryIdByName = async (req, res) => {
+    try {
+        let categoryName = req.params.category_name
+        let foundCategory = await Categories.findOne({
+            where: {
+                name: categoryName
+            }
+        })
+        res.send(foundCategory)
+    } catch(error) {
+        throw error
+    }
+}
+
 module.exports = {
     CreateCategory,
     GetCategory,
     GetAllCategories,
     EditCategory,
     DeleteCategory,
+    GetCategoryIdByName
 }

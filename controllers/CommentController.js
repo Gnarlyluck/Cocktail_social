@@ -13,18 +13,20 @@ const CreateComment = async (req, res) => {
     }
 } 
 
-// const GetComments = async(req, res) => {
-//     try{
-//         const comment = await Comments.findAll({
-//             where: {drinkPostId: req.params.drink_posts_id},
-//             // include: [{model: User, attributes: "user_name"}]
-//         })
-//         res.send(comment)
-//     }catch(error){
-//         console.log('GetComments ERROR!!!')
-//         throw error
-//     }
-// }
+const GetComments = async(req, res) => {
+    try{
+        // const userId = req.params.user_id
+        // const 
+        const comment = await Comments.findAll({
+            drinkPostsId: req.params.drink_posts_id
+            // include: [{model: User, attributes: "user_name"}]
+        })
+        res.send(comment)
+    }catch(error){
+        console.log('GetComments ERROR!!!')
+        throw error
+    }
+}
 
 const DeleteComment = async (req, res) => {
     try{
@@ -43,5 +45,5 @@ const DeleteComment = async (req, res) => {
 module.exports = {
     CreateComment,
     DeleteComment,
-    // GetComments
+    GetComments
 }

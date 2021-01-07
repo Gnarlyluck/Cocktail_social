@@ -58,13 +58,13 @@ export default function DrinkCard(details) {
         //     R
         //   </Avatar>
         // }
-        // action={
-        //   <Link to="/edit/:post_id">
-        //   <IconButton aria-label="settings">
-        //     <MoreVertIcon />
-        //   </IconButton>
-        //   </Link>
-        // }
+        action={
+          <Link to="/edit/:post_id">
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+          </Link>
+        }
         title={details.title}
       />
       <CardMedia
@@ -76,17 +76,15 @@ export default function DrinkCard(details) {
         <Typography variant="body2" color="textSecondary" component="p">
          {details.description}
         </Typography>
-        <Typography>
-        {details.recipe}
-        </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        {/* <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites">
           <FavoriteIcon />
-        </IconButton> */}
-       <CardContent>
-         Comments
-       </CardContent>
+        </IconButton>
+        <IconButton aria-label="share">
+          {/* <ShareIcon /> */}
+          <AddCommentIcon />
+        </IconButton>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -102,7 +100,7 @@ export default function DrinkCard(details) {
         <CardContent>
           <Typography paragraph>Recipe and Method:</Typography>
           <Typography paragraph>
-          
+           {details.recipe}
           </Typography>
         </CardContent>
       </Collapse>

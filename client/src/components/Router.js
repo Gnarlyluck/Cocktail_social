@@ -8,6 +8,7 @@ import SignInPage from '../pages/SignInPage'
 import SignUpPage from '../pages/SignUpPage'
 import Homepage from '../pages/Homepage'
 import CreatePost from '../pages/CreatePost'
+import EditPost from '../pages/EditPost'
 import ProtectedRoute from '../components/ProtectedRoute'
 
 import {__CheckSession} from '../services/UserServices'
@@ -89,7 +90,23 @@ export default function Router(props) {
                         </Layout>
                         )}
                         />
-                    {/* <ProtectedRoute
+                    <ProtectedRoute 
+                        authenticated={authenticate}
+                        exact 
+                        path = "/edit/:post_id"
+                        component = {(props) => (
+                            <Layout
+                                currentUser={currentUser}
+                                authenticate={authenticate}
+                            >
+                                <EditPost 
+                                    currentUser = {currentUser}
+                                    {...props}
+                                />
+                            </Layout>
+                        )}
+                    />
+                    <ProtectedRoute
                         authenticated={authenticate}
                         exact path = '/profile'
                         component = {(props) => (
@@ -102,7 +119,7 @@ export default function Router(props) {
                             /> 
                         </Layout>
                         )}
-                        />     */}
+                        />    
                 </Switch>
     )
 }

@@ -1,6 +1,4 @@
-// const { response } = require('express')
 const { Cat_tag, Drink_posts, Categories } = require('../models')
-// const categories = require('../models/categories')
 
 const TagPostToCategory = async (req, res) => {
     try{
@@ -22,6 +20,8 @@ const TagPostToCategory = async (req, res) => {
         throw error
     }
 }
+// need to insert cat Id and post id when creating for tag to work otherwise
+//it throws an error and tag value is null
 
 const RemoveTagFromPost = async (req, res) => {
     try{
@@ -63,7 +63,6 @@ const GetAllCategoriesOnPost = async (req, res) => {
         throw error
     }
 }
-
 const GetTag = async (req, res) => {
     try{
         let drinkPostsId = parseInt(req.params.drink_posts_id)
@@ -81,6 +80,7 @@ const GetTag = async (req, res) => {
         throw error
     }
 }
+// console.log(GetTag())
 
 module.exports = {
     TagPostToCategory,

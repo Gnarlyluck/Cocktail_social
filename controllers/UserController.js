@@ -1,4 +1,3 @@
-// const { response, request } = require('express')
 const { hashPassword, passwordValid, createToken } = require('../middleware')
 const { User } = require('../models')
 
@@ -17,7 +16,7 @@ const CreateUser = async (req, res) => {
 
 const GetUser = async (req, res) => {
     try{
-        const user = await User.findByPk(req.params.user_id)
+        const user = await User.findByPk(req.params.user_id)//fixed this works in insomnia
         res.send(user)
     }catch (error){
         console.log('GetUser Error!!')
@@ -37,6 +36,7 @@ const LoginUser = async (req, res) => {
                 userName: user.user_name,//this may be an issue
             }
             let token = createToken(payload)
+            console.log('You logged in')
             return res.send({user, token})
         }
         console.log('PAYLOAD may be an issue because of username')
@@ -54,6 +54,7 @@ const SessionStatus = async (req, res) => {
             attributes: ['id', 'user_name', 'email']
         })
         res.send({ user, status: 'OK'})
+        console.log('user is authenticated')
     }catch (error) {
         res.status(401).send({message: 'invalid session'})
         console.log('SessionStatus ERROR!!!')

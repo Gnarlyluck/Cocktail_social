@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 
   export default (props) => {
       const classes = useStyles()
-    console.log(props.currentUser.id)
     const [picUrl, setPicUrl] = useState(null);
     const [userId, setUserId] = useState('');
     const [formError, setFormError] = useState(false)
@@ -39,20 +38,20 @@ const useStyles = makeStyles((theme) => ({
         }
     }
     
-    const getUserId = async() => {
-        try{
-            let res = await __GetUser({user_id: props.currentUser.id})
-            console.log(res.data.id)
-            setUserId(res.data.id)
-        }catch(error){
-            console.log('getUserId ERROR!!!')
-            throw error
-        }
-    }
+    // const getUserId = async() => {
+    //     try{
+    //         let res = await __GetUser({user_id: props.currentUser.id})
+    //         console.log(res.data.id)
+    //         setUserId(res.data.id)
+    //     }catch(error){
+    //         console.log('getUserId ERROR!!!')
+    //         throw error
+    //     }
+    // }
     
         useEffect(() => {
             getAllCategories()
-            getUserId()
+            // getUserId()
         }, [])
     
     const handleSubmit = async (event) => {
@@ -60,19 +59,20 @@ const useStyles = makeStyles((theme) => ({
         try{
             let submittedData = {
                 user_id: props.currentUser.id,
-                pictue: picUrl,
+                picture: picUrl,
                 title: titleText,
                 description: descriptionText,
                 recipe: recipeText
             }
-            let picUpload = await __UploadPost(submittedData)
+            let Upload = await __UploadPost(submittedData)
             if (categoryChosen){
                 let res = await __FindCategoryByName(categoryChosen)
                 let input = {
                     categoryId: res.id,
-                    postId: picUpload.id
+                    postId: Upload.id
                 }
                 await __TagPostToCategory(input)
+                console.log('handlesubmit ERROR in create post', Upload)
             }
         }catch(error){
             setFormError(true)
@@ -143,6 +143,7 @@ const useStyles = makeStyles((theme) => ({
                             variant="outlined"
                             onChange={(e) => setPicUrl(e.target.value)}
                         />
+                        
                     </div>
                     <Button 
                     type='submit' 

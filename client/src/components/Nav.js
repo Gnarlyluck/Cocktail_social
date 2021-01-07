@@ -12,6 +12,9 @@ export default ({authenticate, currentUser}) => {
                 >
                     <h3> Sign Out</h3>
                 </NavLink>
+                <NavLink to='/Create'>
+                    Create Post
+                </NavLink>
                 <NavLink to='/profile'>Profile</NavLink>
             </nav>
         </header>

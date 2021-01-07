@@ -27,14 +27,6 @@ export default () => {
     useEffect(() => {
     getAllPosts()
 }, [])
-//  map through array of posts and assign them to card
-//return card for each element in array
-// find the variable its stored in
-// do that.map()
-// and add a component
-// to the return statement of the map
-// INSIDE the html
-  console.log(posts)
         return (
           <div>
             {posts.map((post) => <Card
@@ -46,6 +38,5 @@ export default () => {
                     recipe={post.recipe}
                     />)}
           </div>
-                
         )
 }  
