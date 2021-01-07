@@ -1,25 +1,25 @@
 const { Cat_tag, Drink_posts, Categories } = require('../models')
 
-const TagPostToCategory = async (req, res) => {
-    try{
-        const drinkPostId = req.body.drinkPostId
-        const categoriesId = req.body.categoriesId
-        console.log(drinkPostId, 'DrinkPostlog')
-        const post = await Drink_posts.findByPk(drinkPostId)
-        console.log(post, 'POST LOG!!')
-        const category = await Categories.findByPk(categoriesId)
-        let newTag = await Cat_tag.create({
-            drink_posts_id: parseInt(post.dataValues.id),
-            drinkPostId: parseInt(post.dataValues.id),
-            categories_id: parseInt(category.dataValues.id),
-            categoriesId: parseInt(category.dataValues.id)
-        })
-        res.send(newTag)
-    }catch(error){
-        console.log('TagPostToCategory ERROR!!!')
-        throw error
-    }
-}
+// const TagPostToCategory = async (req, res) => {
+//     try{
+//         const drinkPostId = req.body.drinkPostId
+//         const categoriesId = req.body.categoriesId
+//         console.log(drinkPostId, 'DrinkPostlog')
+//         const post = await Drink_posts.findByPk(drinkPostId)
+//         console.log(post, 'POST LOG!!')
+//         const category = await Categories.findByPk(categoriesId)
+//         let newTag = await Cat_tag.create({
+//             drink_posts_id: parseInt(post.id),
+//             drinkPostId: parseInt(post.id),
+//             categories_id: parseInt(category.id),
+//             categoriesId: parseInt(category.id)
+//         })
+//         console.log(post.id)
+//         res.send(newTag)
+//     }catch(error){
+//         console.log(error)
+//     }
+// }
 // need to insert cat Id and post id when creating for tag to work otherwise
 //it throws an error and tag value is null
 
@@ -83,7 +83,7 @@ const GetTag = async (req, res) => {
 // console.log(GetTag())
 
 module.exports = {
-    TagPostToCategory,
+    // TagPostToCategory,
     RemoveTagFromPost,
     GetAllPostsByCategory,
     GetAllCategoriesOnPost,

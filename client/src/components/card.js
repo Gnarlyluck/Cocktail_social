@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom'
 import PlaceHolder from '../assets/placeHolder.jpg'
@@ -9,7 +10,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
@@ -58,13 +58,13 @@ export default function DrinkCard(details) {
         //     R
         //   </Avatar>
         // }
-        // action={
-        //   <Link to="/edit/:post_id">
-        //   <IconButton aria-label="settings">
-        //     <MoreVertIcon />
-        //   </IconButton>
-        //   </Link>
-        // }
+        action={
+          <Link to={`/edit/${details.id}`}>
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+          </Link>
+        }
         title={details.title}
       />
       <CardMedia
@@ -81,12 +81,13 @@ export default function DrinkCard(details) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        {/* <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites">
           <FavoriteIcon />
-        </IconButton> */}
-       <CardContent>
-         Comments
-       </CardContent>
+        </IconButton>
+        {/* <IconButton aria-label="share"> */}
+          {/* <ShareIcon /> */}
+          {/* <AddCommentIcon /> */}
+        {/* </IconButton> */}
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -95,14 +96,15 @@ export default function DrinkCard(details) {
           aria-expanded={expanded}
           aria-label="show more"
         >
+           <AddCommentIcon />
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Recipe and Method:</Typography>
+          <Typography paragraph>Comments</Typography>
           <Typography paragraph>
-          
+           {details.comments}
           </Typography>
         </CardContent>
       </Collapse>

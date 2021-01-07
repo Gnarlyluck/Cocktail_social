@@ -1,7 +1,7 @@
 const Router = require('express').Router()
 const controller = require('../controllers/CatTagController')
 
-Router.post('/tagIt', controller.TagPostToCategory)
+// Router.post('/tagIt', controller.TagPostToCategory)
 
 Router.get('/posts/:categories_id', controller.GetAllPostsByCategory)
 Router.get('/categories/:drink_posts_id', controller.GetAllCategoriesOnPost)

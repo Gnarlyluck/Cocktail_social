@@ -32,9 +32,6 @@ export const __UpdatePost = async(post_id, formData) => {
 export const __UploadPost = async(formData) => {
     try{
         const res = await ApiClient.post(`/post/create`, formData)
-        if (formData > 250){
-            alert('That link was to large please find another link')
-        }
         return res.data
     }catch(error){
         console.log('__UploadPost ERROR!!!')

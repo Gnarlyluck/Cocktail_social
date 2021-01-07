@@ -86,7 +86,7 @@ export default (props) => {
     }, [])
     
     const handleSubmit = async(event) => {
-        event.preventDefault()
+        // event.preventDefault()
         try{
             let updatedData = {
                 user_id: props.currentUser.id,
@@ -102,7 +102,7 @@ export default (props) => {
                     categoryId: res.id,
                     postId: postId
                 }
-                await __TagPostToCategory(input)
+                // await __TagPostToCategory(input)
             }
             props.history.push('/')
         }
@@ -112,7 +112,7 @@ export default (props) => {
             throw error
         }
     }
-    console.log(handleSubmit())
+    // console.log(handleSubmit())
     const field = () => {
         if (categories) {
             return (<Autocomplete
@@ -147,7 +147,8 @@ export default (props) => {
                             fullwidth='true'
                             id="title"
                             label="Title"
-                            value={`${titleText}`}
+                            name="title"
+                            value={titleText}
                             type="text"
                             variant="outlined"
                             onChange={(e) => setTitle(e.target.value)}
@@ -162,11 +163,12 @@ export default (props) => {
                             fullwidth='true'
                             id="description"
                             label={"Description (250 max)"}
-                            value={`${descriptionText}`}
+                            value={descriptionText}
                             multiline
                             rows={4}
                             style={{width: 230}}
                             type="text"
+                            name="description"
                             maxLength={250}
                             variant="outlined"
                             onChange={(e) => setDescription(e.target.value)}
@@ -177,11 +179,12 @@ export default (props) => {
                             fullwidth='true'
                             id="recipe"
                             label={"Recipe (250 max)"}
-                            value={`${recipeText}`}
+                            value={recipeText}
                             multiline
                             rows={4}
                             style={{width: 230}}
                             type="text"
+                            name="recipe"
                             maxLength={250}
                             variant="outlined"
                             onChange={(e) => setRecipeText(e.target.value)}
@@ -191,8 +194,9 @@ export default (props) => {
                         <TextField
                             fullwidth='true'
                             id="url"
+                            name="picture"
                             label="Url of Picture"
-                            value={`${picUrl}`}
+                            value={picUrl}
                             type="url"
                             variant="outlined"
                             onChange={(e) => setPicUrl(e.target.value)}

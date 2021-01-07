@@ -20,16 +20,16 @@ export const __GetAllCategoriesOnPost = async(drinkPostId) => {
     }
 }
 
-export const __TagPostToCategory = async(formData) => {
-    try{
-        const res = await ApiClient.post(`/tag/tagIt`, formData)
-        return res.data
-    }catch(error){
-        console.log('__TagPostToCategory ERROR!!!')
-        throw error
+// export const __TagPostToCategory = async(formData) => {
+//     try{
+//         const res = await ApiClient.post(`/tag/tagIt`, formData)
+//         return res.data
+//     }catch(error){
+//         console.log('__TagPostToCategory ERROR!!!')
+//         throw error
 
-    }
-}
+//     }
+// }
 
 export const __RemoveTagFromPost = async(tagId) => {
     try{

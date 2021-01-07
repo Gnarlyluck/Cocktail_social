@@ -11,7 +11,7 @@ export const __CreateComment = async(userId, drinkPostId, formData) => {
     }
 }
 
-export const __GetComments = async(commentId) => {
+export const __GetCommentsByPost = async(drinkPostId) => {
     try{
         const res = await ApiClient.get(`/view/${drinkPostId}`)
     }catch(error){
@@ -19,6 +19,7 @@ export const __GetComments = async(commentId) => {
         throw error
     }
 }
+console.log(__GetCommentsByPost())
 
 export const __DeleteComment = async(commentId) => {
     try{
