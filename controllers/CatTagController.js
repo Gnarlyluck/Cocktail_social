@@ -4,10 +4,7 @@ const TagPostToCategory = async (req, res) => {
     try{
         const drinkPostId = req.body.drinkPostId
         const categoriesId = req.body.categoriesId
-        console.log(drinkPostId, 'DrinkPostlog')
-        console.log(categoriesId, 'Catlog')
         const post = await Drink_posts.findByPk(drinkPostId)
-        console.log(post, 'POST LOG!!')
         const category = await Categories.findByPk(categoriesId)
         let newTag = await Cat_tag.create({
             drinkPostId: parseInt(post.dataValues.id),
@@ -15,7 +12,6 @@ const TagPostToCategory = async (req, res) => {
             categoriesId: parseInt(category.dataValues.id),
             // categoriesId: parseInt(category.id)
         })
-        console.log(post.id)
         res.send(newTag)
     }catch(error){
         console.log(error)
