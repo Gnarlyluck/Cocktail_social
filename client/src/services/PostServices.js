@@ -2,7 +2,7 @@ import ApiClient from './ApiServices'
 
 export const __GetOnePost = async(postId) => {
     try{
-        const res = await ApiClient.get(`/post${postId}`)//id may be off
+        const res = await ApiClient.get(`/post/${postId}`)//id may be off
         return res.data
     }catch(error){
         console.log('__GetOnePost ERROR!!!')
@@ -38,12 +38,12 @@ export const __UploadPost = async(formData) => {
         throw error
     }
 }
-export const __DeletePost = async(postId) => {
+export const __DeletePost = async(id) => {
     try{
-        const res = await ApiClient.delete(`post/delete/${postId}`)
+        const res = await ApiClient.delete(`post/delete/${id}`)
         return res.data
     }catch(error){
-        console.log('__DeletePost ERROR!!!')
+        console.log(error)
         throw error
     }
 }
