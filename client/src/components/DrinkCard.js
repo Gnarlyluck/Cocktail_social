@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 // import { __GetCommentsByPost } from '../services/CommentServices';
 import { __DeletePost} from '../services/PostServices'
 import {__RemoveTagFromPost} from '../services/TagServices'
+import CreateComments from '../components/CreateComment'
 
 import PlaceHolder from '../assets/placeHolder.jpg'
 import clsx from 'clsx';
@@ -25,6 +26,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 
 
@@ -55,9 +57,8 @@ export default function DrinkCard(details) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [expanded, setExpanded] = React.useState(false);
-console.log(details.comments)
-  // const [contentText, setContentText] = useState('')
-  // const [postId, setPostId] = useSate(null)
+
+
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -65,23 +66,9 @@ console.log(details.comments)
   const handleClose = () => {
     setAnchorEl(null);
   };
-  // const handleSubmit = async (event) =>{
-  //   event.preventDefault()
-  //   try{
-  //     let commentData= {
-  //       content: contentText,
-  //       userId: details.currentUser.id,
-  //       // postId: postId
-
-  //     }
-  //   }catch(error){
-  //     throw error
-  //   }
-  // }
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
   const deletePost = async (postId) => {
     try{
         let del =await __RemoveTagFromPost(postId)
@@ -97,7 +84,7 @@ console.log(details.comments)
         action={
           <div>
           <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-          <MoreVertIcon />
+            <MoreVertIcon />
           </IconButton>
           <Menu
             id="simple-menu"
@@ -105,10 +92,10 @@ console.log(details.comments)
             keepMounted
             open={Boolean(anchorEl)}
             onClose={handleClose}
-            >
+          >
           <Link to={`/edit/${details.id}`}>
             <MenuItem onClick={handleClose}>Edit</MenuItem>
-                    </Link>
+          </Link>
             <MenuItem onClick={() => {deletePost(details.id) }} >Delete</MenuItem>
             <MenuItem onClick={handleClose}>Logout</MenuItem>
           </Menu>
@@ -127,7 +114,7 @@ console.log(details.comments)
          {details.description}
         </Typography>
         <Typography>
-        {details.recipe}
+          {details.recipe}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -145,35 +132,37 @@ console.log(details.comments)
           aria-expanded={expanded}
           aria-label="show more"
         >
-           <AddCommentIcon />
-          <ExpandMoreIcon />
+            <AddCommentIcon />
+            <ExpandMoreIcon />
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>Comments</Typography>
+            <Typography paragraph>
+              <form >
+              <CreateComments />
+
+                  {/* <Button 
+                    type='submit' 
+                    variant="outlined" 
+                    size="small" 
+                    color="primary" 
+                    className={classes.margin}>
+                        Submit
+                    </Button> */}
+            </form>
+            </Typography>
           <Typography paragraph>
-            <TextField
-              fullwidth='true'
-              id="comment"
-              label="Create Comment"
-              multiline
-              rows={2}
-              style={{width: 230}}
-              type="text"
-              maxLength={250}
-              variant="outlined"
-              // onChange={() => ()}
-              />
-          </Typography>
-          <Typography paragraph>
-        {details.comments.map((comment, index)=> (
-            <span key={index}>
-              <ul>
-                <li>{comment.content}</li>
-              </ul>
-            </span>
-        ))}
+            {details.comments.map((comment, index)=> (
+              <span key={index}>
+                <span>
+                <ul>
+                  <li>{comment.content}</li>
+                </ul>
+                </span>
+              </span>
+            ))}
           </Typography>
         </CardContent>
         <CardContent>

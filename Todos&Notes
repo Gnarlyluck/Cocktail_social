@@ -1,0 +1,21 @@
+deal with GetTag Error
+
+Complete creating comments on Posts
+
+Fix onDelete-'cascade' in migrations
+
+get comments to be displayed with username
+
+only allow edit post on posts made by that user.
+
+set up alerts that you need to be signed in to edit a post or comment 
+on post
+
+set up create a category section/ allow create category while creating
+post
+
+set up share 
+
+set up likes
+
+set up like button 

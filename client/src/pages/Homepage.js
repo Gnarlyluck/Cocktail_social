@@ -11,21 +11,21 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   }));
- 
-const HomePage = () => {
+  const HomePage = () => {
     const classes = useStyles()
-
+    
     const [posts, setPosts] = useState([])
-   
+    
     const getAllPosts = async () => {
-        try{
-            const apiPosts = await __GetPosts()
-            setPosts(apiPosts)
-            console.log(apiPosts)
-        }catch(error){
-            throw error
-        }
+      try{
+        const apiPosts = await __GetPosts()
+        setPosts(apiPosts)
+        console.log(apiPosts)
+      }catch(error){
+        throw error
+      }
     }
+    console.log(posts)
     useEffect(() => {
     getAllPosts()
 }, [])

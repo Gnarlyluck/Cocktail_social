@@ -13,13 +13,22 @@ const CreateComment = async (req, res) => {
     }
 } 
 
+const GetCreateComments = async(req, res) => {
+    try{
+        const comment = await Comments.findAll({
+            where: {drink_posts_id: req.params.drink_posts_id},
+            include:[{ model: User, attributes: ['user_name']}]
+        })
+        res.send(comment)
+    }catch(error){
+        console.log('GetCreateComments ERROR!!!')
+        throw error
+    }
+}
 const GetComments = async(req, res) => {
     try{
-        // const userId = req.params.user_id
-        // const 
         const comment = await Comments.findAll({
             drinkPostsId: req.params.drink_posts_id
-            // include: [{model: User, attributes: "user_name"}]
         })
         res.send(comment)
     }catch(error){
@@ -45,5 +54,6 @@ const DeleteComment = async (req, res) => {
 module.exports = {
     CreateComment,
     DeleteComment,
-    GetComments
+    GetComments,
+    GetCreateComments
 }

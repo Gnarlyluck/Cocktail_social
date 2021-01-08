@@ -55,3 +55,65 @@ create tag
 	"drinkPostId":16,
 	"categoriesId":1
 }
+
+
+
+GRAVEYARD
+
+  // const [contentText, setContentText] = useState('')
+  // const [postId, setPostId] = useSate(null)
+  // const [comments, setComments] = useState([])
+
+ // const handleSubmit = async (event) =>{
+  //   event.preventDefault()
+  //   try{
+  //     let commentData= {
+  //       content: contentText,
+  //       userId: details.currentUser.id,
+  //       postId: details.post.id
+        
+  //     }
+  //     console.log(commentData)
+  //     let pushComment = await __CreateComment(commentData)
+  //     console.log(pushComment)
+  //     setContentText(pushComment)
+  //   }catch(error){
+  //     // setFormError(true)
+  //     throw error
+  //   }
+  // }
+
+//   useEffect(() => {
+//     setComments(details.post.comments, [details.post.comments])
+// })
+
+// const handleCreateComment = async (event) =>{
+// event.preventDefault()
+// let commentData= {content: contentText,}
+
+// try{
+//   const comment = await __CreateComment( 
+//       details.currentUser.id,
+//        details.post.id,
+//        commentData,
+//        setComments(comment),
+//        setContentText('')
+// )
+// }catch(error){
+//     console.log('CreateUserComment Error!!!')
+//   throw error
+// }
+// }
+
+ {/* onSubmit={(e) => handleSubmit(e)} */}
+            {/* <TextField
+              fullwidth='true'
+              id="comment"
+              label="Create Comment"
+              multiline
+              rows={2}
+              style={{width: 230}}
+              type="text"
+              maxLength={250}
+              variant="outlined"
+              /> */}

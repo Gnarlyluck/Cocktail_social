@@ -29,7 +29,6 @@ const Profile = () => {
           throw error
         }
     }
-
     const getPostComments = async() => {
       try{
         const getComments = await __GetCommentsByPost()
@@ -39,9 +38,10 @@ const Profile = () => {
       }
     }
     useEffect(() => {
-        getAllPosts()
-        getPostComments()
+      getAllPosts()
+      getPostComments()
     }, [])
+    console.log(posts.title)
         return(
             <div >
             {posts.map((post) => 

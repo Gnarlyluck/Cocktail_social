@@ -83,6 +83,7 @@ const CreatePost = (props) => {
                     <div style={{margin: '10px'}}>
                         <Autocomplete
                             id="combo-box"
+                            label="Assign a category"
                             options={categories}
                             getOptionLabel={(option) => option.name}
                             style={{ width: 230}}
