@@ -12,22 +12,21 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   }));
-
-const Profile = (props) => {
-
+  const Profile = (props) => {
+    
     const classes = useStyles()
-
+    
     const [posts, setPosts] = useState([])
     const [comments, setComments ] = useState([])
-
-    const getAllPosts = async() => {
-        try{
-            const apiPosts = await __GetPosts()
-            setPosts(apiPosts)
-        }
-        catch(error){
-          throw error
-        }
+    
+    const getAllPosts = async(e) => {
+      try{
+        const apiPosts = await __GetPosts()
+        setPosts(apiPosts)
+      }
+      catch(error){
+        throw error
+      }
     }
     const getPostComments = async() => {
       try{
