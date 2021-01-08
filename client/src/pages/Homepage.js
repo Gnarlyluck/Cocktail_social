@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
       try{
         const apiPosts = await __GetPosts()
         setPosts(apiPosts)
-        console.log(apiPosts)
       }catch(error){
         throw error
       }
