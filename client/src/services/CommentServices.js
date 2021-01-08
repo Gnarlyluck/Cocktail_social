@@ -1,9 +1,10 @@
 import ApiClient from './ApiServices'
 
-export const __CreateComment = async(userId, drinkPostId, formData) => {
+export const __CreateComment = async( formData) => {
     try{
         const res = await ApiClient.post(
-            `/comments/${userId}/drink_posts/${drinkPostId}`, formData)
+            `/comment/${formData.user_id}/drink_posts/${formData.drink_posts_id}`, {content:formData.content})
+            console.log(res.data)
             return res.data
     }catch(error){
         console.log('__CreateComment ERROR!!!!')
