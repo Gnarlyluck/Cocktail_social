@@ -52,7 +52,7 @@ const SignUpPage = (props) => {
                 <form onSubmit={(event) => handleSubmit(event)}>
                     <div style={{margin: '10px'}}>
                         <TextField 
-                            fullWidth='true'
+                            // fullWidth='true'
                             id='email'
                             label='Email'
                             type='email'
@@ -62,7 +62,7 @@ const SignUpPage = (props) => {
                     </div>
                     <div style={{margin: '10px'}}>
                         <TextField 
-                            fullWidth='true'
+                            // fullWidth='true'
                             id='Name'
                             label='Name'
                             variant='outlined'
@@ -72,7 +72,7 @@ const SignUpPage = (props) => {
                     </div>
                     <div style={{margin: '10px'}}>
                         <TextField 
-                            fullWidth='true'
+                            // fullWidth='true'
                             id='username'
                             label='Username'
                             variant='outlined'
@@ -82,7 +82,7 @@ const SignUpPage = (props) => {
                     </div>
                     <div style={{margin: '10px'}}>
                         <TextField
-                            fullwidth='true'
+                            // fullwidth='true'
                             id="password"
                             label="Password"
                             variant="outlined"

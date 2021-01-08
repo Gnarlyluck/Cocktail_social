@@ -47,9 +47,12 @@ const SignInPage = (props) => {
                 <form onSubmit={(event) => handleSubmit(event)}>
                     <div>
                         <TextField 
-                            fullwidth='true'
+                            required id="standard-required" 
+                            label="Required"
+                            // fullwidth='true'
                             id='email'
                             label='Email'
+                            name='email'
                             type='email'
                             variant='outlined'
                             onChange={(event) => setEmail(event.target.value)}
@@ -57,9 +60,10 @@ const SignInPage = (props) => {
                     </div>
                     <div>
                         <TextField 
-                            fullWidth='true'
+                            // fullWidth='true'
                             id='password'
                             label='Password'
+                            name='password'
                             type='password'
                             variant='outlined'
                             onChange={(event) => setPassword(event.target.value)}
@@ -68,6 +72,7 @@ const SignInPage = (props) => {
                         <Button 
                             type='submit' 
                             variant='outlined'
+                            name='button'
                             size='medium'
                             color='primary'
                             className={classes.margin}
