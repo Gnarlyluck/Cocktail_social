@@ -16,7 +16,6 @@ const GetOnePost = async (req, res) => {
     try{
         const unoPostoh = await Drink_posts.findByPk(req.params.post_id)
         res.send(unoPostoh)
-        console.log(unoPostohz)
     }catch(error){
         console.log('GetOnePost ERROR!!!')
         throw error
@@ -57,7 +56,7 @@ const  DeletePost = async (req, res) => {
                 id: postId
             }
         })
-        res.send({meassage: `Deleted post with an id of ${postId}`})
+        res.send({message: `Deleted post with an id of ${postId}`})
     }catch(error){
         console.log(' DeletePost ERROR!!!')
         throw error
