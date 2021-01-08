@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 // import { __GetCommentsByPost } from '../services/CommentServices';
 import { __DeletePost} from '../services/PostServices'
 import {__RemoveTagFromPost} from '../services/TagServices'
+import {__CreateComment} from '../services/CommentServices'
 import CreateComments from '../components/CreateComment'
 
 import PlaceHolder from '../assets/placeHolder.jpg'
@@ -51,14 +52,21 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: red[500],
   },
+  margin: {
+    margin: theme.spacing(1),
+  },
+  extendedIcon: {
+    marginRight: theme.spacing(1),
+  },
 }));
 
 export default function DrinkCard(details) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [expanded, setExpanded] = React.useState(false);
+  const [contentText, setContentText] = useState('')
 
-
+// console.log(details.id)
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -78,11 +86,29 @@ export default function DrinkCard(details) {
         throw error
     }
 }
+const handleCreateComment = async (event) =>{
+  event.preventDefault()
+  
+  try{
+  let commentData= {
+    content: contentText,
+    user_id: details.userId,
+    drink_posts_id: details.id,
+    
+  }
+  console.log(commentData)
+   await __CreateComment(commentData)
+}catch(error){
+    console.log('CreateUserComment Error!!!')
+  throw error
+}
+}
+
   return (
     <Card className={classes.root}>
       <CardHeader
         action={
-          <div>
+          <span>
           <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
             <MoreVertIcon />
           </IconButton>
@@ -99,7 +125,7 @@ export default function DrinkCard(details) {
             <MenuItem onClick={() => {deletePost(details.id) }} >Delete</MenuItem>
             <MenuItem onClick={handleClose}>Logout</MenuItem>
           </Menu>
-              </div>
+              </span>
         }
         title={details.title}
       />
@@ -140,26 +166,38 @@ export default function DrinkCard(details) {
         <CardContent>
           <Typography paragraph>Comments</Typography>
             <Typography paragraph>
-              <form >
-              <CreateComments />
-
-                  {/* <Button 
-                    type='submit' 
-                    variant="outlined" 
-                    size="small" 
-                    color="primary" 
-                    className={classes.margin}>
-                        Submit
-                    </Button> */}
-            </form>
+              <form onSubmit={(e) => handleCreateComment(e)}>
+              {/* <CreateComments /> */}
+              <TextField
+                  fullwidth='true'
+                  id="comment"
+                  label="Create Comment"
+                  multiline
+                  name='comment'
+                  rows={2}
+                  style={{width: 230}}
+                  type="text"
+                  maxLength={250}
+                  variant="outlined"
+                  onChange={(e) => setContentText(e.target.value)}
+                  />
+              <Button 
+                  type='submit' 
+                  variant="outlined" 
+                  size="small" 
+                  color="primary" 
+                  className={classes.margin}>
+                      Submit
+                </Button>
+              </form>
             </Typography>
           <Typography paragraph>
             {details.comments.map((comment, index)=> (
               <span key={index}>
                 <span>
-                <ul>
-                  <li>{comment.content}</li>
-                </ul>
+                  <ul>
+                    <li>{comment.content}</li>
+                  </ul>
                 </span>
               </span>
             ))}
