@@ -9,7 +9,7 @@ const CreateComment = async (req, res) => {
         })
         res.send(comment)
     }catch(error){
-        console.log('CreateComment ERROR!!!')
+        console.log(error)
     }
 } 
 
