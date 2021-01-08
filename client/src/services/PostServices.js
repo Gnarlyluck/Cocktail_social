@@ -38,9 +38,9 @@ export const __UploadPost = async(formData) => {
         throw error
     }
 }
-export const __DeletePost = async(id) => {
+export const __DeletePost = async(postId) => {
     try{
-        const res = await ApiClient.delete(`post/delete/${id}`)
+        const res = await ApiClient.delete(`post/delete/${postId}`)
         return res.data
     }catch(error){
         console.log(error)
