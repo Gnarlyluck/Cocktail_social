@@ -17,8 +17,7 @@ const TagPostToCategory = async (req, res) => {
         console.log(error)
     }
 }
-// need to insert cat Id and post id when creating for tag to work otherwise
-//it throws an error and tag value is null
+
 
 const RemoveTagFromPost = async (req, res) => {
     try{
@@ -64,6 +63,7 @@ const GetTag = async (req, res) => {
     try{
         let drinkPostsId = parseInt(req.params.drink_posts_id)
         let categoriesId = parseInt(req.params.categories_id)
+        console.log(drinkPostsId, categoriesId)
         const tagId = await Cat_tag.findOne({
             attributes: ['id'],
             where: {
@@ -77,7 +77,6 @@ const GetTag = async (req, res) => {
         throw error
     }
 }
-// console.log(GetTag())
 
 module.exports = {
     TagPostToCategory,

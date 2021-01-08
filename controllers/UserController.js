@@ -25,26 +25,21 @@ const GetUser = async (req, res) => {
 }
 
 const LoginUser = async (req, res) => {
-    console.log(req.body)
     try{
         const user = await User.findOne({
             where: { email: req.body.email },
             raw: true
         })
-        console.log(user)
         if (user && passwordValid(req.body.password, user.password_digest)) {
             let payload = {
                 id: user.id,
                 userName: user.user_name,
             }
             let token = createToken(payload)
-            console.log('You logged in')
             return res.send({user, token})
         }
-        console.log('PAYLOAD may be an issue because of username')
         return res.status(401).send({ message: 'Go on and get outta here, or try again...'})
     }catch (error){
-        console.log('LoginUser ERROR!!')
         throw error
     }
 }

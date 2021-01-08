@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
         throw error
       }
     }
-    console.log(posts)
     useEffect(() => {
     getAllPosts()
 }, [])

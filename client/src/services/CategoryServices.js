@@ -53,7 +53,6 @@ export const __DeleteCategories = async(categoryId) => {
 export const __FindCategoryByName = async(formData) => {
     try{
         const res = await ApiClient.get(`/category/findByName/${formData}`)
-        console.log(res.data)
         return res.data
     }catch(error){
         console.log('__FindCategoryByName ERROR!!!')

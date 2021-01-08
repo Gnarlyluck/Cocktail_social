@@ -4,7 +4,6 @@ export const __CreateComment = async( formData) => {
     try{
         const res = await ApiClient.post(
             `/comment/${formData.user_id}/drink_posts/${formData.drink_posts_id}`, {content:formData.content})
-            console.log(res.data)
             return res.data
     }catch(error){
         console.log('__CreateComment ERROR!!!!')
@@ -21,7 +20,6 @@ export const __GetCommentsByPost = async(drinkPostId) => {
         throw error
     }
 }
-// console.log(__GetCommentsByPost())
 
 export const __DeleteComment = async(commentId) => {
     try{

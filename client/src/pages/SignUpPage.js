@@ -33,7 +33,6 @@ const SignUpPage = (props) => {
                 email: email,
                 password: password,
             }
-            console.log(userFormData)
             await __CreateUser(userFormData)
             props.history.push('/login')
         }catch(error){

@@ -53,7 +53,6 @@ const CreatePost = (props) => {
             let Upload = await __UploadPost(submittedData)
             if (categoryChosen){
                 let res = await __FindCategoryByName(categoryChosen)//issue here!
-                console.log(res)
                 let input = {
                     categoriesId: res.id,
                     drinkPostId: Upload.id

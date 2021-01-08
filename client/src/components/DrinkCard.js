@@ -66,8 +66,6 @@ export default function DrinkCard(details) {
   const [expanded, setExpanded] = React.useState(false);
   const [contentText, setContentText] = useState('')
 
-// console.log(details.id)
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -79,9 +77,9 @@ export default function DrinkCard(details) {
   };
   const deletePost = async (postId) => {
     try{
-        let del =await __RemoveTagFromPost(postId)
-        let res = await __DeletePost(postId)
-        // props.history.push("/profile")
+        await __RemoveTagFromPost(postId)
+        await __DeletePost(postId)
+        // details.history.push("/profile")
     }catch(error){
         throw error
     }
@@ -96,7 +94,6 @@ const handleCreateComment = async (event) =>{
     drink_posts_id: details.id,
     
   }
-  console.log(commentData)
    await __CreateComment(commentData)
 }catch(error){
     console.log('CreateUserComment Error!!!')
