@@ -30,7 +30,6 @@ const EditPost = (props) => {
     const [categoryChosenId, setCategoryChosenId] = useState(null)
     const [postId, setPostId] = useState(null)
     
-    
     const getPost = async() => {
         try{
             let res = await __GetOnePost(props.match.params.post_id)
@@ -43,13 +42,13 @@ const EditPost = (props) => {
             if (cat.length < 1) {
                 setCategoryChosenId(null)
             } else {
-                setCategoryChosenId(cat[0].categories_id)
+                setCategoryChosenId(cat[0].categoriesId)
                 ifCatExist(cat)
-                let tagId = await __GetTag(res.id, cat[0].categories_id)
+                let tagId = await __GetTag(res.id, cat[0].categoriesId)
                 await __RemoveTagFromPost(tagId.id)
             }
         }catch(error){
-            console.log('GetPost ERROR!!')
+            console.log(error)
             throw error
         }
     }
@@ -72,7 +71,7 @@ const EditPost = (props) => {
     useEffect(() => {
         getAllCategories()
         getPost()
-    })
+    }, [])
     
     const handleSubmit = async(event) => {
         event.preventDefault()
@@ -93,7 +92,7 @@ const EditPost = (props) => {
                 }
                 await __TagPostToCategory(input)
             }
-            props.history.push('/')
+            props.history.push('/profile')
         }
         catch(error){
             setFormError(true)
@@ -132,7 +131,7 @@ const EditPost = (props) => {
                 <form className="col s12" onSubmit={(e) => handleSubmit(e)}>
                     <div style={{margin: '10px'}}>
                         <TextField
-                            fullwidth='true'
+                            // fullwidth='true'
                             id="title"
                             label="Title"
                             name="title"
@@ -148,7 +147,7 @@ const EditPost = (props) => {
                     </div>
                     <div style={{margin: '10px'}}>
                         <TextField
-                            fullwidth='true'
+                            // fullwidth='true'
                             id="description"
                             label={"Description (250 max)"}
                             value={descriptionText}
@@ -164,7 +163,7 @@ const EditPost = (props) => {
                     </div>
                     <div style={{margin: '10px'}}>
                         <TextField
-                            fullwidth='true'
+                            // fullwidth='true'
                             id="recipe"
                             label={"Recipe (250 max)"}
                             value={recipeText}
@@ -180,7 +179,7 @@ const EditPost = (props) => {
                     </div>
                     <div style={{margin: '10px'}}>
                         <TextField
-                            fullwidth='true'
+                            // fullwidth='true'
                             id="url"
                             name="picture"
                             label="Url of Picture"
