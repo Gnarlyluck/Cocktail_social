@@ -12,10 +12,10 @@ export const __GetAllPostsByCategory = async(categoriesId) => {
 
 export const __GetAllCategoriesOnPost = async(drinkPostId) => {
     try{
-        const res = await ApiClient.get(`/tag/catagories/${drinkPostId}`)
+        const res = await ApiClient.get(`/tag/categories/${drinkPostId}`)
         return res.data
     }catch(error){
-        console.log('__GetAllCategoriesOnPost ERROR!!!')
+        console.log(error)
         throw error
     }
 }
@@ -23,7 +23,6 @@ export const __GetAllCategoriesOnPost = async(drinkPostId) => {
 export const __TagPostToCategory = async(formData) => {
     try{
         const res = await ApiClient.post(`/tag/tagIt`, formData)
-        console.log(res.data, formData)
         return res.data
     }catch(error){
         console.log('__TagPostToCategory ERROR!!!')
