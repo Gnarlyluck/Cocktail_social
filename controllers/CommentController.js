@@ -4,7 +4,7 @@ const CreateComment = async (req, res) => {
     try{
         const comment = await Comments.create({
             ...req.body,
-            userId: req.params.user_id,//these references may wrong...
+            userId: req.params.user_id,
             drinkPostId: req.params.drink_posts_id
         })
         res.send(comment)
