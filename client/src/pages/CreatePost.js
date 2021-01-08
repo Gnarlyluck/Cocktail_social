@@ -139,7 +139,7 @@ const CreatePost = (props) => {
                     className={classes.margin}>
                         Submit
                     </Button>
-                    {formError ? <p>Error While submitting</p> : <p></p>}
+                    {formError ? <p>Error While submitting</p> : <p>Post Submitted</p>}
                 </form>
             </div>   
         </div>
