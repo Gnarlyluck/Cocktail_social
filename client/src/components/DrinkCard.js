@@ -76,6 +76,7 @@ export default function DrinkCard(details) {
     setExpanded(!expanded);
   };
   const deletePost = async (postId) => {
+
     try{
         await __RemoveTagFromPost(postId)
         await __DeletePost(postId)
@@ -163,7 +164,7 @@ const handleCreateComment = async (event) =>{
         <CardContent>
           <Typography paragraph>Comments</Typography>
             <Typography paragraph>
-              <form onSubmit={(e) => handleCreateComment(e)}>
+              <span onSubmit={(e) => handleCreateComment(e)}>
               {/* <CreateComments /> */}
               <TextField
                   fullwidth='true'
@@ -186,7 +187,7 @@ const handleCreateComment = async (event) =>{
                   className={classes.margin}>
                       Submit
                 </Button>
-              </form>
+              </span>
             </Typography>
           <Typography paragraph>
             {details.comments.map((comment, index)=> (
