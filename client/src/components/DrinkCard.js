@@ -87,7 +87,6 @@ export default function DrinkCard(details) {
 }
 const handleCreateComment = async (event) =>{
   event.preventDefault()
-  
   try{
   let commentData= {
     content: contentText,
@@ -164,7 +163,7 @@ const handleCreateComment = async (event) =>{
         <CardContent>
           <Typography paragraph>Comments</Typography>
             <Typography paragraph>
-              <span onSubmit={(e) => handleCreateComment(e)}>
+              <form onSubmit={(e) => handleCreateComment(e)}>
               {/* <CreateComments /> */}
               <TextField
                   fullwidth='true'
@@ -187,7 +186,7 @@ const handleCreateComment = async (event) =>{
                   className={classes.margin}>
                       Submit
                 </Button>
-              </span>
+              </form>
             </Typography>
           <Typography paragraph>
             {details.comments.map((comment, index)=> (
