@@ -10,6 +10,7 @@ module.exports = {
       },
       drinkPostId: {
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
         field: 'drink_posts_id',
         allowNull: false,
         references: {
@@ -19,6 +20,7 @@ module.exports = {
       },
       categoriesId: {
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
         allowNull:false,
         field: 'categories_id',
         references: {
