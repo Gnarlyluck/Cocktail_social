@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const Profile = () => {
+const Profile = (props) => {
 
     const classes = useStyles()
 
@@ -41,12 +41,14 @@ const Profile = () => {
       getAllPosts()
       getPostComments()
     }, [])
-    console.log(posts.title)
+    // console.log(props)
+    // console.log(posts)
         return(
             <div >
             {posts.map((post) => 
             <DrinkCard
                     key={post.id} 
+                    userId={post.user_id}
                     id={post.id}
                     url={post.picture}
                     title={post.title}
