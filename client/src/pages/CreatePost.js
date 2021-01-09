@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { __UploadPost} from '../services/PostServices'
 import {__TagPostToCategory} from '../services/TagServices'
-import {__GetAllCategories, __FindCategoryByName} from '../services/CategoryServices'
+import {__GetAllCategories, __FindCategoryByName, __CreateCategory} from '../services/CategoryServices'
 
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Button from '@material-ui/core/Button';
@@ -20,15 +20,15 @@ const useStyles = makeStyles((theme) => ({
 const CreatePost = (props) => {
       const classes = useStyles()
     const [picUrl, setPicUrl] = useState(null);
-    // const [userId, setUserId] = useState('');
     const [formError, setFormError] = useState(false)
     const [titleText, setTitle] = useState('')
     const [descriptionText, setDescription] = useState('')
     const [recipeText, setRecipeText] = useState('')
     const [categories, setCategories] = useState(null)
     const [categoryChosen, setCategoryChosen] = useState(null)
+    const [createCategory, setCreatedCategory] = useState('')
     
-    const getAllCategories = async() => {
+    const getAllCategories = async(props) => {
         try{
             let res = await __GetAllCategories()
             setCategories(res)
@@ -39,6 +39,21 @@ const CreatePost = (props) => {
         useEffect(() => {
             getAllCategories()
         }, [])
+
+    // const newCategory = async(event) => {
+    //     event.preventDefault()
+    //     try{
+    //         let newCatData = {
+    //             name: createCategory
+    //         }
+    //         await __CreateCategory(newCatData)
+    //         setCreatedCategory(createCategory)
+    //         props.history.push('/profile')
+    //     }catch(error){
+    //         setFormError(true)
+    //         throw error
+    //     }
+    // }
     
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -58,7 +73,14 @@ const CreatePost = (props) => {
                     drinkPostId: Upload.id
                 }
                 await __TagPostToCategory(input)
+                
             }
+            let newCatData = {
+                name: createCategory
+            }
+            await __CreateCategory(newCatData)
+            setCreatedCategory(createCategory)
+            // props.history.push('/profile')
         }catch(error){
             setFormError(true)
             throw error
@@ -82,13 +104,27 @@ const CreatePost = (props) => {
                     <div style={{margin: '10px'}}>
                         <Autocomplete
                             id="combo-box"
-                            label="Assign a category"
+                            label="Select"
                             options={categories}
                             getOptionLabel={(option) => option.name}
                             style={{ width: 230}}
-                            renderInput={(params) => <TextField id='test'{...params} label="Category" variant="outlined" />}
+                            renderInput={(params) => <TextField id='test'{...params} label="Select a Category" variant="outlined" />}
                             onChange={(e) => setCategoryChosen(e.target.innerText)}
                         /> 
+                    </div>
+                    <div style={{margin: '10px'}}>
+                        <TextField
+                            fullwidth='true'
+                            id="createCategory"
+                            label="Create A Category Now"
+                            multiline
+                            rows={4}
+                            style={{width: 230}}
+                            type="text"
+                            maxLength={250}
+                            variant="outlined"
+                            onChange={(e) => setCreatedCategory(e.target.value)}
+                        />
                     </div>
                     <div style={{margin: '10px'}}>
                         <TextField
@@ -128,7 +164,6 @@ const CreatePost = (props) => {
                             variant="outlined"
                             onChange={(e) => setPicUrl(e.target.value)}
                         />
-                        
                     </div>
                     <Button 
                     type='submit' 
