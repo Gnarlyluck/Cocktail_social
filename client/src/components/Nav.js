@@ -1,6 +1,11 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import '../styles/Nav.css'
+import Icon from '@material-ui/core/Icon';
+
+import LocalBarIcon from '@material-ui/icons/LocalBar';
+import CreateTwoToneIcon from '@material-ui/icons/CreateTwoTone';
+import PlayForWorkIcon from '@material-ui/icons/PlayForWork';
 
 const Nav = ({authenticate, currentUser}) => {
     return authenticate && currentUser ? (
@@ -22,12 +27,12 @@ const Nav = ({authenticate, currentUser}) => {
     <header>
         <nav>
             <NavLink to='/register'>
-                <h3>Sign Up</h3>
+                <h3>{<CreateTwoToneIcon/>}Sign Up</h3>
             </NavLink>
             <NavLink to='/login'>
-                <h3>Sing In</h3>
+                <h3>{<PlayForWorkIcon/>}Sign In</h3>
             </NavLink>
-            <h1><a href='/'>Welcome</a></h1>
+            <h1 ><a href='/'>COCKTAIL SOCIAL {<LocalBarIcon/>}</a></h1>
         </nav>
     </header>
     )
