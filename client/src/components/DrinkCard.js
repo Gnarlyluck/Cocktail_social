@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 // import { __GetCommentsByPost } from '../services/CommentServices';
 import { __DeletePost} from '../services/PostServices'
 import {__RemoveTagFromPost} from '../services/TagServices'
-import {__CreateComment} from '../services/CommentServices'
+import {__CreateComment, __DeleteComment} from '../services/CommentServices'
 import CreateComments from '../components/CreateComment'
 
 import PlaceHolder from '../assets/placeHolder.jpg'
@@ -100,6 +100,14 @@ const handleCreateComment = async (event) =>{
   throw error
 }
 }
+console.log(details.comments.id)
+const deleteComment = async() =>{
+  try{
+      await __DeleteComment(details.comment.id)
+  }catch(error){
+    throw error
+  }
+}
 
   return (
     <Card className={classes.root}>
@@ -115,23 +123,22 @@ const handleCreateComment = async (event) =>{
             keepMounted
             open={Boolean(anchorEl)}
             onClose={handleClose}
-          >
+            >
           <Link to={`/edit/${details.id}`}>
             <MenuItem onClick={handleClose}>Edit</MenuItem>
           </Link>
             <MenuItem onClick={() => {deletePost(details.id) }} >Delete</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
           </Menu>
               </span>
         }
         title={details.title}
-      />
+        />
      
       <CardMedia
         className={classes.media}
         image={details.url || PlaceHolder}
         title={details.title}
-      />
+        />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
          {details.description}
@@ -154,7 +161,7 @@ const handleCreateComment = async (event) =>{
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
-        >
+          >
             <AddCommentIcon />
             <ExpandMoreIcon />
         </IconButton>
