@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 // import { __GetCommentsByPost } from '../services/CommentServices';
 import { __DeletePost} from '../services/PostServices'
 import {__RemoveTagFromPost} from '../services/TagServices'
-import {__CreateComment, __DeleteComment} from '../services/CommentServices'
+import {__CreateComment, __DeleteComment, __GetComment} from '../services/CommentServices'
 import CreateComments from '../components/CreateComment'
 
 import PlaceHolder from '../assets/placeHolder.jpg'
@@ -64,7 +64,11 @@ export default function DrinkCard(details) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [expanded, setExpanded] = React.useState(false);
+  
   const [contentText, setContentText] = useState('')
+  const [commentId, setCommentId] = useState('')
+
+
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -91,23 +95,34 @@ const handleCreateComment = async (event) =>{
   let commentData= {
     content: contentText,
     user_id: details.userId,
-    drink_posts_id: details.id,
-    
+    drink_posts_id: details.id
   }
    await __CreateComment(commentData)
-}catch(error){
-    console.log('CreateUserComment Error!!!')
-  throw error
+  }catch(error){
+      console.log('CreateUserComment Error!!!')
+    throw error
+  }
 }
-}
-const deleteComment = async() =>{
+// console.log(details.comment)
+const getCommentId = async() =>{
   try{
-      await __DeleteComment(details.comment.id)
+    let getId = {commentId: commentId}
+    console.log(commentId)
+    await __GetComment(getId)
+
   }catch(error){
     throw error
   }
 }
-console.log(details)
+console.log(getCommentId())
+const deleteComment = async() =>{
+  try{
+      await __DeleteComment(details.comment.content)
+  }catch(error){
+    throw error
+  }
+}
+// console.log(details.comments[0])
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -123,10 +138,10 @@ console.log(details)
             open={Boolean(anchorEl)}
             onClose={handleClose}
             >
-          {/* <Link to={`/edit/${details.id}`}> */}
+          <Link to={`/edit/${details.id}`}>
             <MenuItem onClick={handleClose}>Edit</MenuItem>
-          {/* </Link> */}
-            <MenuItem onClick={() => {deleteComment(details.comments) }} >Delete</MenuItem>
+          </Link>
+            <MenuItem onClick={() => {deletePost(details.id) }} >Delete</MenuItem>
           </Menu>
               </span>
         }
@@ -210,10 +225,8 @@ console.log(details)
             open={Boolean(anchorEl)}
             onClose={handleClose}
             >
-          <Link to={`/edit/${details.id}`}>
-            <MenuItem onClick={handleClose}>Edit</MenuItem>
-          </Link>
-            <MenuItem onClick={() => {deletePost(details.id) }} >Delete</MenuItem>
+            <MenuItem onClick={() => {getCommentId(commentId)}}>Edit</MenuItem>
+            <MenuItem onClick={() => {deleteComment(details.comment) }} >Delete</MenuItem>
           </Menu>
               </span>
                       {comment.content}

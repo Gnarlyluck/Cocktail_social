@@ -14,6 +14,7 @@ module.exports = {
       drinkPostId : {
         type: Sequelize.INTEGER,
         allowNull:false,
+        onDelete: 'cascade',
         field: 'drink_posts_id',
         refrences: {
           model: 'drink_posts',
@@ -23,6 +24,7 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull:false,
+        onDelete: 'cascade',
         field: 'user_id',
         references: {
           model: 'users',

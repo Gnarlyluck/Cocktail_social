@@ -56,6 +56,11 @@ create tag
 	"categoriesId":1
 }
 
+create category
+{
+	
+}
+
 
 
 GRAVEYARD

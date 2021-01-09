@@ -51,7 +51,7 @@ const SignInPage = (props) => {
                             label="Required"
                             // fullwidth='true'
                             id='email'
-                            label='Email'
+                            label='Enter Email'
                             name='email'
                             type='email'
                             variant='outlined'

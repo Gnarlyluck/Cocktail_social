@@ -25,18 +25,29 @@ const GetCreateComments = async(req, res) => {
         throw error
     }
 }
-const GetComments = async(req, res) => {
+// const GetPostComments = async(req, res) => {
+//     try{
+//         const comment = await Comments.findAll({
+//             drinkPostsId: req.params.drink_posts_id
+//         })
+//         console.log(drinkPostsId)
+//         res.send(comment)
+//     }catch(error){
+//         console.log('GetComments ERROR!!!')
+//         throw error
+//     }
+// }
+
+const GetComment = async(req, res) => {
     try{
-        const comment = await Comments.findAll({
-            drinkPostsId: req.params.drink_posts_id
+        const comment = await Comments.findOne({
+            commentId: req.params.comment_id
         })
         res.send(comment)
     }catch(error){
-        console.log('GetComments ERROR!!!')
         throw error
     }
 }
-
 const DeleteComment = async (req, res) => {
     try{
         let commentId = parseInt(req.params.comment_id)
@@ -54,6 +65,7 @@ const DeleteComment = async (req, res) => {
 module.exports = {
     CreateComment,
     DeleteComment,
-    GetComments,
-    GetCreateComments
+    // GetPostComments,
+    GetCreateComments,
+    GetComment
 }

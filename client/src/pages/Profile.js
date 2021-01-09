@@ -28,17 +28,18 @@ const useStyles = makeStyles((theme) => ({
         throw error
       }
     }
-    const getPostComments = async() => {
-      try{
-        const getComments = await __GetCommentsByPost()
-        setComments(getComments)
-      }catch(error){
-        throw error
-      }
-    }
+    // console.log(posts)
+    // const getPostComments = async() => {
+    //   try{
+    //     const getComments = await __GetCommentsByPost()
+    //     setComments(getComments)
+    //   }catch(error){
+    //     throw error
+    //   }
+    // }
     useEffect(() => {
       getAllPosts()
-      getPostComments()
+      // getPostComments()
     }, [])
         return(
             <div >

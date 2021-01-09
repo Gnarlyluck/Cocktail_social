@@ -20,7 +20,8 @@ const Nav = ({authenticate, currentUser}) => {
                 <NavLink to='/Create'>
                     Create Post
                 </NavLink>
-                <NavLink to='/profile'>Profile</NavLink>
+                <NavLink to='/profile'>Home</NavLink>
+                <h1 >COCKTAIL SOCIAL {<LocalBarIcon/>}</h1>
             </nav>
         </header>
     ) : (
