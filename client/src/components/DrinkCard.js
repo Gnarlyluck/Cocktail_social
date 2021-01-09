@@ -100,7 +100,6 @@ const handleCreateComment = async (event) =>{
   throw error
 }
 }
-console.log(details.comments.id)
 const deleteComment = async() =>{
   try{
       await __DeleteComment(details.comment.id)
@@ -108,7 +107,7 @@ const deleteComment = async() =>{
     throw error
   }
 }
-
+console.log(details)
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -124,10 +123,10 @@ const deleteComment = async() =>{
             open={Boolean(anchorEl)}
             onClose={handleClose}
             >
-          <Link to={`/edit/${details.id}`}>
+          {/* <Link to={`/edit/${details.id}`}> */}
             <MenuItem onClick={handleClose}>Edit</MenuItem>
-          </Link>
-            <MenuItem onClick={() => {deletePost(details.id) }} >Delete</MenuItem>
+          {/* </Link> */}
+            <MenuItem onClick={() => {deleteComment(details.comments) }} >Delete</MenuItem>
           </Menu>
               </span>
         }
@@ -200,7 +199,24 @@ const deleteComment = async() =>{
               <span key={index}>
                 <span>
                   <ul>
-                    <li>{comment.content}</li>
+          <span>
+          <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+            <MoreVertIcon />
+          </IconButton>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+            >
+          <Link to={`/edit/${details.id}`}>
+            <MenuItem onClick={handleClose}>Edit</MenuItem>
+          </Link>
+            <MenuItem onClick={() => {deletePost(details.id) }} >Delete</MenuItem>
+          </Menu>
+              </span>
+                      {comment.content}
                   </ul>
                 </span>
               </span>
