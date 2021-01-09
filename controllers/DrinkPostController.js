@@ -25,7 +25,7 @@ const GetOnePost = async (req, res) => {
 const GetAllPosts = async (req, res) => {
     try {
         const allPosts = await Drink_posts.findAll({
-        include: [{ model: Comments, attributes: ["content"] }]
+        include: [{ model: Comments, attributes: ["content", "id"] }]
     })
         res.send(allPosts)
     } catch(error) {

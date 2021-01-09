@@ -24,7 +24,8 @@ export const __GetCommentsByPost = async(drinkPostId) => {
 }
 export const __GetComment = async(commentId) => {
     try{
-        const res = await ApiClient.get('comment/get/comment_id')
+        const res = await ApiClient.get(`comment/get/${commentId}`)
+        // console.log(res.data)
         return res.data
     }catch(error){
         console.log(error, '__GetComment ERROR!!!')
@@ -35,7 +36,7 @@ export const __DeleteComment = async(commentId) => {
     try{
         const res = await ApiClient.delete(`/comment/delete/${commentId}`)
         console.log(res.data)
-        return res.date
+        return res.data
     }catch(error){
         console.log(error, '__DeleteComment ERROR!!!!')
         throw error

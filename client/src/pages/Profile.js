@@ -28,32 +28,24 @@ const useStyles = makeStyles((theme) => ({
         throw error
       }
     }
-    // console.log(posts)
-    // const getPostComments = async() => {
-    //   try{
-    //     const getComments = await __GetCommentsByPost()
-    //     setComments(getComments)
-    //   }catch(error){
-    //     throw error
-    //   }
-    // }
+    console.log(posts)
+ 
     useEffect(() => {
       getAllPosts()
-      // getPostComments()
     }, [])
         return(
-            <div >
+          <div >
             {posts.map((post) => 
-            <DrinkCard
-                    key={post.id} 
-                    userId={post.user_id}
-                    id={post.id}
-                    url={post.picture}
-                    title={post.title}
-                    description={post.description}
-                    recipe={post.recipe}
-                    comments={post.Comments}
-                    />)}
+              <DrinkCard
+                key={post.id} 
+                userId={post.user_id}
+                id={post.id}
+                url={post.picture}
+                title={post.title}
+                description={post.description}
+                recipe={post.recipe}
+                comments={post.Comments}
+              />)}
           </div>
         )
   }

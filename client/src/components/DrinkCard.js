@@ -92,37 +92,28 @@ export default function DrinkCard(details) {
 const handleCreateComment = async (event) =>{
   event.preventDefault()
   try{
-  let commentData= {
-    content: contentText,
-    user_id: details.userId,
-    drink_posts_id: details.id
-  }
-   await __CreateComment(commentData)
+    let commentData= {
+      content: contentText,
+      user_id: details.userId,
+      drink_posts_id: details.id
+    }
+    await __CreateComment(commentData)
   }catch(error){
-      console.log('CreateUserComment Error!!!')
+    console.log('CreateUserComment Error!!!')
     throw error
   }
 }
-// console.log(details.comment)
-const getCommentId = async() =>{
-  try{
-    let getId = {commentId: commentId}
-    console.log(commentId)
-    await __GetComment(getId)
 
-  }catch(error){
-    throw error
-  }
-}
-console.log(getCommentId())
-const deleteComment = async() =>{
+
+const deleteComment = async(event) =>{
+  event.preventDefault()
   try{
-      await __DeleteComment(details.comment.content)
+    console.log(event.target.value)
+      await __DeleteComment(event.target.value)
   }catch(error){
     throw error
   }
 }
-// console.log(details.comments[0])
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -211,25 +202,26 @@ const deleteComment = async() =>{
             </Typography>
           <Typography paragraph>
             {details.comments.map((comment, index)=> (
-              <span key={index}>
+              <span >
+                <p key={index}>{comment.id}</p>
                 <span>
                   <ul>
-          <span>
-          <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-            <MoreVertIcon />
-          </IconButton>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-            >
-            <MenuItem onClick={() => {getCommentId(commentId)}}>Edit</MenuItem>
-            <MenuItem onClick={() => {deleteComment(details.comment) }} >Delete</MenuItem>
-          </Menu>
-              </span>
+                    <li>
+                    <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                      <MoreVertIcon />
+                    </IconButton>
+                    <Menu
+                      id="simple-menu"
+                      anchorEl={anchorEl}
+                      keepMounted
+                      open={Boolean(anchorEl)}
+                      onClose={handleClose}
+                      >
+                      <MenuItem onClick={handleClose}>Edit</MenuItem>
+                      <MenuItem value={comment.id} onClick={deleteComment} >Delete</MenuItem>
+                    </Menu>
                       {comment.content}
+                    </li>
                   </ul>
                 </span>
               </span>

@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
     useEffect(() => {
     getAllPosts()
 }, [])
-
         return (
           <div >
             {posts.map((post, index) => <Card

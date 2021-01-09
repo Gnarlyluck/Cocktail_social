@@ -38,19 +38,20 @@ const GetCreateComments = async(req, res) => {
 //     }
 // }
 
-const GetComment = async(req, res) => {
-    try{
-        const comment = await Comments.findOne({
-            commentId: req.params.comment_id
-        })
-        res.send(comment)
-    }catch(error){
-        throw error
-    }
-}
+// const GetComment = async(req, res) => {
+//     try{
+//         const comment = await Comments.findOne({
+//             commentId: req.params.comment_id
+//         })
+//         res.send(comment)
+//     }catch(error){
+//         throw error
+//     }
+// }
 const DeleteComment = async (req, res) => {
     try{
         let commentId = parseInt(req.params.comment_id)
+        console.log(commentId)
         await Comments.destroy({
             where: {
                 id: commentId
@@ -67,5 +68,5 @@ module.exports = {
     DeleteComment,
     // GetPostComments,
     GetCreateComments,
-    GetComment
+    // GetComment
 }
