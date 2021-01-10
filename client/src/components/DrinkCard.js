@@ -66,9 +66,7 @@ export default function DrinkCard(details) {
   const [expanded, setExpanded] = React.useState(false);
   
   const [contentText, setContentText] = useState('')
-  const [commentId, setCommentId] = useState('')
-
-
+  // const [description, setDescription] =useState('')
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -103,8 +101,6 @@ const handleCreateComment = async (event) =>{
     throw error
   }
 }
-
-
 const deleteComment = async(event) =>{
   event.preventDefault()
   try{
@@ -129,8 +125,8 @@ const deleteComment = async(event) =>{
             open={Boolean(anchorEl)}
             onClose={handleClose}
             >
-          <Link to={`/edit/${details.id}`}>
-            <MenuItem onClick={handleClose}>Edit</MenuItem>
+          <Link to={`/edit/${details.id}`} style={{textDecoration: 'none', color: 'black'}}>
+            <MenuItem onClick={handleClose} >Edit</MenuItem>
           </Link>
             <MenuItem onClick={() => {deletePost(details.id) }} >Delete</MenuItem>
           </Menu>
@@ -202,18 +198,18 @@ const deleteComment = async(event) =>{
           <Typography paragraph>
             {details.comments.map((comment, index)=> (
                <span >
-               <p key={index}>{comment.id}</p>
-               <p>{comment.content}</p>
+                 <ul>
+                  {}
+               <Typography paragraph key={index}></Typography>
+               <Typography paragraph>{comment.content}</Typography>
                    <MenuItem onClick={handleClose}>Edit</MenuItem>
                <MenuItem value={comment.id} onClick={deleteComment} >Delete</MenuItem>
+                 </ul>
                <span>
             </span>
             </span>
             ))}
           </Typography>
-        </CardContent>
-        <CardContent>
-    
         </CardContent>
       </Collapse>
     </Card>
