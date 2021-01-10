@@ -181,9 +181,10 @@ const EditPost = (props) => {
                         <TextField
                             // fullwidth='true'
                             id="url"
-                            name="picture"
                             label="Url of Picture"
                             value={picUrl}
+                            multiline
+                            name="picture"
                             type="url"
                             variant="outlined"
                             onChange={(e) => setPicUrl(e.target.value)}
