@@ -48,6 +48,19 @@ const GetCreateComments = async(req, res) => {
 //         throw error
 //     }
 // }
+const EditComment = async (req, res) => {
+    try{
+        let commentId = parseInt(req.paramscomment_id)
+        let commentDeets = req.body
+        let editedComment = await Comments.update(commentDeets, {
+            where: { id: commentId}
+        })
+        res.send(editedComment)
+    }catch(error){
+        console.log(error, 'edit comment ERROR!!')
+        throw error
+    }
+}
 const DeleteComment = async (req, res) => {
     try{
         let commentId = parseInt(req.params.comment_id)
@@ -68,5 +81,6 @@ module.exports = {
     DeleteComment,
     // GetPostComments,
     GetCreateComments,
-    // GetComment
+    // GetComment,
+    EditComment
 }

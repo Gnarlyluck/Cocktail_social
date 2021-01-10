@@ -32,6 +32,15 @@ export const __GetComment = async(commentId) => {
         throw error
     }
 }
+export const __EditComments = async(comment_id, formData) => {
+    try{
+        const res = await ApiClient.put(`/comment/edit/${comment_id}`, formData)
+        return res.data
+    }catch(error){
+        console.log(error)
+        throw error
+    }
+}
 export const __DeleteComment = async(commentId) => {
     try{
         const res = await ApiClient.delete(`/comment/delete/${commentId}`)
@@ -42,3 +51,33 @@ export const __DeleteComment = async(commentId) => {
         throw error
     }
 }
+
+
+{/* <Typography paragraph>
+{details.comments.map((comment, index)=> (
+  <span >
+    <p key={index}>{comment.id}</p>
+    <p>{comment.content}</p>
+    <MenuItem value={comment.id} onClick={deleteComment} >Delete</MenuItem>
+    <span>
+      <ul>
+        <li>
+        <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+          <MoreVertIcon />
+        </IconButton>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+          >
+          <MenuItem onClick={handleClose}>Edit</MenuItem>
+          {/* <MenuItem value={comment.id} onClick={deleteComment} >Delete</MenuItem> */}
+        // </Menu>
+        // </li>
+    //   </ul>
+    // </span>
+//   </span>
+// ))}
+// </Typography> */}
