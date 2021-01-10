@@ -42,10 +42,11 @@ const SignInPage = (props) => {
     }
 
     return (
-        <div>
+        <div style={{backgroundColor: 'white', padding: '50px', borderRadius:'20px', flexGrow: '1', textAlign: 'center'}}>
+           <h2>Welcome Back</h2>
             <div>
                 <form onSubmit={(event) => handleSubmit(event)}>
-                    <div>
+                    <div style={{margin: '20px'}}>
                         <TextField 
                             required id="standard-required" 
                             label="Required"
@@ -58,7 +59,7 @@ const SignInPage = (props) => {
                             onChange={(event) => setEmail(event.target.value)}
                         />
                     </div>
-                    <div>
+                    <div style={{margin: '20px'}}>
                         <TextField 
                             // fullWidth='true'
                             id='password'
@@ -69,6 +70,8 @@ const SignInPage = (props) => {
                             onChange={(event) => setPassword(event.target.value)}
                         />
                     </div>
+                    <h6 style={{color: 'red'}}>* Required field</h6>
+
                         <Button 
                             type='submit' 
                             variant='outlined'

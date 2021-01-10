@@ -46,10 +46,11 @@ const SignUpPage = (props) => {
     }, [formError])
 
     return(
-        <div>
+        <div style={{backgroundColor: 'white', padding: '50px', borderRadius:'20px', flexGrow: '1', textAlign: 'center'}}>
+            <h1>Welcome</h1>
             <div>
                 <form onSubmit={(event) => handleSubmit(event)}>
-                    <div style={{margin: '10px'}}>
+                    <div style={{margin: '25px'}}>
                         <TextField 
                             // fullWidth='true'
                             id='email'
@@ -59,7 +60,7 @@ const SignUpPage = (props) => {
                             onChange={(event) => setEmail(event.target.value)}
                         />
                     </div>
-                    <div style={{margin: '10px'}}>
+                    <div style={{margin: '25px'}}>
                         <TextField 
                             // fullWidth='true'
                             id='Name'
@@ -69,7 +70,7 @@ const SignUpPage = (props) => {
                             onChange={(event) => setName(event.target.value)}
                         /> 
                     </div>
-                    <div style={{margin: '10px'}}>
+                    <div style={{margin: '25px'}}>
                         <TextField 
                             // fullWidth='true'
                             id='username'
@@ -79,7 +80,7 @@ const SignUpPage = (props) => {
                             onChange={(event) => setUsername(event.target.value)}
                         /> 
                     </div>
-                    <div style={{margin: '10px'}}>
+                    <div style={{margin: '25px'}}>
                         <TextField
                             // fullwidth='true'
                             id="password"
