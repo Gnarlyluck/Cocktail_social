@@ -93,6 +93,8 @@ const CreatePost = (props) => {
                 <form className="col s12" onSubmit={(e) => handleSubmit(e)}>
                     <div style={{margin: '10px'}}>
                         <TextField
+                            required id="standard-required" 
+                            label="Required"
                             fullwidth='true'
                             id="title"
                             label="Title"
@@ -128,6 +130,8 @@ const CreatePost = (props) => {
                     </div>
                     <div style={{margin: '10px'}}>
                         <TextField
+                            required id="standard-required" 
+                            label="Required"
                             fullwidth='true'
                             id="description"
                             label="Description"
@@ -142,6 +146,8 @@ const CreatePost = (props) => {
                     </div>
                     <div style={{margin: '10px'}}>
                         <TextField
+                            required id="standard-required" 
+                            label="Required"
                             fullwidth='true'
                             id="recipe"
                             label="Recipe"
@@ -164,6 +170,7 @@ const CreatePost = (props) => {
                             variant="outlined"
                             onChange={(e) => setPicUrl(e.target.value)}
                         />
+                        
                     </div>
                     <Button 
                     type='submit' 

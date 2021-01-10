@@ -103,6 +103,7 @@ const EditPost = (props) => {
     const field = () => {
         if (categories) {
             return (<Autocomplete
+                
                 id="combo-box"
                 options={categories}
                 getOptionLabel={(option) => option.name}
@@ -114,6 +115,7 @@ const EditPost = (props) => {
         } 
         return (
             <Autocomplete
+            
                 id="combo-box"
                 options={categories}
                 getOptionLabel={(option) => option.name}
@@ -125,7 +127,7 @@ const EditPost = (props) => {
     }
 
     return (
-        <div style={{backgroundColor: 'white', padding: '50px', marginLeft: "500px", borderRadius:'20px'}} >
+        <div style={{backgroundColor: 'white', padding: '50px', borderRadius:'20px', flexGrow: '1', textAlign: 'center'}} >
             <h1> Edit Post </h1>
             <div className="row">
                 <form className="col s12" onSubmit={(e) => handleSubmit(e)}>

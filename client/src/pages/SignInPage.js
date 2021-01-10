@@ -61,6 +61,8 @@ const SignInPage = (props) => {
                     </div>
                     <div style={{margin: '20px'}}>
                         <TextField 
+                            required id="standard-required" 
+                            label="Required"
                             // fullWidth='true'
                             id='password'
                             label='Password'

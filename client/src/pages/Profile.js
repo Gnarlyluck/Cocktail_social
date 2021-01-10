@@ -4,12 +4,22 @@ import { __GetCommentsByPost } from '../services/CommentServices';
 import DrinkCard from '../components/DrinkCard'
 
 import {makeStyles} from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Radio from '@material-ui/core/Radio';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme) => ({
     root: {
       '& > *': {
         margin: theme.spacing(1),
+        flexGrow: 1,
       },
+    },
+    control: {
+      padding: theme.spacing(2),
     },
   }));
   const Profile = (props) => {
@@ -17,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
     const classes = useStyles()
     
     const [posts, setPosts] = useState([])
-    const [comments, setComments ] = useState([])
     
     const getAllPosts = async(e) => {
       try{
@@ -28,13 +37,17 @@ const useStyles = makeStyles((theme) => ({
         throw error
       }
     }
-    console.log(posts)
- 
     useEffect(() => {
       getAllPosts()
     }, [])
         return(
-          <div >
+          <Grid 
+          container 
+          className={classes.root} 
+          spacing={1} 
+          justify="center" 
+          style={{}}
+          >
             {posts.map((post) => 
               <DrinkCard
                 key={post.id} 
@@ -46,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
                 recipe={post.recipe}
                 comments={post.Comments}
               />)}
-          </div>
+          </Grid>
         )
   }
   export default Profile
