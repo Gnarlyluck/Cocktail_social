@@ -202,8 +202,11 @@ const deleteComment = async(event) =>{
                   {}
                <Typography paragraph key={index}></Typography>
                <Typography paragraph>{comment.content}</Typography>
-                   <MenuItem onClick={handleClose}>Edit</MenuItem>
-               <MenuItem value={comment.id} onClick={deleteComment} >Delete</MenuItem>
+                   {/* <MenuItem onClick={handleClose}>Edit</MenuItem> */}
+               <MenuItem value={comment.id} onClick={deleteComment} >
+                 Delete Comment
+                 </MenuItem>
+            
                  </ul>
                <span>
             </span>
