@@ -176,7 +176,6 @@ const deleteComment = async(event) =>{
           <Typography paragraph>Comments</Typography>
             <Typography paragraph>
               <form onSubmit={(e) => handleCreateComment(e)}>
-              {/* <CreateComments /> */}
               <TextField
                   fullwidth='true'
                   id="comment"
@@ -202,29 +201,14 @@ const deleteComment = async(event) =>{
             </Typography>
           <Typography paragraph>
             {details.comments.map((comment, index)=> (
-              <span >
-                <p key={index}>{comment.id}</p>
-                <span>
-                  <ul>
-                    <li>
-                    <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                      <MoreVertIcon />
-                    </IconButton>
-                    <Menu
-                      id="simple-menu"
-                      anchorEl={anchorEl}
-                      keepMounted
-                      open={Boolean(anchorEl)}
-                      onClose={handleClose}
-                      >
-                      <MenuItem onClick={handleClose}>Edit</MenuItem>
-                      <MenuItem value={comment.id} onClick={deleteComment} >Delete</MenuItem>
-                    </Menu>
-                      {comment.content}
-                    </li>
-                  </ul>
-                </span>
-              </span>
+               <span >
+               <p key={index}>{comment.id}</p>
+               <p>{comment.content}</p>
+                   <MenuItem onClick={handleClose}>Edit</MenuItem>
+               <MenuItem value={comment.id} onClick={deleteComment} >Delete</MenuItem>
+               <span>
+            </span>
+            </span>
             ))}
           </Typography>
         </CardContent>
