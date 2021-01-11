@@ -28,7 +28,7 @@ A lovely place to post new  and fun cocktail recipes
 - Node.js: used throughout the project as the code for it.
 # ERD
 
-![ERD of cocktail social](./ReadmeImages/cocktail_p4_ERD_draft_4.png "ERD of cocktail social")
+![ERD of cocktail social](./ReadmeImages/cocktail_p4_ERD_draft_final_.png "ERD of cocktail social")
 
 # Data flow chart
 
