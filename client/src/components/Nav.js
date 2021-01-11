@@ -17,6 +17,9 @@ const Nav = ({authenticate, currentUser}) => {
                 >
                     <h3> Sign Out</h3>
                 </NavLink>
+                <NavLink to='/showcategory'>
+                    Search by Category
+                </NavLink>
                 <NavLink to='/Create'>
                     Create Post
                 </NavLink>

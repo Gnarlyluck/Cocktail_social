@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import DrinkCard from '../components/DrinkCard'
+import CatCard from '../components/CatCard'
 
 import {__GetAllCategories, __FindCategoryByName} from '../services/CategoryServices'
 import {__GetAllPostsByCategory} from '../services/TagServices'
@@ -41,12 +41,13 @@ const SearchByCategory = (props) => {
             throw error
         }
     }
+    console.log(categories)
     useEffect(() => {
         if (!categories) {
             getAllCategories()
         }
     }, [])
-    console.log(postAttributes.DrinkPosts)
+    console.log(postAttributes)
     return (
         <Grid style={{padding: '50px'}}>
         <Grid>
@@ -64,13 +65,14 @@ const SearchByCategory = (props) => {
             <p style={{margin: '50px'}}>This category has no posts!</p>
             : 
             <Grid >
-                {postAttributes.DrinkPosts.map((post, index) => <DrinkCard 
+                {postAttributes.DrinkPosts.map((post, index) => <CatCard 
                         key={index}
                         id={post.id}
                         url={post.picture}
                         title={post.title}
                         description={post.recipe}
                         recipe={post.recipe}
+                        
                         // onclick={(action) => {(action)}}
                         />)}
                     
