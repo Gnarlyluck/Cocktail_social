@@ -25,7 +25,6 @@ export const __TagPostToCategory = async(formData) => {
         const res = await ApiClient.post(`/tag/tagIt`, formData)
         return res.data
     }catch(error){
-        console.log('__TagPostToCategory ERROR!!!')
         throw error
 
     }

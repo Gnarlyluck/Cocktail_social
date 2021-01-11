@@ -2,26 +2,27 @@ const { CatTag, DrinkPosts, Categories } = require('../models')
 
 const TagPostToCategory = async (req, res) => {
     try{
-        const drinkPostId = req.body.drinkPostId
-        const categoriesId = req.body.categoriesId
-        const post = await DrinkPosts.findByPk(drinkPostId)
-        const category = await Categories.findByPk(categoriesId)
+        const drink_posts_id = req.body.drink_posts_id
+        const categories_id = req.body.categories_id
+        const post = await DrinkPosts.findByPk(drink_posts_id)
+        const category = await Categories.findByPk(categories_id)
         let newTag = await CatTag.create({
-            drinkPostId: parseInt(post.dataValues.id),
-            // drinkPostId: parseInt(post.id),
-            categoriesId: parseInt(category.dataValues.id),
-            // categoriesId: parseInt(category.id)
+            drink_posts_id: parseInt(post.dataValues.id),
+            drinkPostId: parseInt(post.id),
+            categories_id: parseInt(category.dataValues.id),
+            categoriesId: parseInt(category.id)
         })
         res.send(newTag)
     }catch(error){
         console.log(error)
+        throw error
     }
 }
 
 
 const RemoveTagFromPost = async (req, res) => {
     try{
-        let tagId = parseInt(req.params.cat_tag_id)//id questionable
+        let tagId = parseInt(req.params.cat_tag_id)
         await CatTag.destroy({
             where: {
                 id:tagId
