@@ -22,12 +22,21 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import ListItem from '@material-ui/core/ListItem';
+import List from '@material-ui/core/List'
+import ListItemText from '@material-ui/core/ListItemText';
+import DeleteIcon from '@material-ui/icons/Delete';
+
+
 
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    '& > *': {
+      margin: theme.spacing(1),
+    },
   },
   media: {
     height: 0,
@@ -157,7 +166,7 @@ const deleteComment = async(event) =>{
           <Typography paragraph>Comments</Typography>
             <Typography paragraph>
               <form onSubmit={(e) => handleCreateComment(e)}>
-              <TextField
+                <TextField
                   fullwidth='true'
                   id="comment"
                   label="Create Comment"
@@ -170,7 +179,7 @@ const deleteComment = async(event) =>{
                   variant="outlined"
                   onChange={(e) => setContentText(e.target.value)}
                   />
-              <Button 
+                <Button 
                   type='submit' 
                   variant="outlined" 
                   size="small" 
@@ -182,16 +191,17 @@ const deleteComment = async(event) =>{
             </Typography>
           <Typography paragraph>
             {details.comments.map((comment, index)=> (
-             
-               <span >
-                 <ul>
-               <Typography paragraph key={index}></Typography>
-               <Typography paragraph>{comment.content} </Typography>
-               <MenuItem value={comment.id} onClick={deleteComment} >
-                 Delete Comment
-                 </MenuItem>
-                 </ul>
-            </span>
+              <span >
+                <List>
+                  <ListItem>
+                    <ListItemText key={index}></ListItemText>
+                    <ListItemText>{comment.content} </ListItemText>
+                    <MenuItem value={comment.id} onClick={deleteComment} >
+                    Delete
+                    </MenuItem>
+                  </ListItem>
+                </List>
+              </span>
             ))}
           </Typography>
         </CardContent>

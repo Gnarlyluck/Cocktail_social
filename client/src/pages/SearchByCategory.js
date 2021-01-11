@@ -2,12 +2,28 @@ import React, {useState, useEffect} from 'react'
 import CatCard from '../components/CatCard'
 import {__GetAllCategories, __FindCategoryByName} from '../services/CategoryServices'
 import {__GetAllPostsByCategory} from '../services/TagServices'
+import { makeStyles } from '@material-ui/core/styles';
+
 
 import Grid from '@material-ui/core/Grid';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField'
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+        flexGrow: 1,
+      },
+    },
+    control: {
+      padding: theme.spacing(2),
+    },
+  }));
+
 const SearchByCategory = (props) => {
+    const classes = useStyles()
+
     const [categories, setCategories] = useState(null)
     const [categoryChosen, setCategoryChosen] = useState(null)
     const [noResults, setNoResults] = useState(true)
@@ -39,39 +55,44 @@ const SearchByCategory = (props) => {
             throw error
         }
     }
-    console.log(categories)
     useEffect(() => {
         if (!categories) {
             getAllCategories()
         }
     }, [])
-    console.log(postAttributes)
     return (
         
-        <Grid style={{padding: '50px'}}>
-            <Grid>
+        <Grid 
+        container 
+        className={classes.root} 
+        spacing={0} 
+        justify="center" 
+        style={{width: '45vw'}}>
+            <Grid justify='center'>
                 <Autocomplete
                     id="combo-box"
+                    label="Select Category" 
                     options={categories}
                     getOptionLabel={(option) => option.name}
                     style={{ width: 225}}
-                    renderInput={(params) => <TextField id='test'{...params} label="Category" variant="outlined" />}
+                    renderInput={(params) => <TextField id='test'{...params} label="Choose Category" variant="outlined" />}
                     onChange={(e) => {handleSubmit(e)}}
                     /> 
             </Grid>
             {!firstChoice ? noResults ? 
-            <p style={{margin: '50px'}}>This category has no posts!</p>
-            : 
-            <Grid >
-                {postAttributes.DrinkPosts.map((post, index) => 
-                    <CatCard 
-                    key={index}
-                    id={post.id}
-                    url={post.picture}
-                    title={post.title}
-                    description={post.recipe}
-                    recipe={post.recipe}
-                    />)}
+                <p >This category has no posts!</p>
+                : 
+                <Grid>
+
+                    {postAttributes.DrinkPosts.map((post, index) => 
+                        <CatCard 
+                        key={index}
+                        id={post.id}
+                        url={post.picture}
+                        title={post.title}
+                        description={post.recipe}
+                        recipe={post.recipe}
+                        />)}
                 </Grid>
             :
             <p > Search drinks by category!</p>}

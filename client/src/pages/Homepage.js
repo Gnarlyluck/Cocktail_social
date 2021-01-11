@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
           <Grid 
           container 
           className={classes.root} 
-          spacing={1} 
+          spacing={0} 
           justify="center" 
           style={{}}
           >
