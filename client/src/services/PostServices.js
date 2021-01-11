@@ -43,7 +43,6 @@ export const __DeletePost = async(postId) => {
         const res = await ApiClient.delete(`post/delete/${postId}`)
         return res.data
     }catch(error){
-        console.log(error)
         throw error
     }
 }

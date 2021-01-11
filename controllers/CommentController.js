@@ -9,8 +9,7 @@ const CreateComment = async (req, res) => {
         })
         res.send(comment)
     }catch(error){
-        console.log(error)
-    }
+throw error    }
 } 
 
 const GetCreateComments = async(req, res) => {
@@ -57,14 +56,13 @@ const EditComment = async (req, res) => {
         })
         res.send(editedComment)
     }catch(error){
-        console.log(error, 'edit comment ERROR!!')
+        console.log( 'edit comment ERROR!!')
         throw error
     }
 }
 const DeleteComment = async (req, res) => {
     try{
         let commentId = parseInt(req.params.comment_id)
-        console.log(commentId)
         await Comments.destroy({
             where: {
                 id: commentId

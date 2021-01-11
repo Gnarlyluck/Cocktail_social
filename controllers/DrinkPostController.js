@@ -21,7 +21,6 @@ const GetOnePost = async (req, res) => {
         throw error
     }
 }
-
 const GetAllPosts = async (req, res) => {
     try {
         const allPosts = await DrinkPosts.findAll({

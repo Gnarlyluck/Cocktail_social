@@ -10,7 +10,7 @@ export const __CreateCategory = async(formData) => {
     }
 }
 
-export const __GetCategory = async(categoryId) => {//questionable ID
+export const __GetCategory = async(categoryId) => {
     try{
         const res = await ApiClient.get(`/category/${categoryId}`)
         return res.data

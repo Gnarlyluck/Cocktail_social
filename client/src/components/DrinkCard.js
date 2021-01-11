@@ -1,12 +1,10 @@
 
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
-// import { __GetCommentsByPost } from '../services/CommentServices';
 import { __DeletePost} from '../services/PostServices'
 import {__RemoveTagFromPost} from '../services/TagServices'
 import {__CreateComment, __DeleteComment, __GetComment} from '../services/CommentServices'
-import CreateComments from '../components/CreateComment'
-
+import {NavLink} from 'react-router-dom'
 import PlaceHolder from '../assets/placeHolder.jpg'
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -49,9 +47,6 @@ const useStyles = makeStyles((theme) => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
-  avatar: {
-    backgroundColor: red[500],
-  },
   margin: {
     margin: theme.spacing(1),
   },
@@ -82,7 +77,7 @@ export default function DrinkCard(details) {
     try{
         await __RemoveTagFromPost(postId)
         await __DeletePost(postId)
-        // details.history.push("/profile")
+        // details.push("/profile")
     }catch(error){
         throw error
     }
@@ -104,14 +99,14 @@ const handleCreateComment = async (event) =>{
 const deleteComment = async(event) =>{
   event.preventDefault()
   try{
-    console.log(event.target.value)
       await __DeleteComment(event.target.value)
   }catch(error){
     throw error
   }
 }
   return (
-    <Card className={classes.root}>
+    
+    <Card className={classes.root} style={{width: '45vw'}}>
       <CardHeader
         action={
           <span>
@@ -196,18 +191,18 @@ const deleteComment = async(event) =>{
               </form>
             </Typography>
           <Typography paragraph>
-            {/* {details.comments.map((comment, index)=> (
+            {details.comments.map((comment, index)=> (
              
                <span >
                  <ul>
                <Typography paragraph key={index}></Typography>
-               <Typography paragraph>{comment.content}</Typography>
+               <Typography paragraph>{comment.content} </Typography>
                <MenuItem value={comment.id} onClick={deleteComment} >
                  Delete Comment
                  </MenuItem>
                  </ul>
             </span>
-            ))} */}
+            ))}
           </Typography>
         </CardContent>
       </Collapse>

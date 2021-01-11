@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { __UploadPost} from '../services/PostServices'
 import {__TagPostToCategory} from '../services/TagServices'
 import {__GetAllCategories, __FindCategoryByName, __CreateCategory} from '../services/CategoryServices'
+import {NavLink} from 'react-router-dom'
 
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Button from '@material-ui/core/Button';
@@ -68,8 +69,8 @@ const CreatePost = (props) => {
             if (categoryChosen){
                 let res = await __FindCategoryByName(categoryChosen)
                 let input = {
-                    categoriesId: res.id,
-                    drinkPostId: Upload.id
+                    categories_id: res.id,
+                    drink_posts_id: Upload.id
                 }
                 await __TagPostToCategory(input)
                 
@@ -86,7 +87,7 @@ const CreatePost = (props) => {
         }
     }
     return(
-        <div style={{backgroundColor: 'white', padding: '50px', borderRadius:'20px', flexGrow: '1', textAlign: 'center'}} >
+        <div style={{backgroundColor: 'white', padding: '50px', borderRadius:'20px', textAlign: 'center'}} >
             <h1> Create Post </h1>
             <div className="row">
                 <form className="col s12" onSubmit={(e) => handleSubmit(e)}>
@@ -95,7 +96,6 @@ const CreatePost = (props) => {
                             required id="standard-required" 
                             label="Required"
                             fullwidth='true'
-                            id="title"
                             label="Title"
                             type="text"
                             variant="outlined"
@@ -135,7 +135,6 @@ const CreatePost = (props) => {
                             required id="standard-required" 
                             label="Required"
                             fullwidth='true'
-                            id="description"
                             label="Description"
                             multiline
                             rows={4}
@@ -151,7 +150,6 @@ const CreatePost = (props) => {
                             required id="standard-required" 
                             label="Required"
                             fullwidth='true'
-                            id="recipe"
                             label="Recipe"
                             multiline
                             rows={4}
