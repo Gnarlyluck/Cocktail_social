@@ -49,11 +49,7 @@ const SignInPage = (props) => {
                     <div style={{margin: '20px'}}>
                         <TextField 
                             required id="standard-required" 
-                            label="Required"
-                            // fullwidth='true'
-                            id='email'
                             label='Enter Email'
-                            name='email'
                             type='email'
                             variant='outlined'
                             onChange={(event) => setEmail(event.target.value)}
@@ -62,11 +58,7 @@ const SignInPage = (props) => {
                     <div style={{margin: '20px'}}>
                         <TextField 
                             required id="standard-required" 
-                            label="Required"
-                            // fullWidth='true'
-                            id='password'
                             label='Password'
-                            name='password'
                             type='password'
                             variant='outlined'
                             onChange={(event) => setPassword(event.target.value)}

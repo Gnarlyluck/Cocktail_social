@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { __UploadPost} from '../services/PostServices'
 import {__TagPostToCategory} from '../services/TagServices'
 import {__GetAllCategories, __FindCategoryByName, __CreateCategory} from '../services/CategoryServices'
-import {NavLink} from 'react-router-dom'
 
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Button from '@material-ui/core/Button';
@@ -41,20 +40,6 @@ const CreatePost = (props) => {
             getAllCategories()
         }, [])
 
-    // const newCategory = async(event) => {
-    //     event.preventDefault()
-    //     try{
-    //         let newCatData = {
-    //             name: createCategory
-    //         }
-    //         await __CreateCategory(newCatData)
-    //         setCreatedCategory(createCategory)
-    //         props.history.push('/profile')
-    //     }catch(error){
-    //         setFormError(true)
-    //         throw error
-    //     }
-    // }
     const handleSubmit = async (event) => {
         event.preventDefault()
         try{
@@ -94,7 +79,6 @@ const CreatePost = (props) => {
                     <div style={{margin: '10px'}}>
                         <TextField
                             required id="standard-required" 
-                            label="Required"
                             fullwidth='true'
                             label="Title"
                             type="text"
@@ -133,7 +117,6 @@ const CreatePost = (props) => {
                     <div style={{margin: '10px'}}>
                         <TextField
                             required id="standard-required" 
-                            label="Required"
                             fullwidth='true'
                             label="Description"
                             multiline
@@ -148,7 +131,6 @@ const CreatePost = (props) => {
                     <div style={{margin: '10px'}}>
                         <TextField
                             required id="standard-required" 
-                            label="Required"
                             fullwidth='true'
                             label="Recipe"
                             multiline

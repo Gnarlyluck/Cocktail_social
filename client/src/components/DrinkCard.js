@@ -3,8 +3,7 @@ import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { __DeletePost} from '../services/PostServices'
 import {__RemoveTagFromPost} from '../services/TagServices'
-import {__CreateComment, __DeleteComment, __GetComment} from '../services/CommentServices'
-import {NavLink} from 'react-router-dom'
+import {__CreateComment, __DeleteComment} from '../services/CommentServices'
 import PlaceHolder from '../assets/placeHolder.jpg'
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,9 +15,6 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import AddCommentIcon from '@material-ui/icons/AddComment';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -106,7 +102,7 @@ const deleteComment = async(event) =>{
 }
   return (
     
-    <Card className={classes.root} style={{width: '45vw'}}>
+    <Card className={classes.root} style={{width: '45vw', backgroundColor: '#faf390'}}>
       <CardHeader
         action={
           <span>
@@ -144,12 +140,6 @@ const deleteComment = async(event) =>{
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        {/* <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton> */}
-        {/* <IconButton aria-label="share">
-          <ShareIcon /> 
-        </IconButton> */}
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
