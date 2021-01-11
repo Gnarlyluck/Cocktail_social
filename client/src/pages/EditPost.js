@@ -48,7 +48,6 @@ const EditPost = (props) => {
                 await __RemoveTagFromPost(tagId.id)
             }
         }catch(error){
-            console.log(error)
             throw error
         }
     }
@@ -83,12 +82,13 @@ const EditPost = (props) => {
                 description: descriptionText,
                 recipe: recipeText
             }
-            let edit = await __UpdatePost(postId, updatedData)
+            await __UpdatePost(postId, updatedData)
+            console.log(postId)
             if(categoryChosen){
                 let res = await __FindCategoryByName(categoryChosen)
                 let input = {
-                    categoryId: res.id,
-                    postId: postId
+                    categories_id: res.id,
+                    drink_posts_id: postId
                 }
                 await __TagPostToCategory(input)
             }
@@ -103,7 +103,7 @@ const EditPost = (props) => {
     const field = () => {
         if (categories) {
             return (<Autocomplete
-                
+                label='categories'
                 id="combo-box"
                 options={categories}
                 getOptionLabel={(option) => option.name}
@@ -127,7 +127,7 @@ const EditPost = (props) => {
     }
 
     return (
-        <div style={{backgroundColor: 'white', padding: '50px', borderRadius:'20px', flexGrow: '1', textAlign: 'center'}} >
+        <div style={{backgroundColor: 'white', padding: '50px', borderRadius:'20px', justifyContent: 'center',textAlign: 'center'}} >
             <h1> Edit Post </h1>
             <div className="row">
                 <form className="col s12" onSubmit={(e) => handleSubmit(e)}>
@@ -186,8 +186,9 @@ const EditPost = (props) => {
                             label="Url of Picture"
                             value={picUrl}
                             multiline
-                            name="picture"
+                            rows={4}
                             type="url"
+                            name="picture"
                             variant="outlined"
                             onChange={(e) => setPicUrl(e.target.value)}
                         />
