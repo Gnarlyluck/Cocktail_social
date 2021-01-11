@@ -1,9 +1,9 @@
-const { Drink_posts, Comments, sequelize } = require('../models')
+const { DrinkPosts, Comments, sequelize } = require('../models')
 
 const CreatePost = async (req, res) => {
     try{
         const body = req.body
-        const post = await Drink_posts.create(body)
+        const post = await DrinkPosts.create(body)
         res.send(post)
     }catch(error){
         res.status(401).send({message: "That didn't seem to work"})
@@ -14,7 +14,7 @@ const CreatePost = async (req, res) => {
 
 const GetOnePost = async (req, res) => {
     try{
-        const unoPostoh = await Drink_posts.findByPk(req.params.post_id)
+        const unoPostoh = await DrinkPosts.findByPk(req.params.post_id)
         res.send(unoPostoh)
     }catch(error){
         console.log('GetOnePost ERROR!!!')
@@ -24,7 +24,7 @@ const GetOnePost = async (req, res) => {
 
 const GetAllPosts = async (req, res) => {
     try {
-        const allPosts = await Drink_posts.findAll({
+        const allPosts = await DrinkPosts.findAll({
         include: [{ model: Comments, attributes: ["content", "id"] }]
     })
         res.send(allPosts)
@@ -38,7 +38,7 @@ const  EditPost = async (req, res) => {
     try{
         let drinkPostId = parseInt(req.params.post_id)
         let postDetails = req.body
-        let editedPost = await Drink_posts.update(postDetails, {
+        let editedPost = await DrinkPosts.update(postDetails, {
             where: {id: drinkPostId}
         })
         res.send(editedPost)
@@ -51,7 +51,7 @@ const  EditPost = async (req, res) => {
 const  DeletePost = async (req, res) => {
     try{
         let postId = parseInt( req.params.post_id)
-        await Drink_posts.destroy({
+        await DrinkPosts.destroy({
             where: {
                 id: postId
             }
@@ -67,7 +67,7 @@ const  DeletePost = async (req, res) => {
 const GetPostByUser  = async (req, res) => {
     try{
         const userId = req.params.user_id
-        const userPosts = await Drink_posts.findAll({
+        const userPosts = await DrinkPosts.findAll({
             where: {user_id: userId}
         })
         res.send(userPosts)

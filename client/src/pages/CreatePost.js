@@ -54,7 +54,6 @@ const CreatePost = (props) => {
     //         throw error
     //     }
     // }
-    
     const handleSubmit = async (event) => {
         event.preventDefault()
         try{
@@ -67,7 +66,7 @@ const CreatePost = (props) => {
             }
             let Upload = await __UploadPost(submittedData)
             if (categoryChosen){
-                let res = await __FindCategoryByName(categoryChosen)//issue here!
+                let res = await __FindCategoryByName(categoryChosen)
                 let input = {
                     categoriesId: res.id,
                     drinkPostId: Upload.id
@@ -110,7 +109,10 @@ const CreatePost = (props) => {
                             options={categories}
                             getOptionLabel={(option) => option.name}
                             style={{ width: 230}}
-                            renderInput={(params) => <TextField id='test'{...params} label="Select a Category" variant="outlined" />}
+                            renderInput={(params) => 
+                            <TextField id='test'{...params} 
+                            label="Select a Category" 
+                            variant="outlined" />}
                             onChange={(e) => setCategoryChosen(e.target.innerText)}
                         /> 
                     </div>

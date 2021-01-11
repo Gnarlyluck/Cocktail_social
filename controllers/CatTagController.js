@@ -1,12 +1,12 @@
-const { Cat_tag, Drink_posts, Categories } = require('../models')
+const { CatTag, DrinkPosts, Categories } = require('../models')
 
 const TagPostToCategory = async (req, res) => {
     try{
         const drinkPostId = req.body.drinkPostId
         const categoriesId = req.body.categoriesId
-        const post = await Drink_posts.findByPk(drinkPostId)
+        const post = await DrinkPosts.findByPk(drinkPostId)
         const category = await Categories.findByPk(categoriesId)
-        let newTag = await Cat_tag.create({
+        let newTag = await CatTag.create({
             drinkPostId: parseInt(post.dataValues.id),
             // drinkPostId: parseInt(post.id),
             categoriesId: parseInt(category.dataValues.id),
@@ -22,7 +22,7 @@ const TagPostToCategory = async (req, res) => {
 const RemoveTagFromPost = async (req, res) => {
     try{
         let tagId = parseInt(req.params.cat_tag_id)//id questionable
-        await Cat_tag.destroy({
+        await CatTag.destroy({
             where: {
                 id:tagId
             }
@@ -37,8 +37,9 @@ const RemoveTagFromPost = async (req, res) => {
 const GetAllPostsByCategory = async (req, res) => {
     try{
         let categoriesId = parseInt(req.params.categories_id)
-        const allPostsInCategory = await Cat_tag.findAll({
-            where: {categories_id: categoriesId}
+        const allPostsInCategory = await Categories.findOne({
+            where: {id: categoriesId},
+            include: [DrinkPosts]
         })
         res.send(allPostsInCategory)
     }catch(error){
@@ -50,7 +51,7 @@ const GetAllPostsByCategory = async (req, res) => {
 const GetAllCategoriesOnPost = async (req, res) => {
     try{
         let drinkPostId = parseInt(req.params.drink_posts_id)
-        const allTagsOnPost = await Cat_tag.findAll({
+        const allTagsOnPost = await CatTag.findAll({
             where: {drink_posts_id: drinkPostId}
         })
         res.send(allTagsOnPost)
@@ -64,7 +65,7 @@ const GetTag = async (req, res) => {
         let drinkPostsId = parseInt(req.params.drink_posts_id)
         let categoriesId = parseInt(req.params.categories_id)
         console.log(drinkPostsId, categoriesId)
-        const tagId = await Cat_tag.findOne({
+        const tagId = await CatTag.findOne({
             attributes: ['id'],
             where: {
                 drink_posts_id: drinkPostsId,

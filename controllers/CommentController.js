@@ -50,7 +50,7 @@ const GetCreateComments = async(req, res) => {
 // }
 const EditComment = async (req, res) => {
     try{
-        let commentId = parseInt(req.paramscomment_id)
+        let commentId = parseInt(req.params.comment_id)
         let commentDeets = req.body
         let editedComment = await Comments.update(commentDeets, {
             where: { id: commentId}
