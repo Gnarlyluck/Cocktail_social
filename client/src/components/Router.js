@@ -9,6 +9,7 @@ import Homepage from '../pages/Homepage'
 import CreatePost from '../pages/CreatePost'
 import EditPost from '../pages/EditPost'
 import ProtectedRoute from '../components/ProtectedRoute'
+import SearchByCategory from '../pages/SearchByCategory'
 import {__CheckSession} from '../services/UserServices'
 
 export default function Router(props) {
@@ -88,6 +89,21 @@ export default function Router(props) {
                         </Layout>
                         )}
                         />
+                         <ProtectedRoute 
+                        authenticated={authenticate}
+                        exact 
+                        path = "/showcategory"
+                        component = {(props) => (
+                            <Layout
+                                currentUser={currentUser}
+                                authenticate={authenticate}
+                            >
+                                <SearchByCategory
+                                {...props}
+                                />
+                            </Layout>
+                        )}
+                    />
                     <ProtectedRoute 
                         authenticated={authenticate}
                         exact 
