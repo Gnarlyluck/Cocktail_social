@@ -3,17 +3,17 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class categories extends Model {
+  class Categories extends Model {
     static associate(models) {
-      categories.belongsToMany(models.Drink_posts, {
-        through: 'cat_tags',
+      Categories.belongsToMany(models.DrinkPosts, {
+        through: models.CatTag,
         foreignKey: 'categories_id',
         onUpdate: 'cascade',
         onDelete: 'cascade'
       })
     }
   };
-  categories.init({
+  Categories.init({
     name: {
       type: DataTypes.STRING,
       allowNull:false
@@ -24,5 +24,5 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'categories'
 
   });
-  return categories;
+  return Categories;
 };

@@ -4,11 +4,11 @@ const {
 } = require('sequelize');
 const categories = require('./categories');
 module.exports = (sequelize, DataTypes) => {
-  class cat_tag extends Model {
+  class CatTag extends Model {
     static associate(models) {
     }
   };
-  cat_tag.init({
+  CatTag.init({
     drinkPostId: {
       type: DataTypes.INTEGER,
       field: 'drink_posts_id',
@@ -29,8 +29,8 @@ module.exports = (sequelize, DataTypes) => {
     }
 }, {
     sequelize,
-    modelName: 'Cat_tag',
+    modelName: 'CatTag',
     tableName: 'cat_tags'
   });
-  return cat_tag;
+  return CatTag;
 };

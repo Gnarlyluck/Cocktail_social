@@ -3,27 +3,27 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class drink_posts extends Model {
+  class DrinkPosts extends Model {
     static associate(models) {
-      drink_posts.belongsTo(models.User, {
+      DrinkPosts.belongsTo(models.User, {
         foreignKey: 'user_id',
         onDelete: 'cascade',
         onUpdate: 'cascade'
       })
-      drink_posts.hasMany(models.Comments, {
+      DrinkPosts.hasMany(models.Comments, {
         foreignKey: 'drink_posts_id',
         onDelete: 'cascade',
         onUpdate: 'cascade'
       })
-      drink_posts.belongsToMany(models.Categories, {
-        through: 'cat_tags',
+      DrinkPosts.belongsToMany(models.Categories, {
+        through: models.CatTag,
         foreignKey: 'drink_posts_id',
         onUpdate: 'cascade',
         onDelete: 'cascade'
       })
     }
   };
-  drink_posts.init({
+  DrinkPosts.init({
     user_id:{
       type: DataTypes.STRING,
       allowNull:false
@@ -45,8 +45,8 @@ module.exports = (sequelize, DataTypes) => {
     }    
   }, {
     sequelize,
-    modelName: 'Drink_posts',
+    modelName: 'DrinkPosts',
     tableName: 'drink_posts'
   });
-  return drink_posts;
+  return DrinkPosts;
 };

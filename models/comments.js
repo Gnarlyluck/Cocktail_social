@@ -3,21 +3,21 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class comments extends Model {
+  class Comments extends Model {
     static associate(models) {
-      comments.belongsTo(models.User, {
+      Comments.belongsTo(models.User, {
         foreignKey: 'user_id',
         onDelete: 'cascade',
         onUpdate: 'cascade'
       })
-      comments.belongsTo(models.Drink_posts, {
+      Comments.belongsTo(models.DrinkPosts, {
         foreignKey: 'drink_posts_id',
         onDelete:'cascade',
         onUpdate: 'cascade'
       })
     }
   };
-  comments.init({
+  Comments.init({
     content: {
       type: DataTypes.STRING,
       allowNull: false
@@ -45,5 +45,5 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Comments',
     tableName: 'comments'
   });
-  return comments;
+  return Comments;
 };
