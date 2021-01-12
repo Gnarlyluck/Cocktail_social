@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "build": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all  && cd client && rm -rf build && npm install && npm run build"
+    "build": "npx sequelize-cli db:migrate && cd client && rm -rf build && npm install && npm run build"
   },
   "repository": {
     "type": "git",

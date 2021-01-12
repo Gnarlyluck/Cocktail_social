@@ -24,6 +24,10 @@ app.disable("X-Powered-By");
 
 app.use('/api', AppRouter)
 app.get('/', (req, res) => res.send({ message: 'Server Running', status: 'OK' }))
+// app.get('*', function (req, res) {
+//   const index = path.join(__dirname, 'build', 'index.html');
+//   res.sendFile(index);
+// });
 app.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
 )
