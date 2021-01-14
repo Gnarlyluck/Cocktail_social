@@ -109,7 +109,10 @@ const EditPost = (props) => {
                 getOptionLabel={(option) => option.name}
                 style={{ width: 230}}
                 defaultValue={categories[categoryChosenId]}
-                renderInput={(params) => <TextField id='test'{...params} label="Category" variant="outlined" />}
+                renderInput={(params) => 
+                <TextField id='test'{...params} 
+                label="Category" 
+                variant="outlined" />}
                 onChange={(e) => setCategoryChosen(e.target.innerHTML)}
             /> )
         } 
@@ -120,7 +123,10 @@ const EditPost = (props) => {
                 options={categories}
                 getOptionLabel={(option) => option.name}
                 style={{ width: 230}}
-                renderInput={(params) => <TextField id='test'{...params} label="Category" variant="outlined" />}
+                renderInput={(params) => 
+                <TextField id='test'{...params} 
+                label="Category" 
+                variant="outlined" />}
                 onChange={(e) => setCategoryChosen(e.target.innerHTML)}
             /> 
         )
