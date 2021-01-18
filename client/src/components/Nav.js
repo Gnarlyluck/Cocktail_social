@@ -51,6 +51,9 @@ const Nav = ({authenticate, currentUser}) => {
                         <Link to={'/profile'} style={{textDecoration: 'none', color: 'black'}}>
                             <MenuItem>Feed</MenuItem>
                         </Link>
+                        <Link to={'/search'} style={{textDecoration: 'none', color: 'black'}}>
+                            <MenuItem>Look up cocktail</MenuItem>
+                        </Link>
                     </Menu>
                 </span>
         
