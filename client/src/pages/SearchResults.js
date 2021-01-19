@@ -34,7 +34,6 @@ const SearchResults = (props) => {
         try{
             const res = await axios.get("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita")
                 setDrinks(res.data.drinks)
-                console.log(res)
         }catch(error){
             throw error
         }
@@ -50,7 +49,7 @@ const SearchResults = (props) => {
             getDrinks()
         }, [])
 
-        // console.log(drinks[0].strDrink)
+        console.log(drinks)
     return(
         // <div>drinks go here</div>
         <Grid 
@@ -63,14 +62,13 @@ const SearchResults = (props) => {
 
           {drinks.map((post) => 
             <SearchCard
-            key={post.id} 
-            userId={post.user_id}
-            id={post.id}
-            url={post.picture}
-            title={post.title}
-            description={post.description}
-            recipe={post.recipe}
-            comments={post.Comments}
+            key={post.idDrink} 
+           
+            url={post.strDrinkThumb}
+            title={post.strDrink}
+            ingredient={post.strIngredient1}
+            measurement={post.strMeasure1}
+            recipe={post.strInstructions}
             />)}
         </Grid>
     )

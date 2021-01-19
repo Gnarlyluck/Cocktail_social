@@ -12,6 +12,7 @@ const Layout=({authenticate, currentUser, children, history}) => (
         <div style={
             {display:"flex", 
             height:'100%', 
+            // width: '200px',
             flexDirection: 'row', 
             flexGrow: '1', 
             justifyContent: 'center'}}
