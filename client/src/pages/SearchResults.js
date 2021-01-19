@@ -30,9 +30,9 @@ const SearchResults = (props) => {
 
     const [drinks, setDrinks] = useState([])
 
-    const getDrinks = async() => {
+    const getDrinks = async(userInput) => {
         try{
-            const res = await axios.get("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita")
+            const res = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita`)
                 setDrinks(res.data.drinks)
         }catch(error){
             throw error
@@ -51,7 +51,9 @@ const SearchResults = (props) => {
 
         console.log(drinks)
     return(
-        // <div>drinks go here</div>
+        <div>
+
+        <h1>This feature currently under construction</h1>
         <Grid 
         container 
         className={classes.root} 
@@ -63,14 +65,20 @@ const SearchResults = (props) => {
           {drinks.map((post) => 
             <SearchCard
             key={post.idDrink} 
-           
             url={post.strDrinkThumb}
             title={post.strDrink}
             ingredient={post.strIngredient1}
+            ingredient2={post.strIngredient2}
+            ingredient3={post.strIngredient3}
+            ingredient4={post.strIngredient4}
             measurement={post.strMeasure1}
+            measurement2={post.strMeasure2}
+            measurement3={post.strMeasure3}
+            measurement4={post.strMeasure4}
             recipe={post.strInstructions}
             />)}
         </Grid>
+            </div>
     )
 }
 
