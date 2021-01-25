@@ -66,6 +66,9 @@ const CreatePost = (props) => {
             let newCatData = {
                 name: createCategory
             }
+            if(createCategory === ''){
+                return
+            }
             await __CreateCategory(newCatData)
             setCreatedCategory(createCategory)
             // props.history.push('/profile')
