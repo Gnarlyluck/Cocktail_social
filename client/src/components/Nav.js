@@ -158,7 +158,7 @@ console.log(currentUser, 'currentuser')
                         onClose={handleClose}
                         >
                         <NavLink to={`/Create`} style={linkStyle}>
-                            <MenuItem onClick={handleClose} >Creat Post</MenuItem>
+                            <MenuItem onClick={handleClose} >Create Post</MenuItem>
                         </NavLink>
                         <NavLink to={'showcategory'} style={linkStyle}>
                             <MenuItem>Search By Category</MenuItem>
