@@ -16,6 +16,8 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(2),
     },
   }));
+
+
   const HomePage = () => {
     const classes = useStyles()
     
@@ -32,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     useEffect(() => {
     getAllPosts()
 }, [])
+
         return (
           <Grid 
           container 

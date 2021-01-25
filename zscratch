@@ -1,0 +1,74 @@
+COMPLETED!
+
+put all Nav elements into a dropdown
+
+
+figure out how to hook up cocktaildb API
+
+search bar for API
+handle text from searchfield
+put it into state 
+<========================================================================>
+NEEDS ATTENTION!
+
+
+pull text from state in search page 
+plug that state(text) into api call using string interpolation
+get user input from search bar to apply to API call
+
+
+
+debug double login
+
+debug create category when field is blank
+
+debug assigning a newly created category to the newly created post
+
+only allow logged in user to delete their comments
+
+only allow logged in user to delete their posts
+
+only allow logged in user to edit their posts
+
+deconstruct props needed at the top of every page 
+
+
+create file for use styles and impot it
+
+handle text from searchfield in nav
+put it into state 
+pull text from state in search page 
+plug that state(text) into api call using string interpolation
+get user input from search bar to apply to API call
+
+GraveYard 
+
+<++++++++++++++++++++++++++++++++++++++++++>
+Old nav stuff
+  {/* <NavLink 
+                to='/'
+                onClick={() => { localStorage.clear() }}
+                >
+                    <h3> Sign Out</h3>
+                </NavLink> */}
+                {/* <NavLink to='/showcategory'>
+                    Search by Category
+                </NavLink>
+                <NavLink to='/Create'>
+                    Create Post
+                </NavLink>
+                <NavLink to='/profile'>Home</NavLink> */}
+
+                {/* <InputBase
+                            placeholder="feature available soon"
+                            style={{color: '#faf390'}}
+                            type='text'
+                            value={search}
+                            onChange={handleChange}
+                            // onSubmit={props.history.push('/search')}
+                            classes={{
+                                root: classes.inputRoot,
+                                input: classes.inputInput,
+                            }}
+                            inputProps={{ 'aria-label': 'search' }}
+                            /> */}

@@ -15,7 +15,9 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+
 const SignInPage = (props) => {
+    const {setAuthenticate, setCurrentUser} = props.fromRouter
     const classes = useStyles()
 
     const [email, setEmail] = useState('')
@@ -33,8 +35,11 @@ const SignInPage = (props) => {
                 email: email,
                 password: password,
             })
-            props.toggleAuthenticated(true, res, () => 
-            (props.history.push('/profile')))
+            setAuthenticate(true)
+            console.log(res.data.user)
+            setCurrentUser(res.data.user)
+            console.log(res)
+            props.history.push('/profile')
         }catch(error){
             setFormError(true)
             throw error
@@ -48,7 +53,7 @@ const SignInPage = (props) => {
                 <form onSubmit={(event) => handleSubmit(event)}>
                     <div style={{margin: '20px'}}>
                         <TextField 
-                            required id="standard-required" 
+                            required id="email" 
                             label='Enter Email'
                             type='email'
                             variant='outlined'
@@ -57,7 +62,7 @@ const SignInPage = (props) => {
                     </div>
                     <div style={{margin: '20px'}}>
                         <TextField 
-                            required id="standard-required" 
+                            required id="password" 
                             label='Password'
                             type='password'
                             variant='outlined'

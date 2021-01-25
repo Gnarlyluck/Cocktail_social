@@ -45,9 +45,10 @@ const LoginUser = async (req, res) => {
 }
 
 const SessionStatus = async (req, res) => {
+    console.log('this')
     try{
         const { token } = res.locals
-        const user = await User.findByPk(token._id, {
+        const user = await User.findByPk(token.id, {
             attributes: ['id', 'user_name', 'email']
         })
         res.send({ user, status: 'OK'})

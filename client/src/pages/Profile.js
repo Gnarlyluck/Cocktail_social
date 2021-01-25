@@ -23,44 +23,62 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(2),
     },
   }));
+
+  
   const Profile = (props) => {
-    
     const classes = useStyles()
-    const [posts, setPosts] = useState([])
-    
+    const [posts, setPosts] = useState('')
+    const [loaded, setLoaded]  = useState(false)
+
+    const {authenticate} = props.fromRouter
     const getAllPosts = async(e) => {
       try{
         const apiPosts = await __GetPosts()
         setPosts(apiPosts)
       }
       catch(error){
+        console.log(error)
         throw error
       }
     }
+
+
     useEffect(() => {
+      if (!authenticate){
+        props.history.push('/')
+      }
       getAllPosts()
     }, [])
-        return(
-          <Grid 
-          container 
-          className={classes.root} 
-          spacing={0} 
-          justify="center" 
-          // style={{margin: '2px'}}
-          >
 
-            {posts.map((post) => 
-              <DrinkCard
-              key={post.id} 
-              userId={post.user_id}
-              id={post.id}
-              url={post.picture}
-              title={post.title}
-              description={post.description}
-              recipe={post.recipe}
-              comments={post.Comments}
-              />)}
-          </Grid>
-        )
+
+    useEffect(() => {
+      if (posts !==''){
+        setLoaded(true)
+      }
+    }, [posts])
+
+
+  return( !loaded ? <div>loading</div> :
+    <Grid 
+    id='GRID'
+    container 
+    className={classes.root} 
+    spacing={0} 
+    justify="center" 
+    >
+
+      {posts.map((post) => 
+        <DrinkCard
+        key={post.id} 
+        userId={post.user_id}
+        id={post.id}
+        url={post.picture}
+        title={post.title}
+        description={post.description}
+        recipe={post.recipe}
+        comments={post.Comments}
+        />)}
+    </Grid>
+  )
   }
   export default Profile

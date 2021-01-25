@@ -63,27 +63,26 @@ const SearchByCategory = (props) => {
     return (
         
         <Grid 
-        container 
-        className={classes.root} 
-        spacing={0} 
-        justify="center" 
-        style={{width: '45vw'}}>
-            <Grid justify='center'>
-                <Autocomplete
-                    id="combo-box"
-                    label="Select Category" 
-                    options={categories}
-                    getOptionLabel={(option) => option.name}
-                    style={{ width: 225}}
-                    renderInput={(params) => <TextField id='test'{...params} label="Choose Category" variant="outlined" />}
-                    onChange={(e) => {handleSubmit(e)}}
-                    /> 
-            </Grid>
-            {!firstChoice ? noResults ? 
+            container 
+            className={classes.root} 
+            spacing={0} 
+            justify="center" 
+            style={{width: '45vw'}}>
+                <Grid justify='center'>
+                    <Autocomplete
+                        id="combo-box"
+                        label="Select Category" 
+                        options={categories}
+                        getOptionLabel={(option) => option.name}
+                        style={{ width: 225}}
+                        renderInput={(params) => <TextField id='test'{...params} label="Choose Category" variant="outlined" />}
+                        onChange={(e) => {handleSubmit(e)}}
+                        /> 
+                </Grid>
+                {!firstChoice ? noResults ? 
                 <p >This category has no posts!</p>
                 : 
                 <Grid>
-
                     {postAttributes.DrinkPosts.map((post, index) => 
                         <CatCard 
                         key={index}

@@ -43,9 +43,9 @@ const useStyles = makeStyles((theme) => ({
           <CardContent>
               <Typography variant="body2" color="textSecondary" component="p">
                 <List className ={classes.root}> 
-                  <ListItem>
+                  <ListItemText>
                     Ingredients: 
-                  </ListItem>
+                  </ListItemText>
                   <ListItem>
                     {details.ingredient}: {details.measurement}
                   </ListItem>

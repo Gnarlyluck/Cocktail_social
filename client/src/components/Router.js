@@ -8,6 +8,7 @@ import SignUpPage from '../pages/SignUpPage'
 import Homepage from '../pages/Homepage'
 import CreatePost from '../pages/CreatePost'
 import EditPost from '../pages/EditPost'
+import Nav from '../components/Nav'
 import SearchResults from '../pages/SearchResults'
 import ProtectedRoute from '../components/ProtectedRoute'
 import SearchByCategory from '../pages/SearchByCategory'
@@ -20,15 +21,20 @@ export default function Router(props) {
     const [pageLoading, setPageLoading] = useState(true)
 
     useEffect(() => {
-        verifyTokenValid()
         setPageLoading(false)
-    }, [pageLoading, authenticate])
+    }, [pageLoading])
 
-    const toggleAuthenticated = (value, user, done) => {
-        setAuthenticate(value)
-        setCurrentUser(user.data.user)
-        done()
-    }
+    useEffect(() => {
+        if (authenticate){
+            verifyTokenValid()
+        }
+    }, [authenticate])
+
+    // const toggleAuthenticated = (value, user, done) => {
+    //     setAuthenticate(value)
+    //     setCurrentUser(user.data.user)
+    //     done()
+    // }
 
     const verifyTokenValid = async () => {
         const token = localStorage.getItem('token')
@@ -37,6 +43,7 @@ export default function Router(props) {
                 const session = await __CheckSession(token)
                 setCurrentUser(session.user)
                 setAuthenticate(true)
+                //gonna have to fix this!!
             }catch (error){
                 setCurrentUser(null)
                 setAuthenticate(false)
@@ -44,113 +51,112 @@ export default function Router(props) {
             }
         }
     }
+    const navStyles = {
+        display:"flex", 
+        height:'100%', 
+        flexDirection: 'row', 
+        flexGrow: '1', 
+        justifyContent: 'center'
+    }
+
+    const propsForPages = {
+        authenticate, 
+        setAuthenticate,
+        currentUser, 
+        setCurrentUser,
+        // toggleAuthenticated
+    }
+
     return(
-                <Switch>
-                    <Route
-                        exact path = '/'
-                        component = {(props) => (
-                            <Layout>
-                                <Homepage />
-                            </Layout>
-                        )}
-                        >
-                    </Route>
-                    <Route 
-                        exact path = '/login'
-                        component = {(props) => (
-                            <Layout
+        <div className='layout'> 
+        <Nav 
+            fromRouter={{...propsForPages}}
+            {...props}
+        />
+        <div style={navStyles}>
+            <Switch>
+                <Route
+                    exact path = '/'
+                    component={(props) => (
+                            <Homepage 
+                            fromRouter={{...propsForPages}}
+                            {...props}
+                            />
+                    )}
+                    >
+                </Route>
+                <Route 
+                    exact path = '/login'
+                    component={(props) => (
+                            <SignInPage 
+                            fromRouter={{...propsForPages}}
                                 {...props}
-                            >
-                                <SignInPage 
-                                    toggleAuthenticated= {toggleAuthenticated}
+                            />
+                    )}
+                />
+                <Route 
+                    exact path = '/register'
+                    component={(props) => (
+                            <SignUpPage 
+                            fromRouter={{...propsForPages}}
+                            {...props} />
+                    )}
+                />
+                <Route
+                    exact path = '/create'
+                    component={(props) => (
+                        
+                        <CreatePost 
+                        fromRouter={{...propsForPages}}
+                            {...props}
+                        /> 
+                    )}
+                    />
+                <ProtectedRoute 
+                    exact 
+                    path = "/showcategory"
+                    fromRouter={{...propsForPages}}
+                    component={(props) => (
+                       
+                            <SearchByCategory
+                            {...props}
+                            />
+                    )}
+                />
+                    <Route 
+                        exact path = "/search"
+                        component={(props) => (
+                            
+                            <SearchResults 
+                            fromRouter={{...propsForPages}}
                                     {...props}
                                 />
-                            </Layout>
-                        )}
+                        )} 
                     />
-                    <Route 
-                        exact path = '/register'
-                        component = {(props) => (
-                            <Layout>
-                                <SignUpPage {...props} />
-                            </Layout>
-                        )}
-                    />
-                    <ProtectedRoute
-                        authenticated={authenticate}
-                        exact path = '/create'
-                        component = {(props) => (
-                            <Layout currentUser={currentUser}
-                                    authenticate={authenticate}
-                            >
-                            <CreatePost 
-                                currentUser = {currentUser}
+                <Route 
+                    exact 
+                    path = "/edit/:post_id"
+                    component={(props) => (
+                        
+                        <EditPost 
+                        fromRouter={{...propsForPages}}
                                 {...props}
-                            /> 
-                        </Layout>
-                        )}
-                        />
-                    <ProtectedRoute 
-                        authenticated={authenticate}
-                        exact 
-                        path = "/showcategory"
-                        component = {(props) => (
-                            <Layout
-                            currentUser={currentUser}
-                            authenticate={authenticate}
-                            >
-                                <SearchByCategory
-                                {...props}
-                                />
-                            </Layout>
-                        )}
-                    />
-                        <ProtectedRoute 
-                            authenticated={authenticate}
-                            exact path = "/search"
-                            component={(props) => (
-                                <Layout
-                                    currentUser={currentUser}
-                                    authenticate={authenticate}
-                                >
-                                    <SearchResults 
-                                    currentUser = {currentUser}
-                                        {...props}
-                                    />
-                                </Layout>
-                            )} 
-                        />
-                    <ProtectedRoute 
-                        authenticated={authenticate}
-                        exact 
-                        path = "/edit/:post_id"
-                        component = {(props) => (
-                            <Layout
-                                currentUser={currentUser}
-                                authenticate={authenticate}
-                            >
-                                <EditPost 
-                                    currentUser = {currentUser}
-                                    {...props}
-                                />
-                            </Layout>
-                        )}
-                    />
-                    <ProtectedRoute
-                        authenticated={authenticate}
-                        exact path = '/profile'
-                        component = {(props) => (
-                            <Layout currentUser={currentUser}
-                                    authenticate={authenticate}
-                            >
-                            <Profile
-                                currentUser = {currentUser}
-                                {...props}
-                            /> 
-                        </Layout>
-                        )}
-                        />    
-                </Switch>
+                            />
+                    )}
+                />
+                <Route
+                    exact path = '/profile'
+                    component={(props) => (
+                        
+                        <Profile
+                        fromRouter={{...propsForPages}}
+                            {...props}
+                        /> 
+                    )}
+                    />    
+            </Switch>
+        </div>   
+    </div>
     )
 }
         

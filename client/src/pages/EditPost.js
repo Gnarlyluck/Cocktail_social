@@ -76,7 +76,7 @@ const EditPost = (props) => {
         event.preventDefault()
         try{
             let updatedData = {
-                user_id: props.currentUser.id,
+                user_id: props.fromRouter.currentUser.id,
                 picture: picUrl,
                 title: titleText,
                 description: descriptionText,

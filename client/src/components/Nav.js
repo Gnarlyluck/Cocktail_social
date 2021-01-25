@@ -1,95 +1,149 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {NavLink} from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+
 
 import '../styles/Nav.css'
-import IconButton from '@material-ui/core/IconButton';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import { 
+  IconButton, 
+  Menu,
+  MenuItem,
+  TextField,
+  InputBase,
+  makeStyles,
+} from '@material-ui/core';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import SearchIcon from '@material-ui/icons/Search';
-import InputBase from '@material-ui/core/InputBase';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles';
 import LocalBarIcon from '@material-ui/icons/LocalBar';
 import CreateTwoToneIcon from '@material-ui/icons/CreateTwoTone';
 import PlayForWorkIcon from '@material-ui/icons/PlayForWork';
 import { green, yellow } from '@material-ui/core/colors';
 
-const useStyles = makeStyles((theme) => ({
-    grow: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      display: 'none',
-      [theme.breakpoints.up('sm')]: {
-        display: 'block',
-      },
-    },
-    search: {
-      position: 'relative',
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: fade(theme.palette.common.white, 0.15),
-      '&:hover': {
-        backgroundColor: fade(theme.palette.common.white, 0.25),
-      },
-      marginRight: theme.spacing(2),
-      marginLeft: 0,
-      width: '100%',
-      [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
-        width: 'auto',
-      },
-    },
-    searchIcon: {
-      padding: theme.spacing(0, 2),
-      height: '100%',
-      position: 'absolute',
-      pointerEvents: 'none',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    inputRoot: {
-      color: 'inherit',
-    },
-    inputInput: {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-      transition: theme.transitions.create('width'),
-      width: '100%',
-      [theme.breakpoints.up('md')]: {
-        width: '20ch',
-      },
-    },
-    sectionDesktop: {
-      display: 'none',
-      [theme.breakpoints.up('md')]: {
-        display: 'flex',
-      },
-    },
-    sectionMobile: {
-      display: 'flex',
-      [theme.breakpoints.up('md')]: {
-        display: 'none',
-      },
-    },
-  }));
+// const useStyles = makeStyles((theme) => ({
+//     grow: {
+//       flexGrow: 1,
+//     },
+//     menuButton: {
+//       marginRight: theme.spacing(2),
+//     },
+//     title: {
+//       display: 'none',
+//       [theme.breakpoints.up('sm')]: {
+//         display: 'block',
+//       },
+//     },
+//     search: {
+//       position: 'relative',
+//       borderRadius: theme.shape.borderRadius,
+//       backgroundColor: fade(theme.palette.common.white, 0.15),
+//       '&:hover': {
+//         backgroundColor: fade(theme.palette.common.white, 0.25),
+//       },
+//       marginRight: theme.spacing(2),
+//       marginLeft: 0,
+//       width: '100%',
+//       [theme.breakpoints.up('sm')]: {
+//         marginLeft: theme.spacing(3),
+//         width: 'auto',
+//       },
+//     },
+//     searchIcon: {
+//       padding: theme.spacing(0, 2),
+//       height: '100%',
+//       position: 'absolute',
+//       pointerEvents: 'none',
+//       display: 'flex',
+//       alignItems: 'center',
+//       justifyContent: 'center',
+//     },
+//     inputRoot: {
+//       color: 'inherit',
+//     },
+//     inputInput: {
+//       padding: theme.spacing(1, 1, 1, 0),
+//       // vertical padding + font size from searchIcon
+//       paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+//       transition: theme.transitions.create('width'),
+//       width: '100%',
+//       [theme.breakpoints.up('md')]: {
+//         width: '20ch',
+//       },
+//     },
+//     sectionDesktop: {
+//       display: 'none',
+//       [theme.breakpoints.up('md')]: {
+//         display: 'flex',
+//       },
+//     },
+//     sectionMobile: {
+//       display: 'flex',
+//       [theme.breakpoints.up('md')]: {
+//         display: 'none',
+//       },
+//     },
+//   }));
 
-const Nav = ({authenticate, currentUser}) => {
+
+const Nav = (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const classes = useStyles();
-
+    const [search, setSearch] = useState('')
+    const [drinks, setDrinks] = useState([])
+    const {authenticate, currentUser} = props.fromRouter
+    // const classes = useStyles();
+    const [loaded, setLoaded]  = useState(false)
     const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-      };
-      const handleClose = () => {
-        setAnchorEl(null);
-      };
-    return authenticate && currentUser ? (
+      setAnchorEl(event.currentTarget);
+    };
+
+
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+
+
+    // const handleChange = (e) => {
+    //   e.preventDefault()
+    //   setSearch(e.target.value)
+    //   // console.log(e.target.value)
+    // }
+
+    // const getDrinks = async(e) => {
+    //   try{
+    //     const res = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`)
+    //     setDrinks(res.data.drinks)
+    //   }catch(error){
+    //     throw error
+    //   }
+    // }
+    
+    // const handleSubmit = async(e) => {
+    // try{
+    //   e.preventDefault()
+    //   await getDrinks()
+    // }catch(error){
+    //     // console.log(error)
+    //     throw error
+    //   }
+    // }
+
+//   useEffect(() => {
+//     getDrinks()
+// }, [])
+
+useEffect(() => {
+  if (currentUser !==''){
+    setLoaded(true)
+  }
+}, [currentUser])
+console.log(authenticate, 'authenticate' )
+console.log(currentUser, 'currentuser')
+    const linkStyle = {textDecoration: 'none', color: 'black'}
+
+    return !loaded? <div></div> :
+    
+    authenticate && currentUser ? (
         <header>
             <nav>
                 <span >
@@ -103,39 +157,38 @@ const Nav = ({authenticate, currentUser}) => {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                         >
-                        <NavLink to={`/Create`} style={{textDecoration: 'none', color: 'black'}}>
+                        <NavLink to={`/Create`} style={linkStyle}>
                             <MenuItem onClick={handleClose} >Creat Post</MenuItem>
                         </NavLink>
-                        <Link to={'showcategory'} style={{textDecoration: 'none', color: 'black'}}>
+                        <NavLink to={'showcategory'} style={linkStyle}>
                             <MenuItem>Search By Category</MenuItem>
-                        </Link>
-                        <Link to={'/profile'} style={{textDecoration: 'none', color: 'black'}}>
+                        </NavLink>
+                        <NavLink to={'/profile'} style={linkStyle}>
                             <MenuItem>Feed</MenuItem>
-                        </Link>
-                        <Link to={'/search'} style={{textDecoration: 'none', color: 'black'}}>
+                        </NavLink>
+                        <NavLink to={'/search'} style={linkStyle}>
                             <MenuItem>Look up cocktail</MenuItem>
-                        </Link>
-                        <Link to={'/'}style={{textDecoration: 'none', color: 'black'}}>
-                            <MenuItem onClick={() => {localStorage.clear()}} >Sign Out</MenuItem>
-                        </Link>
+                        </NavLink>
+                        <NavLink to={'/'} style={linkStyle}>
+                            <MenuItem onClick={() => localStorage.clear()} >Sign Out</MenuItem>
+                        </NavLink>
                     </Menu>
                 </span>
-                <span>
+                {/* <form onSubmit={(e) => handleSubmit(e)}>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon style={{color: '#faf390'}}/>
                         </div>
-                            <InputBase
-                            placeholder="Look up Cocktails"
-                            style={{color: '#faf390'}}
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{ 'aria-label': 'search' }}
-                            />
+                        <TextField
+                          fullwidth='true'
+                          id="username"
+                          value={search}
+                          variant="outlined"
+                          type="submit"
+                          onChange={handleChange}
+                          /> 
                     </div>
-                </span>
+                </form> */}
                 <h1 >COCKTAIL SOCIAL {<LocalBarIcon/>}</h1>
             </nav>
         </header>

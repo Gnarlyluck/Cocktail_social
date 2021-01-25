@@ -173,7 +173,7 @@ const deleteComment = async(event) =>{
                   multiline
                   name='comment'
                   rows={2}
-                  style={{width: 230}}
+                  style={{width: 140}}
                   type="text"
                   maxLength={250}
                   variant="outlined"

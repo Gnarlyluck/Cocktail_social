@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const CreatePost = (props) => {
-      const classes = useStyles()
+    const classes = useStyles()
     const [picUrl, setPicUrl] = useState(null);
     const [formError, setFormError] = useState(false)
     const [titleText, setTitle] = useState('')
@@ -33,18 +33,21 @@ const CreatePost = (props) => {
             let res = await __GetAllCategories()
             setCategories(res)
         }catch(error){
-            console.log('getAllCategories error')
+            throw error
         }
     }
-        useEffect(() => {
-            getAllCategories()
-        }, [])
+
+
+    useEffect(() => {
+        getAllCategories()
+    }, [])
+
 
     const handleSubmit = async (event) => {
         event.preventDefault()
         try{
             let submittedData = {
-                user_id: props.currentUser.id,
+                user_id: props.fromRouter.currentUser.id,
                 picture: picUrl,
                 title: titleText,
                 description: descriptionText,
@@ -162,7 +165,7 @@ const CreatePost = (props) => {
                     className={classes.margin}>
                         Submit
                     </Button>
-                    {formError ? <p>Error While submitting</p> : <p>Post Submitted</p>}
+                    {formError ? <p>Error While submitting</p> : <p></p>}
                 </form>
             </div>   
         </div>
