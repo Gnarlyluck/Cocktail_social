@@ -118,13 +118,14 @@ const EditPost = (props) => {
         } 
         return (
             <Autocomplete
-            
                 id="combo-box"
                 options={categories}
                 getOptionLabel={(option) => option.name}
                 style={{ width: 230}}
                 renderInput={(params) => 
-                <TextField id='test'{...params} 
+                <TextField 
+                id='test'{...params} 
+                value= ''
                 label="Category" 
                 variant="outlined" />}
                 onChange={(e) => setCategoryChosen(e.target.innerHTML)}
