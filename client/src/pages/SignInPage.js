@@ -36,9 +36,7 @@ const SignInPage = (props) => {
                 password: password,
             })
             setAuthenticate(true)
-            console.log(res.data.user)
             setCurrentUser(res.data.user)
-            console.log(res)
             props.history.push('/profile')
         }catch(error){
             setFormError(true)

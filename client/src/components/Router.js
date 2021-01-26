@@ -19,7 +19,7 @@ export default function Router(props) {
     const [authenticate, setAuthenticate] = useState(false)
     const [currentUser, setCurrentUser] = useState(null)
     const [pageLoading, setPageLoading] = useState(true)
-
+console.log(props)
     useEffect(() => {
         setPageLoading(false)
     }, [pageLoading])
@@ -30,11 +30,11 @@ export default function Router(props) {
         }
     }, [authenticate])
 
-    // const toggleAuthenticated = (value, user, done) => {
-    //     setAuthenticate(value)
-    //     setCurrentUser(user.data.user)
-    //     done()
-    // }
+    const toggleAuthenticated = (value, user, done) => {
+        setAuthenticate(value)
+        setCurrentUser(user.data.user)
+        done()
+    }
 
     const verifyTokenValid = async () => {
         const token = localStorage.getItem('token')
@@ -64,7 +64,7 @@ export default function Router(props) {
         setAuthenticate,
         currentUser, 
         setCurrentUser,
-        // toggleAuthenticated
+        toggleAuthenticated
     }
 
     return(
