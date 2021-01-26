@@ -97,7 +97,7 @@ const Nav = (props) => {
       setAnchorEl(event.currentTarget);
     };
 
-
+console.log(props)
     const handleClose = () => {
       setAnchorEl(null);
     };
@@ -137,11 +137,11 @@ useEffect(() => {
     setLoaded(true)
   }
 }, [currentUser])
-console.log(authenticate, 'authenticate' )
-console.log(currentUser, 'currentuser')
+
+
     const linkStyle = {textDecoration: 'none', color: 'black'}
 
-    return !loaded? <div></div> :
+    return !loaded? <div>Loading...</div> :
     
     authenticate && currentUser ? (
         <header>
@@ -174,21 +174,6 @@ console.log(currentUser, 'currentuser')
                         </NavLink>
                     </Menu>
                 </span>
-                {/* <form onSubmit={(e) => handleSubmit(e)}>
-                    <div className={classes.search}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon style={{color: '#faf390'}}/>
-                        </div>
-                        <TextField
-                          fullwidth='true'
-                          id="username"
-                          value={search}
-                          variant="outlined"
-                          type="submit"
-                          onChange={handleChange}
-                          /> 
-                    </div>
-                </form> */}
                 <h1 >COCKTAIL SOCIAL {<LocalBarIcon/>}</h1>
             </nav>
         </header>
