@@ -96,8 +96,7 @@ const Nav = (props) => {
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
-
-console.log(props)
+    const toggle = props.fromRouter.toggleAuthenticated
     const handleClose = () => {
       setAnchorEl(null);
     };
@@ -138,7 +137,6 @@ useEffect(() => {
   }
 }, [currentUser])
 
-
     const linkStyle = {textDecoration: 'none', color: 'black'}
 
     return !loaded? <div>Loading...</div> :
@@ -170,7 +168,7 @@ useEffect(() => {
                             <MenuItem>Look up cocktail</MenuItem>
                         </NavLink>
                         <NavLink to={'/'} style={linkStyle}>
-                            <MenuItem onClick={() => localStorage.clear()} >Sign Out</MenuItem>
+                            <MenuItem onClick={() => toggle(false, null)} >Sign Out</MenuItem>
                         </NavLink>
                     </Menu>
                 </span>

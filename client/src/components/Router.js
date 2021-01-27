@@ -19,7 +19,6 @@ export default function Router(props) {
     const [authenticate, setAuthenticate] = useState(false)
     const [currentUser, setCurrentUser] = useState(null)
     const [pageLoading, setPageLoading] = useState(true)
-console.log(props)
     useEffect(() => {
         setPageLoading(false)
     }, [pageLoading])
@@ -32,10 +31,8 @@ console.log(props)
 
     const toggleAuthenticated = (value, user, done) => {
         setAuthenticate(value)
-        setCurrentUser(user.data.user)
-        done()
+        setCurrentUser(user)
     }
-
     const verifyTokenValid = async () => {
         const token = localStorage.getItem('token')
         if (token) {
@@ -66,7 +63,6 @@ console.log(props)
         setCurrentUser,
         toggleAuthenticated
     }
-
     return(
         <div className='layout'> 
         <Nav 
