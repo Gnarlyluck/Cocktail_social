@@ -9,7 +9,6 @@ const CreateUser = async (req, res) => {
         const user = await User.create({ name, email, user_name, password_digest })
         res.send(user)
     }catch (error){
-        console.log('CreateUser ERROR!!!')
         throw error
     }
 }
@@ -19,7 +18,6 @@ const GetUser = async (req, res) => {
         const user = await User.findByPk(req.params.user_id)//fixed this works in insomnia
         res.send(user)
     }catch (error){
-        console.log('GetUser Error!!')
         throw error
     }
 }
@@ -45,17 +43,14 @@ const LoginUser = async (req, res) => {
 }
 
 const SessionStatus = async (req, res) => {
-    console.log('this')
     try{
         const { token } = res.locals
         const user = await User.findByPk(token.id, {
             attributes: ['id', 'user_name', 'email']
         })
         res.send({ user, status: 'OK'})
-        console.log('user is authenticated')
     }catch (error) {
         res.status(401).send({message: 'invalid session'})
-        console.log('SessionStatus ERROR!!!')
         throw error
     }
 }

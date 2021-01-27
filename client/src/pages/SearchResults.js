@@ -36,7 +36,6 @@ const SearchResults = (props) => {
         e.preventDefault()
         setSearch(e.target.value)
       }
-      console.log(search)    
     const getDrinks = async(e) => {
       try{
             const res = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`)

@@ -20,7 +20,6 @@ const GetCreateComments = async(req, res) => {
         })
         res.send(comment)
     }catch(error){
-        console.log('GetCreateComments ERROR!!!')
         throw error
     }
 }
@@ -56,7 +55,6 @@ const EditComment = async (req, res) => {
         })
         res.send(editedComment)
     }catch(error){
-        console.log( 'edit comment ERROR!!')
         throw error
     }
 }
@@ -70,7 +68,7 @@ const DeleteComment = async (req, res) => {
         })    
         res.send({message: `Deleted comment with an id of ${commentId}`})
     }catch(error){
-        console.log('DeleteComment ERROR!!!')
+        throw error
     }
 } 
 

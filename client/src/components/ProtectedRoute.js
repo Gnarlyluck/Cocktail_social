@@ -1,6 +1,5 @@
 import { Redirect, Route } from 'react-router-dom'
 const ProtectedRoute = (props) => {
-     console.log(props)
  const {authenticate} = props.fromRouter
  const { component: Component} = props
     return authenticate ? 

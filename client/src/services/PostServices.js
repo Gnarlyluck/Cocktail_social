@@ -5,7 +5,6 @@ export const __GetOnePost = async(postId) => {
         const res = await ApiClient.get(`/post/${postId}`)//id may be off
         return res.data
     }catch(error){
-        console.log('__GetOnePost ERROR!!!')
         throw error
     }
 }
@@ -15,7 +14,6 @@ export const __GetPosts = async() => {
         const res = await ApiClient.get('/post/all/posts')
         return res.data
     }catch(error){
-        console.log('__GetPosts ERROR!!!')
         throw error
     }
 }
@@ -25,7 +23,6 @@ export const __UpdatePost = async(post_id, formData) => {
         const res = await ApiClient.put(`/post/edit/${post_id}`, formData)
         return res.data
     }catch(error){
-        console.log('__UpdatePost ERROR!!!')
         throw error
     }
 }
@@ -34,7 +31,6 @@ export const __UploadPost = async(formData) => {
         const res = await ApiClient.post(`/post/create`, formData)
         return res.data
     }catch(error){
-        console.log('__UploadPost ERROR!!!')
         throw error
     }
 }
@@ -52,7 +48,6 @@ export const __GetPostsByUser = async(userId) => {
         const res = await ApiClient.get(`/post/delete/${userId}`)
         return res.data
     }catch(error){
-        console.log('__GetPostsByUser ERROR!!!')
         throw error
     }
 }

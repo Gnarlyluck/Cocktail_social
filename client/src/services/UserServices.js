@@ -6,7 +6,6 @@ export const __LoginUser = async(userData) => {
         localStorage.setItem('token', res.data.token)
         return res
     }catch(error){
-        console.log('__LoginUser ERROR!!!')
         throw error
     }
 }
@@ -20,7 +19,6 @@ export const __CheckSession = async(token) => {
         })
         return res.data
     }catch(error){
-        console.log('__CheckSession ERROR!!!')
         throw error
     }
 }
@@ -30,7 +28,6 @@ export const __CreateUser = async(userData) => {
         const res = await ApiClient.post('/user/create', userData)
         return res.data
     }catch(error){
-        console.log('__CreateUser ERROR!!!')
         throw error
     }
 }
@@ -40,7 +37,6 @@ export const __GetUser = async(id) => {
         const res = ApiClient.get(`/user/get/${id}`)
         return res
     }catch(error){
-        console.log('__GetUser ERROR!!!')
         throw error
     }
 }

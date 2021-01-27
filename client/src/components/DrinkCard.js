@@ -97,7 +97,6 @@ const handleCreateComment = async (event) =>{
     }
     await __CreateComment(commentData)
   }catch(error){
-    console.log('CreateUserComment Error!!!')
     throw error
   }
 }

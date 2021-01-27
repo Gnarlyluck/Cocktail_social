@@ -8,7 +8,7 @@ const CreateCategory = async (req, res) => {
         let newCategory = await Categories.create(categoryDetails)
         res.send(newCategory)
     }catch(error){
-        console.log('CreateCategory ERROR!!!')
+        throw error
     }
 }
 
@@ -17,7 +17,7 @@ const GetCategory = async (req, res) => {
         let oneCategory = await Categories.findByPk(req.params.categoryId)//questionable
         res.send(oneCategory) 
     }catch(error){
-        console.log('GetCategory ERROR!!!')
+        throw error
     }
 }
 
@@ -26,7 +26,7 @@ const GetAllCategories = async (req, res) => {
         let allCats = await Categories.findAll()
         res.send(allCats)
     }catch(error){
-        console.log('GetAllCategories ERROR!!!')
+        throw error
     }
 }
 
@@ -41,7 +41,7 @@ const EditCategory = async (req, res) => {
         })
         res.send(editedcat)
     }catch(error){
-        console.log('EditCategory ERROR!!!')
+        throw error
     }
 }
 
@@ -55,7 +55,7 @@ const DeleteCategory = async (req, res) => {
         })
         res.send({message: `Deleted that category with an id of ${categoryId}`})
     }catch(error){
-        console.log('DeleteCategory ERROR!!!')
+        throw error
     }
 }
 

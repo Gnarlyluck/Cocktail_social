@@ -7,7 +7,6 @@ const CreatePost = async (req, res) => {
         res.send(post)
     }catch(error){
         res.status(401).send({message: "That didn't seem to work"})
-        console.log('CreatePost ERROR!!!!')
         throw error
     }
 }
@@ -17,7 +16,6 @@ const GetOnePost = async (req, res) => {
         const unoPostoh = await DrinkPosts.findByPk(req.params.post_id)
         res.send(unoPostoh)
     }catch(error){
-        console.log('GetOnePost ERROR!!!')
         throw error
     }
 }
@@ -28,7 +26,6 @@ const GetAllPosts = async (req, res) => {
     })
         res.send(allPosts)
     } catch(error) {
-        console.log('GetAllPosts error!!!!!')
         throw error
     }
 }
@@ -42,7 +39,6 @@ const  EditPost = async (req, res) => {
         })
         res.send(editedPost)
     }catch(error){
-        console.log(' EditPost ERROR!!!')
         throw error
     }
 }
@@ -57,7 +53,6 @@ const  DeletePost = async (req, res) => {
         })
         res.send({message: `Deleted post with an id of ${postId}`})
     }catch(error){
-        console.log(' DeletePost ERROR!!!')
         throw error
     }
 }
@@ -71,7 +66,6 @@ const GetPostByUser  = async (req, res) => {
         })
         res.send(userPosts)
     }catch(error){
-        console.log(' GetPostByUser ERROR!!!')
         throw error
     }
 }

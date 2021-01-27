@@ -5,7 +5,6 @@ export const __GetAllPostsByCategory = async(categoriesId) => {
         const res = await ApiClient.get(`/tag/posts/${categoriesId}`)
         return res.data
     }catch(error){
-        console.log('__GetAllPostsByCategory ERROR!!!')
         throw error
     }
 }
@@ -35,7 +34,6 @@ export const __RemoveTagFromPost = async(tagId) => {
         const res = await ApiClient.delete(`/tag/untagIt/${tagId}`)
         return res.data
     }catch(error){
-        console.log('__RemoveTagFromPost ERROR!!!')
         throw error
     }
 }
@@ -45,7 +43,6 @@ export const __GetTag = async(drinkPostId, categoriesId) => {
         const res = await ApiClient.get(`/tag/${categoriesId}/${drinkPostId}`)
         return res.data
     }catch(error){
-        console.log('__GetTag ERROR!!!!')
         throw error
     }
 }

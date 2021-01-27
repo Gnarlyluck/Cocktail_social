@@ -83,7 +83,6 @@ const EditPost = (props) => {
                 recipe: recipeText
             }
             await __UpdatePost(postId, updatedData)
-            console.log(postId)
             if(categoryChosen){
                 let res = await __FindCategoryByName(categoryChosen)
                 let input = {
@@ -96,7 +95,6 @@ const EditPost = (props) => {
         }
         catch(error){
             setFormError(true)
-            console.log('handleSubmit on editPost page ERROR!!')
             throw error
         }
     }
