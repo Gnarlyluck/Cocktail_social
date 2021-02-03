@@ -156,7 +156,7 @@ useEffect(() => {
                         onClose={handleClose}
                         >
                         <NavLink to={`/Create`} style={linkStyle}>
-                            <MenuItem onClick={handleClose} >Create Post</MenuItem>
+                            <MenuItem onClick={handleClose}>Create Post</MenuItem>
                         </NavLink>
                         <NavLink to={'showcategory'} style={linkStyle}>
                             <MenuItem>Search By Category</MenuItem>

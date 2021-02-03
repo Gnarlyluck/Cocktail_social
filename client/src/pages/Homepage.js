@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 
   const HomePage = () => {
     const classes = useStyles()
-    
     const [posts, setPosts] = useState([])
     
     const getAllPosts = async () => {
