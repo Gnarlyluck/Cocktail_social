@@ -28,7 +28,7 @@ const CreatePost = (props) => {
     const [categoryChosen, setCategoryChosen] = useState(null)
     const [createCategory, setCreatedCategory] = useState('')
     
-    const getAllCategories = async(props) => {
+    const getAllCategories = async() => {
         try{
             let res = await __GetAllCategories()
             setCategories(res)
@@ -58,11 +58,11 @@ const CreatePost = (props) => {
                 let res = await __FindCategoryByName(categoryChosen)
                 let input = {
                     categories_id: res.id,
-                    drink_posts_id: Upload.id
+                    drink_posts_id: Upload.id,
                 }
                 await __TagPostToCategory(input)
-                
             }
+            props.history.push('/profile')
             let newCatData = {
                 name: createCategory
             }
@@ -71,7 +71,7 @@ const CreatePost = (props) => {
             }
             await __CreateCategory(newCatData)
             setCreatedCategory(createCategory)
-            // props.history.push('/profile')
+
         }catch(error){
             setFormError(true)
             throw error
