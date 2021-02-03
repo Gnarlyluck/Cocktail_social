@@ -23,14 +23,15 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(2),
     },
   }));
-
   
+
   const Profile = (props) => {
     const classes = useStyles()
     const [posts, setPosts] = useState('')
     const [loaded, setLoaded]  = useState(false)
-
     const {authenticate} = props.fromRouter
+    
+    
     const getAllPosts = async(e) => {
       try{
         const apiPosts = await __GetPosts()
@@ -57,7 +58,6 @@ const useStyles = makeStyles((theme) => ({
       }
     }, [posts])
 
-
   return( !loaded ? <div>loading</div> :
     <Grid 
     id='GRID'
@@ -66,9 +66,10 @@ const useStyles = makeStyles((theme) => ({
     spacing={0} 
     justify="center" 
     >
-
+      
       {posts.map((post) => 
         <DrinkCard
+        fromRouter={{...props}}
         key={post.id} 
         userId={post.user_id}
         id={post.id}

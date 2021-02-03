@@ -60,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function DrinkCard(details) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -82,7 +83,7 @@ export default function DrinkCard(details) {
     try{
         await __RemoveTagFromPost(postId)
         await __DeletePost(postId)
-        // details.push("/profile")
+        details.fromRouter.history.push('/profile')
     }catch(error){
         throw error
     }
@@ -127,7 +128,7 @@ const deleteComment = async(event) =>{
           <Link to={`/edit/${details.id}`} style={{textDecoration: 'none', color: 'black'}}>
             <MenuItem onClick={handleClose} >Edit</MenuItem>
           </Link>
-            <MenuItem onClick={() => {deletePost(details.id) }} >Delete</MenuItem>
+            <MenuItem onClick={() => {deletePost(details.id)}}>Delete</MenuItem>
           </Menu>
               </span>
         }
