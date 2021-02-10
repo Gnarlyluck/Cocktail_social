@@ -159,16 +159,16 @@ useEffect(() => {
                             <MenuItem onClick={handleClose}>Create Post</MenuItem>
                         </NavLink>
                         <NavLink to={'showcategory'} style={linkStyle}>
-                            <MenuItem>Search By Category</MenuItem>
+                            <MenuItem onClick={handleClose}>Search By Category</MenuItem>
                         </NavLink>
                         <NavLink to={'/profile'} style={linkStyle}>
-                            <MenuItem>Feed</MenuItem>
+                            <MenuItem onClick={handleClose}>Feed</MenuItem>
                         </NavLink>
                         <NavLink to={'/search'} style={linkStyle}>
-                            <MenuItem>Look up cocktail</MenuItem>
+                            <MenuItem onClick={handleClose}>Look up cocktail</MenuItem>
                         </NavLink>
                         <NavLink to={'/'} style={linkStyle}>
-                            <MenuItem onClick={() => toggle(false, null)} >Sign Out</MenuItem>
+                            <MenuItem onClick={handleClose, () => toggle(false, null)} >Sign Out</MenuItem>
                         </NavLink>
                     </Menu>
                 </span>

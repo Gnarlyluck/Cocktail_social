@@ -97,6 +97,7 @@ const handleCreateComment = async (event) =>{
       drink_posts_id: details.id
     }
     await __CreateComment(commentData)
+    details.fromRouter.history.push('/profile')
   }catch(error){
     throw error
   }
@@ -105,6 +106,7 @@ const deleteComment = async(event) =>{
   event.preventDefault()
   try{
       await __DeleteComment(event.target.value)
+      details.fromRouter.history.push('/profile')
   }catch(error){
     throw error
   }
